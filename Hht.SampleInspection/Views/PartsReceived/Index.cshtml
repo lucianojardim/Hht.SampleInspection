@@ -1,0 +1,116 @@
+﻿@model PagedList.IPagedList<Hht.SampleInspection.Models.PartReceived>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().PartReceivedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().IncomingDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().DateCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().InspectorNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().SerialNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().IndividualPartComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().RedTagNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Auditor.AuditorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().InspectionType.InspectionTypeDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Part.PartNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().YesNo.YesNoDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Vendor.VendorDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().WhereFound.WhereFoundDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ValveTestResult.PartReceivedId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PartReceivedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IncomingDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InspectorNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SerialNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IndividualPartComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RedTagNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Auditor.AuditorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InspectionType.InspectionTypeDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Part.PartNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YesNo.YesNoDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vendor.VendorDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WhereFound.WhereFoundDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValveTestResult.PartReceivedId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PartReceivedId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PartReceivedId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PartReceivedId })
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

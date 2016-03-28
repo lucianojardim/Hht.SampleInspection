@@ -1,0 +1,26 @@
+﻿@model Hht.SampleInspection.Models.ValveFuelType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ValveFuelType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ValveFuelTypeDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValveFuelTypeDesc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ValveFuelTypeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

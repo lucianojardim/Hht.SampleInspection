@@ -1,0 +1,1087 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SampleInspectionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Auditor">
+          <Key>
+            <PropertyRef Name="AuditorId" />
+          </Key>
+          <Property Name="AuditorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuditorName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InspectionType">
+          <Key>
+            <PropertyRef Name="InspectionTypeId" />
+          </Key>
+          <Property Name="InspectionTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InspectionTypeDesc" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Part">
+          <Key>
+            <PropertyRef Name="PartId" />
+          </Key>
+          <Property Name="PartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="PartCategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PartCategory">
+          <Key>
+            <PropertyRef Name="PartCategoryId" />
+          </Key>
+          <Property Name="PartCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartCategoryDesc" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PartReceived">
+          <Key>
+            <PropertyRef Name="PartReceivedId" />
+          </Key>
+          <Property Name="PartReceivedId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VendorId" Type="int" Nullable="false" />
+          <Property Name="PartReceivedDate" Type="datetime" Nullable="false" />
+          <Property Name="AuditorId" Type="int" Nullable="false" />
+          <Property Name="PartId" Type="int" Nullable="false" />
+          <Property Name="WhereFoundId" Type="int" Nullable="false" />
+          <Property Name="InspectionTypeId" Type="int" Nullable="false" />
+          <Property Name="IncomingDate" Type="datetime" Nullable="false" />
+          <Property Name="DateCode" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="InspectorNum" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="SerialNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="WasTested" Type="smallint" Nullable="false" />
+          <Property Name="IndividualPartComments" Type="varchar" MaxLength="255" />
+          <Property Name="RedTagNum" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PassFail03">
+          <Key>
+            <PropertyRef Name="PassFail03Id" />
+          </Key>
+          <Property Name="PassFail03Id" Type="smallint" Nullable="false" />
+          <Property Name="PassFail03Desc" Type="char" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PassFail04">
+          <Key>
+            <PropertyRef Name="PassFail04Id" />
+          </Key>
+          <Property Name="PassFail04Id" Type="smallint" Nullable="false" />
+          <Property Name="PassFail04Desc" Type="char" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PassFail08">
+          <Key>
+            <PropertyRef Name="PassFail08Id" />
+          </Key>
+          <Property Name="PassFail08Id" Type="smallint" Nullable="false" />
+          <Property Name="PassFail08Desc" Type="char" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PassFail11">
+          <Key>
+            <PropertyRef Name="PassFail11Id" />
+          </Key>
+          <Property Name="PassFail11Id" Type="smallint" Nullable="false" />
+          <Property Name="PassFail11Desc" Type="char" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PassFail13">
+          <Key>
+            <PropertyRef Name="PassFail13Id" />
+          </Key>
+          <Property Name="PassFail13Id" Type="smallint" Nullable="false" />
+          <Property Name="PassFail13Desc" Type="char" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Valve">
+          <Key>
+            <PropertyRef Name="PartId" />
+          </Key>
+          <Property Name="PartId" Type="int" Nullable="false" />
+          <Property Name="Step10LowMin" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Step10LowMax" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Step10HighMin" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Step10HighMax" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Step5mHMin" Type="numeric" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="Step5mHMax" Type="numeric" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="Step6mHMin" Type="numeric" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="Step6mHMax" Type="numeric" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="ValveControlTypeId" Type="int" Nullable="false" />
+          <Property Name="ValveFuelTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ValveControlType">
+          <Key>
+            <PropertyRef Name="ValveControlTypeId" />
+          </Key>
+          <Property Name="ValveControlTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ValveControlTypeDesc" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ValveFuelType">
+          <Key>
+            <PropertyRef Name="ValveFuelTypeId" />
+          </Key>
+          <Property Name="ValveFuelTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ValveFuelTypeDesc" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ValveTestResults">
+          <Key>
+            <PropertyRef Name="PartReceivedId" />
+          </Key>
+          <Property Name="PartReceivedId" Type="int" Nullable="false" />
+          <Property Name="Step03TestResultId" Type="smallint" Nullable="false" />
+          <Property Name="Step04TestResultId" Type="smallint" Nullable="false" />
+          <Property Name="Step05mH" Type="numeric" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="Step06mH" Type="numeric" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="Step13TestResultId" Type="smallint" Nullable="false" />
+          <Property Name="Step10High" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Step10Low" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Step11TestResultId" Type="smallint" Nullable="false" />
+          <Property Name="Step08TestResultId" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="VendorId" />
+          </Key>
+          <Property Name="VendorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VendorDesc" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WhereFound">
+          <Key>
+            <PropertyRef Name="WhereFoundId" />
+          </Key>
+          <Property Name="WhereFoundId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WhereFoundDesc" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="YesNo">
+          <Key>
+            <PropertyRef Name="YesNoId" />
+          </Key>
+          <Property Name="YesNoId" Type="smallint" Nullable="false" />
+          <Property Name="YesNoDesc" Type="char" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Part_PartCategory">
+          <End Role="PartCategory" Type="Self.PartCategory" Multiplicity="1" />
+          <End Role="Part" Type="Self.Part" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartCategory">
+              <PropertyRef Name="PartCategoryId" />
+            </Principal>
+            <Dependent Role="Part">
+              <PropertyRef Name="PartCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartReceived_YesNo">
+          <End Role="YesNo" Type="Self.YesNo" Multiplicity="1" />
+          <End Role="PartReceived" Type="Self.PartReceived" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YesNo">
+              <PropertyRef Name="YesNoId" />
+            </Principal>
+            <Dependent Role="PartReceived">
+              <PropertyRef Name="WasTested" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartToBeInspected_Part">
+          <End Role="Part" Type="Self.Part" Multiplicity="1" />
+          <End Role="PartReceived" Type="Self.PartReceived" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Part">
+              <PropertyRef Name="PartId" />
+            </Principal>
+            <Dependent Role="PartReceived">
+              <PropertyRef Name="PartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartToBeInspected_Vendor">
+          <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+          <End Role="PartReceived" Type="Self.PartReceived" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="PartReceived">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartToBeInstpected_Auditor">
+          <End Role="Auditor" Type="Self.Auditor" Multiplicity="1" />
+          <End Role="PartReceived" Type="Self.PartReceived" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auditor">
+              <PropertyRef Name="AuditorId" />
+            </Principal>
+            <Dependent Role="PartReceived">
+              <PropertyRef Name="AuditorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartToBeInstpected_Initiator">
+          <End Role="WhereFound" Type="Self.WhereFound" Multiplicity="1" />
+          <End Role="PartReceived" Type="Self.PartReceived" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WhereFound">
+              <PropertyRef Name="WhereFoundId" />
+            </Principal>
+            <Dependent Role="PartReceived">
+              <PropertyRef Name="WhereFoundId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartToBeInstpected_InspectionType">
+          <End Role="InspectionType" Type="Self.InspectionType" Multiplicity="1" />
+          <End Role="PartReceived" Type="Self.PartReceived" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InspectionType">
+              <PropertyRef Name="InspectionTypeId" />
+            </Principal>
+            <Dependent Role="PartReceived">
+              <PropertyRef Name="InspectionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Valve_Part">
+          <End Role="Part" Type="Self.Part" Multiplicity="1" />
+          <End Role="Valve" Type="Self.Valve" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Part">
+              <PropertyRef Name="PartId" />
+            </Principal>
+            <Dependent Role="Valve">
+              <PropertyRef Name="PartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Valve_ValveEngine">
+          <End Role="ValveControlType" Type="Self.ValveControlType" Multiplicity="1" />
+          <End Role="Valve" Type="Self.Valve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ValveControlType">
+              <PropertyRef Name="ValveControlTypeId" />
+            </Principal>
+            <Dependent Role="Valve">
+              <PropertyRef Name="ValveControlTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Valve_ValveTechnology">
+          <End Role="ValveFuelType" Type="Self.ValveFuelType" Multiplicity="1" />
+          <End Role="Valve" Type="Self.Valve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ValveFuelType">
+              <PropertyRef Name="ValveFuelTypeId" />
+            </Principal>
+            <Dependent Role="Valve">
+              <PropertyRef Name="ValveFuelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValveTestResults_PartReceived">
+          <End Role="PartReceived" Type="Self.PartReceived" Multiplicity="1" />
+          <End Role="ValveTestResults" Type="Self.ValveTestResults" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PartReceived">
+              <PropertyRef Name="PartReceivedId" />
+            </Principal>
+            <Dependent Role="ValveTestResults">
+              <PropertyRef Name="PartReceivedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValveTestResults_PassFail03">
+          <End Role="PassFail03" Type="Self.PassFail03" Multiplicity="1" />
+          <End Role="ValveTestResults" Type="Self.ValveTestResults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PassFail03">
+              <PropertyRef Name="PassFail03Id" />
+            </Principal>
+            <Dependent Role="ValveTestResults">
+              <PropertyRef Name="Step03TestResultId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValveTestResults_PassFail04">
+          <End Role="PassFail04" Type="Self.PassFail04" Multiplicity="1" />
+          <End Role="ValveTestResults" Type="Self.ValveTestResults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PassFail04">
+              <PropertyRef Name="PassFail04Id" />
+            </Principal>
+            <Dependent Role="ValveTestResults">
+              <PropertyRef Name="Step04TestResultId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValveTestResults_PassFail08">
+          <End Role="PassFail08" Type="Self.PassFail08" Multiplicity="1" />
+          <End Role="ValveTestResults" Type="Self.ValveTestResults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PassFail08">
+              <PropertyRef Name="PassFail08Id" />
+            </Principal>
+            <Dependent Role="ValveTestResults">
+              <PropertyRef Name="Step08TestResultId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValveTestResults_PassFail11">
+          <End Role="PassFail11" Type="Self.PassFail11" Multiplicity="1" />
+          <End Role="ValveTestResults" Type="Self.ValveTestResults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PassFail11">
+              <PropertyRef Name="PassFail11Id" />
+            </Principal>
+            <Dependent Role="ValveTestResults">
+              <PropertyRef Name="Step11TestResultId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValveTestResults_PassFail13">
+          <End Role="PassFail13" Type="Self.PassFail13" Multiplicity="1" />
+          <End Role="ValveTestResults" Type="Self.ValveTestResults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PassFail13">
+              <PropertyRef Name="PassFail13Id" />
+            </Principal>
+            <Dependent Role="ValveTestResults">
+              <PropertyRef Name="Step13TestResultId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SampleInspectionModelStoreContainer">
+          <EntitySet Name="Auditor" EntityType="Self.Auditor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InspectionType" EntityType="Self.InspectionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Part" EntityType="Self.Part" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PartCategory" EntityType="Self.PartCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PartReceived" EntityType="Self.PartReceived" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PassFail03" EntityType="Self.PassFail03" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PassFail04" EntityType="Self.PassFail04" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PassFail08" EntityType="Self.PassFail08" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PassFail11" EntityType="Self.PassFail11" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PassFail13" EntityType="Self.PassFail13" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Valve" EntityType="Self.Valve" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ValveControlType" EntityType="Self.ValveControlType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ValveFuelType" EntityType="Self.ValveFuelType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ValveTestResults" EntityType="Self.ValveTestResults" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WhereFound" EntityType="Self.WhereFound" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YesNo" EntityType="Self.YesNo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Part_PartCategory" Association="Self.FK_Part_PartCategory">
+            <End Role="PartCategory" EntitySet="PartCategory" />
+            <End Role="Part" EntitySet="Part" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartReceived_YesNo" Association="Self.FK_PartReceived_YesNo">
+            <End Role="YesNo" EntitySet="YesNo" />
+            <End Role="PartReceived" EntitySet="PartReceived" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartToBeInspected_Part" Association="Self.FK_PartToBeInspected_Part">
+            <End Role="Part" EntitySet="Part" />
+            <End Role="PartReceived" EntitySet="PartReceived" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartToBeInspected_Vendor" Association="Self.FK_PartToBeInspected_Vendor">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="PartReceived" EntitySet="PartReceived" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartToBeInstpected_Auditor" Association="Self.FK_PartToBeInstpected_Auditor">
+            <End Role="Auditor" EntitySet="Auditor" />
+            <End Role="PartReceived" EntitySet="PartReceived" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartToBeInstpected_Initiator" Association="Self.FK_PartToBeInstpected_Initiator">
+            <End Role="WhereFound" EntitySet="WhereFound" />
+            <End Role="PartReceived" EntitySet="PartReceived" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartToBeInstpected_InspectionType" Association="Self.FK_PartToBeInstpected_InspectionType">
+            <End Role="InspectionType" EntitySet="InspectionType" />
+            <End Role="PartReceived" EntitySet="PartReceived" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Valve_Part" Association="Self.FK_Valve_Part">
+            <End Role="Part" EntitySet="Part" />
+            <End Role="Valve" EntitySet="Valve" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Valve_ValveEngine" Association="Self.FK_Valve_ValveEngine">
+            <End Role="ValveControlType" EntitySet="ValveControlType" />
+            <End Role="Valve" EntitySet="Valve" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Valve_ValveTechnology" Association="Self.FK_Valve_ValveTechnology">
+            <End Role="ValveFuelType" EntitySet="ValveFuelType" />
+            <End Role="Valve" EntitySet="Valve" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValveTestResults_PartReceived" Association="Self.FK_ValveTestResults_PartReceived">
+            <End Role="PartReceived" EntitySet="PartReceived" />
+            <End Role="ValveTestResults" EntitySet="ValveTestResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValveTestResults_PassFail03" Association="Self.FK_ValveTestResults_PassFail03">
+            <End Role="PassFail03" EntitySet="PassFail03" />
+            <End Role="ValveTestResults" EntitySet="ValveTestResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValveTestResults_PassFail04" Association="Self.FK_ValveTestResults_PassFail04">
+            <End Role="PassFail04" EntitySet="PassFail04" />
+            <End Role="ValveTestResults" EntitySet="ValveTestResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValveTestResults_PassFail08" Association="Self.FK_ValveTestResults_PassFail08">
+            <End Role="PassFail08" EntitySet="PassFail08" />
+            <End Role="ValveTestResults" EntitySet="ValveTestResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValveTestResults_PassFail11" Association="Self.FK_ValveTestResults_PassFail11">
+            <End Role="PassFail11" EntitySet="PassFail11" />
+            <End Role="ValveTestResults" EntitySet="ValveTestResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValveTestResults_PassFail13" Association="Self.FK_ValveTestResults_PassFail13">
+            <End Role="PassFail13" EntitySet="PassFail13" />
+            <End Role="ValveTestResults" EntitySet="ValveTestResults" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SampleInspectionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Auditor">
+          <Key>
+            <PropertyRef Name="AuditorId" />
+          </Key>
+          <Property Name="AuditorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuditorName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PartReceiveds" Relationship="Self.FK_PartToBeInstpected_Auditor" FromRole="Auditor" ToRole="PartReceived" />
+        </EntityType>
+        <EntityType Name="InspectionType">
+          <Key>
+            <PropertyRef Name="InspectionTypeId" />
+          </Key>
+          <Property Name="InspectionTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InspectionTypeDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PartReceiveds" Relationship="Self.FK_PartToBeInstpected_InspectionType" FromRole="InspectionType" ToRole="PartReceived" />
+        </EntityType>
+        <EntityType Name="Part">
+          <Key>
+            <PropertyRef Name="PartId" />
+          </Key>
+          <Property Name="PartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PartCategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PartCategory" Relationship="Self.FK_Part_PartCategory" FromRole="Part" ToRole="PartCategory" />
+          <NavigationProperty Name="PartReceiveds" Relationship="Self.FK_PartToBeInspected_Part" FromRole="Part" ToRole="PartReceived" />
+          <NavigationProperty Name="Valve" Relationship="Self.FK_Valve_Part" FromRole="Part" ToRole="Valve" />
+        </EntityType>
+        <EntityType Name="PartCategory">
+          <Key>
+            <PropertyRef Name="PartCategoryId" />
+          </Key>
+          <Property Name="PartCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartCategoryDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Parts" Relationship="Self.FK_Part_PartCategory" FromRole="PartCategory" ToRole="Part" />
+        </EntityType>
+        <EntityType Name="PartReceived">
+          <Key>
+            <PropertyRef Name="PartReceivedId" />
+          </Key>
+          <Property Name="PartReceivedId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorId" Type="Int32" Nullable="false" />
+          <Property Name="PartReceivedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AuditorId" Type="Int32" Nullable="false" />
+          <Property Name="PartId" Type="Int32" Nullable="false" />
+          <Property Name="WhereFoundId" Type="Int32" Nullable="false" />
+          <Property Name="InspectionTypeId" Type="Int32" Nullable="false" />
+          <Property Name="IncomingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateCode" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="InspectorNum" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="SerialNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WasTested" Type="Int16" Nullable="false" />
+          <Property Name="IndividualPartComments" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="RedTagNum" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Auditor" Relationship="Self.FK_PartToBeInstpected_Auditor" FromRole="PartReceived" ToRole="Auditor" />
+          <NavigationProperty Name="InspectionType" Relationship="Self.FK_PartToBeInstpected_InspectionType" FromRole="PartReceived" ToRole="InspectionType" />
+          <NavigationProperty Name="Part" Relationship="Self.FK_PartToBeInspected_Part" FromRole="PartReceived" ToRole="Part" />
+          <NavigationProperty Name="YesNo" Relationship="Self.FK_PartReceived_YesNo" FromRole="PartReceived" ToRole="YesNo" />
+          <NavigationProperty Name="Vendor" Relationship="Self.FK_PartToBeInspected_Vendor" FromRole="PartReceived" ToRole="Vendor" />
+          <NavigationProperty Name="WhereFound" Relationship="Self.FK_PartToBeInstpected_Initiator" FromRole="PartReceived" ToRole="WhereFound" />
+          <NavigationProperty Name="ValveTestResult" Relationship="Self.FK_ValveTestResults_PartReceived" FromRole="PartReceived" ToRole="ValveTestResults" />
+        </EntityType>
+        <EntityType Name="Valve">
+          <Key>
+            <PropertyRef Name="PartId" />
+          </Key>
+          <Property Name="PartId" Type="Int32" Nullable="false" />
+          <Property Name="Step10LowMin" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Step10LowMax" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Step10HighMin" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Step10HighMax" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Step5mHMin" Type="Decimal" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="Step5mHMax" Type="Decimal" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="Step6mHMin" Type="Decimal" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="Step6mHMax" Type="Decimal" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="ValveControlTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ValveFuelTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Part" Relationship="Self.FK_Valve_Part" FromRole="Valve" ToRole="Part" />
+          <NavigationProperty Name="ValveControlType" Relationship="Self.FK_Valve_ValveEngine" FromRole="Valve" ToRole="ValveControlType" />
+          <NavigationProperty Name="ValveFuelType" Relationship="Self.FK_Valve_ValveTechnology" FromRole="Valve" ToRole="ValveFuelType" />
+        </EntityType>
+        <EntityType Name="ValveControlType">
+          <Key>
+            <PropertyRef Name="ValveControlTypeId" />
+          </Key>
+          <Property Name="ValveControlTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ValveControlTypeDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Valves" Relationship="Self.FK_Valve_ValveEngine" FromRole="ValveControlType" ToRole="Valve" />
+        </EntityType>
+        <EntityType Name="ValveFuelType">
+          <Key>
+            <PropertyRef Name="ValveFuelTypeId" />
+          </Key>
+          <Property Name="ValveFuelTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ValveFuelTypeDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Valves" Relationship="Self.FK_Valve_ValveTechnology" FromRole="ValveFuelType" ToRole="Valve" />
+        </EntityType>
+        <EntityType Name="ValveTestResult">
+          <Key>
+            <PropertyRef Name="PartReceivedId" />
+          </Key>
+          <Property Name="PartReceivedId" Type="Int32" Nullable="false" />
+          <Property Name="Step03TestResultId" Type="Int16" Nullable="false" />
+          <Property Name="Step04TestResultId" Type="Int16" Nullable="false" />
+          <Property Name="Step05mH" Type="Decimal" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="Step06mH" Type="Decimal" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="Step13TestResultId" Type="Int16" Nullable="false" />
+          <Property Name="Step10High" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Step10Low" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Step11TestResultId" Type="Int16" Nullable="false" />
+          <Property Name="Step08TestResultId" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="PartReceived" Relationship="Self.FK_ValveTestResults_PartReceived" FromRole="ValveTestResults" ToRole="PartReceived" />
+          <NavigationProperty Name="PassFail03" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail03" FromRole="ValveTestResult" ToRole="PassFail03" />
+          <NavigationProperty Name="PassFail04" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail04" FromRole="ValveTestResult" ToRole="PassFail04" />
+          <NavigationProperty Name="PassFail08" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail08" FromRole="ValveTestResult" ToRole="PassFail08" />
+          <NavigationProperty Name="PassFail11" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail11" FromRole="ValveTestResult" ToRole="PassFail11" />
+          <NavigationProperty Name="PassFail13" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail13" FromRole="ValveTestResult" ToRole="PassFail13" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="VendorId" />
+          </Key>
+          <Property Name="VendorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PartReceiveds" Relationship="Self.FK_PartToBeInspected_Vendor" FromRole="Vendor" ToRole="PartReceived" />
+        </EntityType>
+        <EntityType Name="WhereFound">
+          <Key>
+            <PropertyRef Name="WhereFoundId" />
+          </Key>
+          <Property Name="WhereFoundId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WhereFoundDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PartReceiveds" Relationship="Self.FK_PartToBeInstpected_Initiator" FromRole="WhereFound" ToRole="PartReceived" />
+        </EntityType>
+        <EntityType Name="YesNo">
+          <Key>
+            <PropertyRef Name="YesNoId" />
+          </Key>
+          <Property Name="YesNoId" Type="Int16" Nullable="false" />
+          <Property Name="YesNoDesc" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PartReceiveds" Relationship="Self.FK_PartReceived_YesNo" FromRole="YesNo" ToRole="PartReceived" />
+        </EntityType>
+        <Association Name="FK_PartToBeInstpected_Auditor">
+          <End Role="Auditor" Type="Self.Auditor" Multiplicity="1" />
+          <End Role="PartReceived" Type="Self.PartReceived" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auditor">
+              <PropertyRef Name="AuditorId" />
+            </Principal>
+            <Dependent Role="PartReceived">
+              <PropertyRef Name="AuditorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartToBeInstpected_InspectionType">
+          <End Role="InspectionType" Type="Self.InspectionType" Multiplicity="1" />
+          <End Role="PartReceived" Type="Self.PartReceived" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InspectionType">
+              <PropertyRef Name="InspectionTypeId" />
+            </Principal>
+            <Dependent Role="PartReceived">
+              <PropertyRef Name="InspectionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Part_PartCategory">
+          <End Role="PartCategory" Type="Self.PartCategory" Multiplicity="1" />
+          <End Role="Part" Type="Self.Part" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartCategory">
+              <PropertyRef Name="PartCategoryId" />
+            </Principal>
+            <Dependent Role="Part">
+              <PropertyRef Name="PartCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartToBeInspected_Part">
+          <End Role="Part" Type="Self.Part" Multiplicity="1" />
+          <End Role="PartReceived" Type="Self.PartReceived" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Part">
+              <PropertyRef Name="PartId" />
+            </Principal>
+            <Dependent Role="PartReceived">
+              <PropertyRef Name="PartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Valve_Part">
+          <End Role="Part" Type="Self.Part" Multiplicity="1" />
+          <End Role="Valve" Type="Self.Valve" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Part">
+              <PropertyRef Name="PartId" />
+            </Principal>
+            <Dependent Role="Valve">
+              <PropertyRef Name="PartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartReceived_YesNo">
+          <End Role="YesNo" Type="Self.YesNo" Multiplicity="1" />
+          <End Role="PartReceived" Type="Self.PartReceived" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YesNo">
+              <PropertyRef Name="YesNoId" />
+            </Principal>
+            <Dependent Role="PartReceived">
+              <PropertyRef Name="WasTested" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartToBeInspected_Vendor">
+          <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+          <End Role="PartReceived" Type="Self.PartReceived" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="PartReceived">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartToBeInstpected_Initiator">
+          <End Role="WhereFound" Type="Self.WhereFound" Multiplicity="1" />
+          <End Role="PartReceived" Type="Self.PartReceived" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WhereFound">
+              <PropertyRef Name="WhereFoundId" />
+            </Principal>
+            <Dependent Role="PartReceived">
+              <PropertyRef Name="WhereFoundId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValveTestResults_PartReceived">
+          <End Role="PartReceived" Type="Self.PartReceived" Multiplicity="1" />
+          <End Role="ValveTestResults" Type="Self.ValveTestResult" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PartReceived">
+              <PropertyRef Name="PartReceivedId" />
+            </Principal>
+            <Dependent Role="ValveTestResults">
+              <PropertyRef Name="PartReceivedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Valve_ValveEngine">
+          <End Role="ValveControlType" Type="Self.ValveControlType" Multiplicity="1" />
+          <End Role="Valve" Type="Self.Valve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ValveControlType">
+              <PropertyRef Name="ValveControlTypeId" />
+            </Principal>
+            <Dependent Role="Valve">
+              <PropertyRef Name="ValveControlTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Valve_ValveTechnology">
+          <End Role="ValveFuelType" Type="Self.ValveFuelType" Multiplicity="1" />
+          <End Role="Valve" Type="Self.Valve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ValveFuelType">
+              <PropertyRef Name="ValveFuelTypeId" />
+            </Principal>
+            <Dependent Role="Valve">
+              <PropertyRef Name="ValveFuelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SampleInspectionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Auditors" EntityType="Self.Auditor" />
+          <EntitySet Name="InspectionTypes" EntityType="Self.InspectionType" />
+          <EntitySet Name="Parts" EntityType="Self.Part" />
+          <EntitySet Name="PartCategories" EntityType="Self.PartCategory" />
+          <EntitySet Name="PartReceiveds" EntityType="Self.PartReceived" />
+          <EntitySet Name="Valves" EntityType="Self.Valve" />
+          <EntitySet Name="ValveControlTypes" EntityType="Self.ValveControlType" />
+          <EntitySet Name="ValveFuelTypes" EntityType="Self.ValveFuelType" />
+          <EntitySet Name="ValveTestResults" EntityType="Self.ValveTestResult" />
+          <EntitySet Name="Vendors" EntityType="Self.Vendor" />
+          <EntitySet Name="WhereFounds" EntityType="Self.WhereFound" />
+          <EntitySet Name="YesNoes" EntityType="Self.YesNo" />
+          <AssociationSet Name="FK_PartToBeInstpected_Auditor" Association="Self.FK_PartToBeInstpected_Auditor">
+            <End Role="Auditor" EntitySet="Auditors" />
+            <End Role="PartReceived" EntitySet="PartReceiveds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartToBeInstpected_InspectionType" Association="Self.FK_PartToBeInstpected_InspectionType">
+            <End Role="InspectionType" EntitySet="InspectionTypes" />
+            <End Role="PartReceived" EntitySet="PartReceiveds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Part_PartCategory" Association="Self.FK_Part_PartCategory">
+            <End Role="PartCategory" EntitySet="PartCategories" />
+            <End Role="Part" EntitySet="Parts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartToBeInspected_Part" Association="Self.FK_PartToBeInspected_Part">
+            <End Role="Part" EntitySet="Parts" />
+            <End Role="PartReceived" EntitySet="PartReceiveds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Valve_Part" Association="Self.FK_Valve_Part">
+            <End Role="Part" EntitySet="Parts" />
+            <End Role="Valve" EntitySet="Valves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartReceived_YesNo" Association="Self.FK_PartReceived_YesNo">
+            <End Role="YesNo" EntitySet="YesNoes" />
+            <End Role="PartReceived" EntitySet="PartReceiveds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartToBeInspected_Vendor" Association="Self.FK_PartToBeInspected_Vendor">
+            <End Role="Vendor" EntitySet="Vendors" />
+            <End Role="PartReceived" EntitySet="PartReceiveds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartToBeInstpected_Initiator" Association="Self.FK_PartToBeInstpected_Initiator">
+            <End Role="WhereFound" EntitySet="WhereFounds" />
+            <End Role="PartReceived" EntitySet="PartReceiveds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValveTestResults_PartReceived" Association="Self.FK_ValveTestResults_PartReceived">
+            <End Role="PartReceived" EntitySet="PartReceiveds" />
+            <End Role="ValveTestResults" EntitySet="ValveTestResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Valve_ValveEngine" Association="Self.FK_Valve_ValveEngine">
+            <End Role="ValveControlType" EntitySet="ValveControlTypes" />
+            <End Role="Valve" EntitySet="Valves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Valve_ValveTechnology" Association="Self.FK_Valve_ValveTechnology">
+            <End Role="ValveFuelType" EntitySet="ValveFuelTypes" />
+            <End Role="Valve" EntitySet="Valves" />
+          </AssociationSet>
+          <EntitySet Name="PassFail03" EntityType="SampleInspectionModel.PassFail03" />
+          <EntitySet Name="PassFail04" EntityType="SampleInspectionModel.PassFail04" />
+          <EntitySet Name="PassFail08" EntityType="SampleInspectionModel.PassFail08" />
+          <EntitySet Name="PassFail11" EntityType="SampleInspectionModel.PassFail11" />
+          <EntitySet Name="PassFail13" EntityType="SampleInspectionModel.PassFail13" />
+          <AssociationSet Name="FK_ValveTestResults_PassFail03" Association="SampleInspectionModel.FK_ValveTestResults_PassFail03">
+            <End Role="PassFail03" EntitySet="PassFail03" />
+            <End Role="ValveTestResult" EntitySet="ValveTestResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValveTestResults_PassFail04" Association="SampleInspectionModel.FK_ValveTestResults_PassFail04">
+            <End Role="PassFail04" EntitySet="PassFail04" />
+            <End Role="ValveTestResult" EntitySet="ValveTestResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValveTestResults_PassFail08" Association="SampleInspectionModel.FK_ValveTestResults_PassFail08">
+            <End Role="PassFail08" EntitySet="PassFail08" />
+            <End Role="ValveTestResult" EntitySet="ValveTestResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValveTestResults_PassFail11" Association="SampleInspectionModel.FK_ValveTestResults_PassFail11">
+            <End Role="PassFail11" EntitySet="PassFail11" />
+            <End Role="ValveTestResult" EntitySet="ValveTestResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValveTestResults_PassFail13" Association="SampleInspectionModel.FK_ValveTestResults_PassFail13">
+            <End Role="PassFail13" EntitySet="PassFail13" />
+            <End Role="ValveTestResult" EntitySet="ValveTestResults" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="PassFail03">
+          <Key>
+            <PropertyRef Name="PassFail03Id" />
+          </Key>
+          <Property Name="PassFail03Id" Type="Int16" Nullable="false" />
+          <Property Name="PassFail03Desc" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="ValveTestResults" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail03" FromRole="PassFail03" ToRole="ValveTestResult" />
+        </EntityType>
+        <EntityType Name="PassFail04">
+          <Key>
+            <PropertyRef Name="PassFail04Id" />
+          </Key>
+          <Property Name="PassFail04Id" Type="Int16" Nullable="false" />
+          <Property Name="PassFail04Desc" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="ValveTestResults" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail04" FromRole="PassFail04" ToRole="ValveTestResult" />
+        </EntityType>
+        <EntityType Name="PassFail08">
+          <Key>
+            <PropertyRef Name="PassFail08Id" />
+          </Key>
+          <Property Name="PassFail08Id" Type="Int16" Nullable="false" />
+          <Property Name="PassFail08Desc" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="ValveTestResults" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail08" FromRole="PassFail08" ToRole="ValveTestResult" />
+        </EntityType>
+        <EntityType Name="PassFail11">
+          <Key>
+            <PropertyRef Name="PassFail11Id" />
+          </Key>
+          <Property Name="PassFail11Id" Type="Int16" Nullable="false" />
+          <Property Name="PassFail11Desc" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="ValveTestResults" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail11" FromRole="PassFail11" ToRole="ValveTestResult" />
+        </EntityType>
+        <EntityType Name="PassFail13">
+          <Key>
+            <PropertyRef Name="PassFail13Id" />
+          </Key>
+          <Property Name="PassFail13Id" Type="Int16" Nullable="false" />
+          <Property Name="PassFail13Desc" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="ValveTestResults" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail13" FromRole="PassFail13" ToRole="ValveTestResult" />
+        </EntityType>
+        <Association Name="FK_ValveTestResults_PassFail03">
+          <End Type="SampleInspectionModel.PassFail03" Role="PassFail03" Multiplicity="1" />
+          <End Type="SampleInspectionModel.ValveTestResult" Role="ValveTestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PassFail03">
+              <PropertyRef Name="PassFail03Id" />
+            </Principal>
+            <Dependent Role="ValveTestResult">
+              <PropertyRef Name="Step03TestResultId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValveTestResults_PassFail04">
+          <End Type="SampleInspectionModel.PassFail04" Role="PassFail04" Multiplicity="1" />
+          <End Type="SampleInspectionModel.ValveTestResult" Role="ValveTestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PassFail04">
+              <PropertyRef Name="PassFail04Id" />
+            </Principal>
+            <Dependent Role="ValveTestResult">
+              <PropertyRef Name="Step04TestResultId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValveTestResults_PassFail08">
+          <End Type="SampleInspectionModel.PassFail08" Role="PassFail08" Multiplicity="1" />
+          <End Type="SampleInspectionModel.ValveTestResult" Role="ValveTestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PassFail08">
+              <PropertyRef Name="PassFail08Id" />
+            </Principal>
+            <Dependent Role="ValveTestResult">
+              <PropertyRef Name="Step08TestResultId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValveTestResults_PassFail11">
+          <End Type="SampleInspectionModel.PassFail11" Role="PassFail11" Multiplicity="1" />
+          <End Type="SampleInspectionModel.ValveTestResult" Role="ValveTestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PassFail11">
+              <PropertyRef Name="PassFail11Id" />
+            </Principal>
+            <Dependent Role="ValveTestResult">
+              <PropertyRef Name="Step11TestResultId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValveTestResults_PassFail13">
+          <End Type="SampleInspectionModel.PassFail13" Role="PassFail13" Multiplicity="1" />
+          <End Type="SampleInspectionModel.ValveTestResult" Role="ValveTestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PassFail13">
+              <PropertyRef Name="PassFail13Id" />
+            </Principal>
+            <Dependent Role="ValveTestResult">
+              <PropertyRef Name="Step13TestResultId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SampleInspectionModelStoreContainer" CdmEntityContainer="SampleInspectionEntities">
+          <EntitySetMapping Name="Auditors">
+            <EntityTypeMapping TypeName="SampleInspectionModel.Auditor">
+              <MappingFragment StoreEntitySet="Auditor">
+                <ScalarProperty Name="AuditorId" ColumnName="AuditorId" />
+                <ScalarProperty Name="AuditorName" ColumnName="AuditorName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InspectionTypes">
+            <EntityTypeMapping TypeName="SampleInspectionModel.InspectionType">
+              <MappingFragment StoreEntitySet="InspectionType">
+                <ScalarProperty Name="InspectionTypeId" ColumnName="InspectionTypeId" />
+                <ScalarProperty Name="InspectionTypeDesc" ColumnName="InspectionTypeDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parts">
+            <EntityTypeMapping TypeName="SampleInspectionModel.Part">
+              <MappingFragment StoreEntitySet="Part">
+                <ScalarProperty Name="PartId" ColumnName="PartId" />
+                <ScalarProperty Name="PartNumber" ColumnName="PartNumber" />
+                <ScalarProperty Name="PartCategoryId" ColumnName="PartCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartCategories">
+            <EntityTypeMapping TypeName="SampleInspectionModel.PartCategory">
+              <MappingFragment StoreEntitySet="PartCategory">
+                <ScalarProperty Name="PartCategoryId" ColumnName="PartCategoryId" />
+                <ScalarProperty Name="PartCategoryDesc" ColumnName="PartCategoryDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartReceiveds">
+            <EntityTypeMapping TypeName="SampleInspectionModel.PartReceived">
+              <MappingFragment StoreEntitySet="PartReceived">
+                <ScalarProperty Name="PartReceivedId" ColumnName="PartReceivedId" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="PartReceivedDate" ColumnName="PartReceivedDate" />
+                <ScalarProperty Name="AuditorId" ColumnName="AuditorId" />
+                <ScalarProperty Name="PartId" ColumnName="PartId" />
+                <ScalarProperty Name="WhereFoundId" ColumnName="WhereFoundId" />
+                <ScalarProperty Name="InspectionTypeId" ColumnName="InspectionTypeId" />
+                <ScalarProperty Name="IncomingDate" ColumnName="IncomingDate" />
+                <ScalarProperty Name="DateCode" ColumnName="DateCode" />
+                <ScalarProperty Name="InspectorNum" ColumnName="InspectorNum" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="WasTested" ColumnName="WasTested" />
+                <ScalarProperty Name="IndividualPartComments" ColumnName="IndividualPartComments" />
+                <ScalarProperty Name="RedTagNum" ColumnName="RedTagNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Valves">
+            <EntityTypeMapping TypeName="SampleInspectionModel.Valve">
+              <MappingFragment StoreEntitySet="Valve">
+                <ScalarProperty Name="PartId" ColumnName="PartId" />
+                <ScalarProperty Name="Step10LowMin" ColumnName="Step10LowMin" />
+                <ScalarProperty Name="Step10LowMax" ColumnName="Step10LowMax" />
+                <ScalarProperty Name="Step10HighMin" ColumnName="Step10HighMin" />
+                <ScalarProperty Name="Step10HighMax" ColumnName="Step10HighMax" />
+                <ScalarProperty Name="Step5mHMin" ColumnName="Step5mHMin" />
+                <ScalarProperty Name="Step5mHMax" ColumnName="Step5mHMax" />
+                <ScalarProperty Name="Step6mHMin" ColumnName="Step6mHMin" />
+                <ScalarProperty Name="Step6mHMax" ColumnName="Step6mHMax" />
+                <ScalarProperty Name="ValveControlTypeId" ColumnName="ValveControlTypeId" />
+                <ScalarProperty Name="ValveFuelTypeId" ColumnName="ValveFuelTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ValveControlTypes">
+            <EntityTypeMapping TypeName="SampleInspectionModel.ValveControlType">
+              <MappingFragment StoreEntitySet="ValveControlType">
+                <ScalarProperty Name="ValveControlTypeId" ColumnName="ValveControlTypeId" />
+                <ScalarProperty Name="ValveControlTypeDesc" ColumnName="ValveControlTypeDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ValveFuelTypes">
+            <EntityTypeMapping TypeName="SampleInspectionModel.ValveFuelType">
+              <MappingFragment StoreEntitySet="ValveFuelType">
+                <ScalarProperty Name="ValveFuelTypeId" ColumnName="ValveFuelTypeId" />
+                <ScalarProperty Name="ValveFuelTypeDesc" ColumnName="ValveFuelTypeDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ValveTestResults">
+            <EntityTypeMapping TypeName="SampleInspectionModel.ValveTestResult">
+              <MappingFragment StoreEntitySet="ValveTestResults">
+                <ScalarProperty Name="PartReceivedId" ColumnName="PartReceivedId" />
+                <ScalarProperty Name="Step03TestResultId" ColumnName="Step03TestResultId" />
+                <ScalarProperty Name="Step04TestResultId" ColumnName="Step04TestResultId" />
+                <ScalarProperty Name="Step05mH" ColumnName="Step05mH" />
+                <ScalarProperty Name="Step06mH" ColumnName="Step06mH" />
+                <ScalarProperty Name="Step13TestResultId" ColumnName="Step13TestResultId" />
+                <ScalarProperty Name="Step10High" ColumnName="Step10High" />
+                <ScalarProperty Name="Step10Low" ColumnName="Step10Low" />
+                <ScalarProperty Name="Step11TestResultId" ColumnName="Step11TestResultId" />
+                <ScalarProperty Name="Step08TestResultId" ColumnName="Step08TestResultId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendors">
+            <EntityTypeMapping TypeName="SampleInspectionModel.Vendor">
+              <MappingFragment StoreEntitySet="Vendor">
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="VendorDesc" ColumnName="VendorDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WhereFounds">
+            <EntityTypeMapping TypeName="SampleInspectionModel.WhereFound">
+              <MappingFragment StoreEntitySet="WhereFound">
+                <ScalarProperty Name="WhereFoundId" ColumnName="WhereFoundId" />
+                <ScalarProperty Name="WhereFoundDesc" ColumnName="WhereFoundDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YesNoes">
+            <EntityTypeMapping TypeName="SampleInspectionModel.YesNo">
+              <MappingFragment StoreEntitySet="YesNo">
+                <ScalarProperty Name="YesNoId" ColumnName="YesNoId" />
+                <ScalarProperty Name="YesNoDesc" ColumnName="YesNoDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PassFail03">
+            <EntityTypeMapping TypeName="SampleInspectionModel.PassFail03">
+              <MappingFragment StoreEntitySet="PassFail03">
+                <ScalarProperty Name="PassFail03Desc" ColumnName="PassFail03Desc" />
+                <ScalarProperty Name="PassFail03Id" ColumnName="PassFail03Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PassFail04">
+            <EntityTypeMapping TypeName="SampleInspectionModel.PassFail04">
+              <MappingFragment StoreEntitySet="PassFail04">
+                <ScalarProperty Name="PassFail04Desc" ColumnName="PassFail04Desc" />
+                <ScalarProperty Name="PassFail04Id" ColumnName="PassFail04Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PassFail08">
+            <EntityTypeMapping TypeName="SampleInspectionModel.PassFail08">
+              <MappingFragment StoreEntitySet="PassFail08">
+                <ScalarProperty Name="PassFail08Desc" ColumnName="PassFail08Desc" />
+                <ScalarProperty Name="PassFail08Id" ColumnName="PassFail08Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PassFail11">
+            <EntityTypeMapping TypeName="SampleInspectionModel.PassFail11">
+              <MappingFragment StoreEntitySet="PassFail11">
+                <ScalarProperty Name="PassFail11Desc" ColumnName="PassFail11Desc" />
+                <ScalarProperty Name="PassFail11Id" ColumnName="PassFail11Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PassFail13">
+            <EntityTypeMapping TypeName="SampleInspectionModel.PassFail13">
+              <MappingFragment StoreEntitySet="PassFail13">
+                <ScalarProperty Name="PassFail13Desc" ColumnName="PassFail13Desc" />
+                <ScalarProperty Name="PassFail13Id" ColumnName="PassFail13Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

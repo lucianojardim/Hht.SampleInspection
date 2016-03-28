@@ -1,0 +1,136 @@
+﻿@model Hht.SampleInspection.Models.PartReceived
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PartReceived</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PartReceivedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartReceivedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IncomingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IncomingDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InspectorNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InspectorNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SerialNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IndividualPartComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IndividualPartComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RedTagNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RedTagNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Auditor.AuditorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Auditor.AuditorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InspectionType.InspectionTypeDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InspectionType.InspectionTypeDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Part.PartNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Part.PartNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YesNo.YesNoDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YesNo.YesNoDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vendor.VendorDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vendor.VendorDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WhereFound.WhereFoundDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WhereFound.WhereFoundDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValveTestResult.PartReceivedId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValveTestResult.PartReceivedId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,26 @@
+﻿@model Hht.SampleInspection.Models.Auditor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Auditor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AuditorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuditorName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AuditorId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

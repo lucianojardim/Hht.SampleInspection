@@ -1,0 +1,108 @@
+﻿@model Hht.SampleInspection.Models.Valve
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Valve</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Step10LowMin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Step10LowMin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Step10LowMax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Step10LowMax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Step10HighMin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Step10HighMin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Step10HighMax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Step10HighMax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Step5mHMin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Step5mHMin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Step5mHMax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Step5mHMax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Step6mHMin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Step6mHMin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Step6mHMax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Step6mHMax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Part.PartNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Part.PartNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValveControlType.ValveControlTypeDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValveControlType.ValveControlTypeDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValveFuelType.ValveFuelTypeDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValveFuelType.ValveFuelTypeDesc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PartId }) |
+    @*2016-03-10 LCJ Replace link to redirect to Part details instead of listing Valve details*@
+    @*@Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("Part Details", "Details", "Parts", new { id = Model.PartId }, null)
+</p>

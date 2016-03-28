@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Hht.SampleInspection.Models.Valve>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Step10LowMin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Step10LowMax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Step10HighMin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Step10HighMax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Step5mHMin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Step5mHMax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Step6mHMin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Step6mHMax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Part.PartNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValveControlType.ValveControlTypeDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValveFuelType.ValveFuelTypeDesc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Step10LowMin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Step10LowMax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Step10HighMin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Step10HighMax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Step5mHMin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Step5mHMax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Step6mHMin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Step6mHMax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Part.PartNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValveControlType.ValveControlTypeDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValveFuelType.ValveFuelTypeDesc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PartId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PartId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PartId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,26 @@
+﻿@model Hht.SampleInspection.Models.WhereFound
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WhereFound</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WhereFoundDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WhereFoundDesc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.WhereFoundId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

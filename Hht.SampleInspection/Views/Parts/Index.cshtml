@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Hht.SampleInspection.Models.Part>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PartNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartCategory.PartCategoryDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valve.PartId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PartNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PartCategory.PartCategoryDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valve.PartId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PartId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PartId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PartId })
+        </td>
+    </tr>
+}
+
+</table>

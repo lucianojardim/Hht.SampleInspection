@@ -1,0 +1,50 @@
+﻿@model Hht.SampleInspection.Models.Part
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Part</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PartNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartCategory.PartCategoryDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartCategory.PartCategoryDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valve.PartId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valve.PartId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PartId }) |
+    @Html.ActionLink("Back to List", "Index") |
+    @*2016-03-10 LCJ Added link to redirect to Valve details if Part category is Valve*@
+    @{
+        if (Model.PartCategory.PartCategoryDesc == "Valve")
+        {
+            @Html.ActionLink("Valve Details", "Details", "Valves", new { id = Model.PartId }, null)
+        }
+    }
+    
+</p>

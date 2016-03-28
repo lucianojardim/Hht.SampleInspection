@@ -1,0 +1,101 @@
+﻿@model Hht.SampleInspection.Models.ValveTestResult
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ValveTestResult</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Step05mH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Step05mH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Step06mH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Step06mH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Step10High)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Step10High)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Step10Low)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Step10Low)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartReceived.SerialNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartReceived.SerialNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PassFail03.PassFail03Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PassFail03.PassFail03Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PassFail04.PassFail04Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PassFail04.PassFail04Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PassFail08.PassFail08Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PassFail08.PassFail08Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PassFail11.PassFail11Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PassFail11.PassFail11Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PassFail13.PassFail13Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PassFail13.PassFail13Desc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PartReceivedId }) |
+    @*2016-03-10 LCJ Replace link to redirect to Part Received details instead of listing Valve Test Results details*@
+    @*@Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("Part Received Details", "Details", "PartsReceived", new { id = Model.PartReceivedId }, null)
+
+</p>
