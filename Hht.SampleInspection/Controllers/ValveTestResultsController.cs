@@ -104,7 +104,7 @@ namespace Hht.SampleInspection.Controllers
                 db.Entry(valveTestResult).State = EntityState.Modified;
                 db.SaveChanges();
                 // 2016-03-10 LCJ Changed to return to the PartsReceived index view instead of the ValveTestResults index view
-                return RedirectToAction("Index", "PartsReceived");
+                return RedirectToAction("Create", "PartsReceived", new { id = valveTestResult.PartReceivedId });
             }
             ViewBag.PartReceivedId = new SelectList(db.PartReceiveds, "PartReceivedId", "SerialNumber", valveTestResult.PartReceivedId);
             ViewBag.Step03TestResultId = new SelectList(db.PassFail03, "PassFail03Id", "PassFail03Desc", valveTestResult.Step03TestResultId);

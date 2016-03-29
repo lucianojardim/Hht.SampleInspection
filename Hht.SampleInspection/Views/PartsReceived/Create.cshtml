@@ -67,7 +67,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IncomingDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IncomingDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.IncomingDate, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.IncomingDate } })
                 @Html.ValidationMessageFor(model => model.IncomingDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -75,7 +75,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DateCode, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.DateCode, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.DateCode } })
                 @Html.ValidationMessageFor(model => model.DateCode, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -83,7 +83,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.InspectorNum, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.InspectorNum, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.InspectorNum, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.InspectorNum } })
                 @Html.ValidationMessageFor(model => model.InspectorNum, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -107,7 +107,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IndividualPartComments, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IndividualPartComments, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.IndividualPartComments, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.IndividualPartComments } })
                 @Html.ValidationMessageFor(model => model.IndividualPartComments, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -115,7 +115,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.RedTagNum, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.RedTagNum, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.RedTagNum, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.RedTagNum } })
                 @Html.ValidationMessageFor(model => model.RedTagNum, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -46,21 +46,49 @@ namespace Hht.SampleInspection.Controllers
         }
 
         // GET: PartsReceived/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.AuditorId = new SelectList(db.Auditors, "AuditorId", "AuditorName");
-            ViewBag.InspectionTypeId = new SelectList(db.InspectionTypes, "InspectionTypeId", "InspectionTypeDesc");
-            ViewBag.PartId = new SelectList(db.Parts, "PartId", "PartNumber");
-            //20160317 LCJ Reverse the order because Yes needs to be the default
-            ViewBag.WasTested = new SelectList(db.YesNoes.OrderByDescending(item => item.YesNoId), "YesNoId", "YesNoDesc");
-            ViewBag.VendorId = new SelectList(db.Vendors, "VendorId", "VendorDesc");
-            ViewBag.WhereFoundId = new SelectList(db.WhereFounds, "WhereFoundId", "WhereFoundDesc");
-            ViewBag.PartReceivedId = new SelectList(db.ValveTestResults, "PartReceivedId", "PartReceivedId");
+            if (id == null) //First time the create is invoked
+            {
+                ViewBag.AuditorId = new SelectList(db.Auditors, "AuditorId", "AuditorName");
+                ViewBag.InspectionTypeId = new SelectList(db.InspectionTypes, "InspectionTypeId", "InspectionTypeDesc");
+                ViewBag.PartId = new SelectList(db.Parts, "PartId", "PartNumber");
+                //20160317 LCJ Reverse the order because Yes needs to be the default
+                ViewBag.WasTested = new SelectList(db.YesNoes.OrderByDescending(item => item.YesNoId), "YesNoId", "YesNoDesc");
+                ViewBag.VendorId = new SelectList(db.Vendors, "VendorId", "VendorDesc");
+                ViewBag.WhereFoundId = new SelectList(db.WhereFounds, "WhereFoundId", "WhereFoundDesc");
+                ViewBag.PartReceivedId = new SelectList(db.ValveTestResults, "PartReceivedId", "PartReceivedId");
 
-            //20160317 LCJ Assign current date to PartReceivedDate
-            ViewBag.PartReceivedDate = DateTime.Now;
+                //20160317 LCJ Assign current date to PartReceivedDate
+                ViewBag.PartReceivedDate = DateTime.Now;
 
-            return View();
+                return View();
+            }
+            else //Create should populate fields that were entered before
+            {
+                PartReceived partReceived = db.PartReceiveds.Find(id);
+                if (partReceived == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.AuditorId = new SelectList(db.Auditors, "AuditorId", "AuditorName", partReceived.AuditorId);
+                ViewBag.InspectionTypeId = new SelectList(db.InspectionTypes, "InspectionTypeId", "InspectionTypeDesc", partReceived.InspectionTypeId);
+                ViewBag.PartId = new SelectList(db.Parts, "PartId", "PartNumber", partReceived.PartId);
+                ViewBag.WasTested = new SelectList(db.YesNoes, "YesNoId", "YesNoDesc", partReceived.WasTested);
+                ViewBag.VendorId = new SelectList(db.Vendors, "VendorId", "VendorDesc", partReceived.VendorId);
+                ViewBag.WhereFoundId = new SelectList(db.WhereFounds, "WhereFoundId", "WhereFoundDesc", partReceived.WhereFoundId);
+                ViewBag.PartReceivedId = new SelectList(db.ValveTestResults, "PartReceivedId", "PartReceivedId", partReceived.PartReceivedId);
+
+                //20160317 LCJ Assign current date to PartReceivedDate
+                ViewBag.PartReceivedDate = DateTime.Now;
+                ViewBag.IncomingDate = partReceived.IncomingDate;
+                ViewBag.DateCode = partReceived.DateCode;
+                ViewBag.InspectorNum = partReceived.InspectorNum;
+                ViewBag.IndividualPartComments = partReceived.IndividualPartComments;
+                ViewBag.RedTagNum = partReceived.RedTagNum;
+
+                return View();
+            }
         }
 
         // POST: PartsReceived/Create
