@@ -25,16 +25,16 @@ namespace Hht.SampleInspection.Models
         public decimal DateCode { get; set; }
         public Nullable<decimal> InspectorNum { get; set; }
         public string SerialNumber { get; set; }
-        public short WasTested { get; set; }
         public string IndividualPartComments { get; set; }
         public string RedTagNum { get; set; }
+        public short WasTestedId { get; set; }
     
         public virtual Auditor Auditor { get; set; }
         public virtual InspectionType InspectionType { get; set; }
         public virtual Part Part { get; set; }
-        public virtual YesNo YesNo { get; set; }
         public virtual Vendor Vendor { get; set; }
         public virtual WhereFound WhereFound { get; set; }
         public virtual ValveTestResult ValveTestResult { get; set; }
+        public virtual WasTested WasTested { get; set; }
     }
 }

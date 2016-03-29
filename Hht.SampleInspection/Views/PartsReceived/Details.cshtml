@@ -91,11 +91,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.YesNo.YesNoDesc)
+            @Html.DisplayNameFor(model => model.WasTested.WasTestedDesc)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.YesNo.YesNoDesc)
+            @Html.DisplayFor(model => model.WasTested.WasTestedDesc)
         </dd>
 
         <dt>
@@ -128,7 +128,7 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.PartReceivedId }) |
     @Html.ActionLink("Back to List", "Index") |
     @*2016-03-10 LCJ Added link to redirect to ValveResults details if PartReceived part category is Valve*@
-    @{ if (Model.YesNo.YesNoDesc == "Yes")
+    @{ if (Model.WasTested.WasTestedDesc == "Yes")
         {
             if (Model.Part.PartCategory.PartCategoryDesc == "Valve")
             {

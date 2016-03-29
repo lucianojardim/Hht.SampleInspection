@@ -16,13 +16,11 @@
         <EntityTypeShape EntityType="SampleInspectionModel.ValveTestResult" Width="1.5" PointX="10.5" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="SampleInspectionModel.Vendor" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SampleInspectionModel.WhereFound" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SampleInspectionModel.YesNo" Width="1.5" PointX="3" PointY="16.625" IsExpanded="true" />
         <AssociationConnector Association="SampleInspectionModel.FK_PartToBeInstpected_Auditor" ManuallyRouted="false" />
         <AssociationConnector Association="SampleInspectionModel.FK_PartToBeInstpected_InspectionType" ManuallyRouted="false" />
         <AssociationConnector Association="SampleInspectionModel.FK_Part_PartCategory" ManuallyRouted="false" />
         <AssociationConnector Association="SampleInspectionModel.FK_PartToBeInspected_Part" ManuallyRouted="false" />
         <AssociationConnector Association="SampleInspectionModel.FK_Valve_Part" ManuallyRouted="false" />
-        <AssociationConnector Association="SampleInspectionModel.FK_PartReceived_YesNo" ManuallyRouted="false" />
         <AssociationConnector Association="SampleInspectionModel.FK_PartToBeInspected_Vendor" ManuallyRouted="false" />
         <AssociationConnector Association="SampleInspectionModel.FK_PartToBeInstpected_Initiator" ManuallyRouted="false" />
         <AssociationConnector Association="SampleInspectionModel.FK_ValveTestResults_PartReceived" ManuallyRouted="false" />
@@ -38,6 +36,8 @@
         <AssociationConnector Association="SampleInspectionModel.FK_ValveTestResults_PassFail08" />
         <AssociationConnector Association="SampleInspectionModel.FK_ValveTestResults_PassFail11" />
         <AssociationConnector Association="SampleInspectionModel.FK_ValveTestResults_PassFail13" />
+        <EntityTypeShape EntityType="SampleInspectionModel.WasTested" Width="1.5" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="SampleInspectionModel.FK_PartReceived_WasTested" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

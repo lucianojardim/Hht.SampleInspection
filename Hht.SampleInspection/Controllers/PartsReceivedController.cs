@@ -23,7 +23,7 @@ namespace Hht.SampleInspection.Controllers
             int pageSize = 4;
             int pageNumber = (page ?? 1);
 
-            var partReceiveds = db.PartReceiveds.Include(p => p.Auditor).Include(p => p.InspectionType).Include(p => p.Part).Include(p => p.YesNo).Include(p => p.Vendor).Include(p => p.WhereFound).Include(p => p.ValveTestResult);
+            var partReceiveds = db.PartReceiveds.Include(p => p.Auditor).Include(p => p.InspectionType).Include(p => p.Part).Include(p => p.WasTested).Include(p => p.Vendor).Include(p => p.WhereFound).Include(p => p.ValveTestResult);
 
             //20160318 LCJ Included paging
             //return View(partReceiveds.ToList());
@@ -54,7 +54,7 @@ namespace Hht.SampleInspection.Controllers
                 ViewBag.InspectionTypeId = new SelectList(db.InspectionTypes, "InspectionTypeId", "InspectionTypeDesc");
                 ViewBag.PartId = new SelectList(db.Parts, "PartId", "PartNumber");
                 //20160317 LCJ Reverse the order because Yes needs to be the default
-                ViewBag.WasTested = new SelectList(db.YesNoes.OrderByDescending(item => item.YesNoId), "YesNoId", "YesNoDesc");
+                ViewBag.WasTestedId = new SelectList(db.WasTesteds.OrderByDescending(item => item.WasTestedId), "WasTestedId", "WasTestedDesc");
                 ViewBag.VendorId = new SelectList(db.Vendors, "VendorId", "VendorDesc");
                 ViewBag.WhereFoundId = new SelectList(db.WhereFounds, "WhereFoundId", "WhereFoundDesc");
                 ViewBag.PartReceivedId = new SelectList(db.ValveTestResults, "PartReceivedId", "PartReceivedId");
@@ -74,7 +74,7 @@ namespace Hht.SampleInspection.Controllers
                 ViewBag.AuditorId = new SelectList(db.Auditors, "AuditorId", "AuditorName", partReceived.AuditorId);
                 ViewBag.InspectionTypeId = new SelectList(db.InspectionTypes, "InspectionTypeId", "InspectionTypeDesc", partReceived.InspectionTypeId);
                 ViewBag.PartId = new SelectList(db.Parts, "PartId", "PartNumber", partReceived.PartId);
-                ViewBag.WasTested = new SelectList(db.YesNoes, "YesNoId", "YesNoDesc", partReceived.WasTested);
+                ViewBag.WasTestedId = new SelectList(db.WasTesteds, "WasTestedId", "WasTestedDesc", partReceived.WasTestedId);
                 ViewBag.VendorId = new SelectList(db.Vendors, "VendorId", "VendorDesc", partReceived.VendorId);
                 ViewBag.WhereFoundId = new SelectList(db.WhereFounds, "WhereFoundId", "WhereFoundDesc", partReceived.WhereFoundId);
                 ViewBag.PartReceivedId = new SelectList(db.ValveTestResults, "PartReceivedId", "PartReceivedId", partReceived.PartReceivedId);
@@ -96,7 +96,7 @@ namespace Hht.SampleInspection.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PartReceivedId,VendorId,PartReceivedDate,AuditorId,PartId,WhereFoundId,InspectionTypeId,IncomingDate,DateCode,InspectorNum,SerialNumber,WasTested,IndividualPartComments,RedTagNum")] PartReceived partReceived)
+        public ActionResult Create([Bind(Include = "PartReceivedId,VendorId,PartReceivedDate,AuditorId,PartId,WhereFoundId,InspectionTypeId,IncomingDate,DateCode,InspectorNum,SerialNumber,WasTestedId,IndividualPartComments,RedTagNum")] PartReceived partReceived)
         {
             if (ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace Hht.SampleInspection.Controllers
                 int partCategoryId = db.Parts.Find(partReceived.PartId).PartCategoryId;
                 string partCategoryDesc = (db.PartCategories.Find(partCategoryId)).PartCategoryDesc;
                 //20160318 LCJ Insert default specific information and edit it
-                if (partReceived.WasTested == (db.YesNoes.First(r => r.YesNoDesc == "Yes").YesNoId))
+                if (partReceived.WasTestedId == (db.WasTesteds.First(r => r.WasTestedDesc == "Yes").WasTestedId))
                 {
                     if (partCategoryDesc == "Valve")
                     {
@@ -129,7 +129,7 @@ namespace Hht.SampleInspection.Controllers
 
                 db.SaveChanges();
 
-                if (partReceived.WasTested == (db.YesNoes.First(r => r.YesNoDesc == "Yes").YesNoId))
+                if (partReceived.WasTestedId == (db.WasTesteds.First(r => r.WasTestedDesc == "Yes").WasTestedId))
                 {
                     if (partCategoryDesc == "Valve")
                     {
@@ -144,7 +144,7 @@ namespace Hht.SampleInspection.Controllers
             ViewBag.AuditorId = new SelectList(db.Auditors, "AuditorId", "AuditorName", partReceived.AuditorId);
             ViewBag.InspectionTypeId = new SelectList(db.InspectionTypes, "InspectionTypeId", "InspectionTypeDesc", partReceived.InspectionTypeId);
             ViewBag.PartId = new SelectList(db.Parts, "PartId", "PartNumber", partReceived.PartId);
-            ViewBag.WasTested = new SelectList(db.YesNoes, "YesNoId", "YesNoDesc", partReceived.WasTested);
+            ViewBag.WasTestedId = new SelectList(db.WasTesteds, "WasTestedId", "WasTestedDesc", partReceived.WasTestedId);
             ViewBag.VendorId = new SelectList(db.Vendors, "VendorId", "VendorDesc", partReceived.VendorId);
             ViewBag.WhereFoundId = new SelectList(db.WhereFounds, "WhereFoundId", "WhereFoundDesc", partReceived.WhereFoundId);
             ViewBag.PartReceivedId = new SelectList(db.ValveTestResults, "PartReceivedId", "PartReceivedId", partReceived.PartReceivedId);
@@ -170,7 +170,7 @@ namespace Hht.SampleInspection.Controllers
             ViewBag.AuditorId = new SelectList(db.Auditors, "AuditorId", "AuditorName", partReceived.AuditorId);
             ViewBag.InspectionTypeId = new SelectList(db.InspectionTypes, "InspectionTypeId", "InspectionTypeDesc", partReceived.InspectionTypeId);
             ViewBag.PartId = new SelectList(db.Parts, "PartId", "PartNumber", partReceived.PartId);
-            ViewBag.WasTested = new SelectList(db.YesNoes, "YesNoId", "YesNoDesc", partReceived.WasTested);
+            ViewBag.WasTestedId = new SelectList(db.WasTesteds, "WasTestedId", "WasTestedDesc", partReceived.WasTestedId);
             ViewBag.VendorId = new SelectList(db.Vendors, "VendorId", "VendorDesc", partReceived.VendorId);
             ViewBag.WhereFoundId = new SelectList(db.WhereFounds, "WhereFoundId", "WhereFoundDesc", partReceived.WhereFoundId);
             ViewBag.PartReceivedId = new SelectList(db.ValveTestResults, "PartReceivedId", "PartReceivedId", partReceived.PartReceivedId);
@@ -182,7 +182,7 @@ namespace Hht.SampleInspection.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PartReceivedId,VendorId,PartReceivedDate,AuditorId,PartId,WhereFoundId,InspectionTypeId,IncomingDate,DateCode,InspectorNum,SerialNumber,WasTested,IndividualPartComments,RedTagNum")] PartReceived partReceived)
+        public ActionResult Edit([Bind(Include = "PartReceivedId,VendorId,PartReceivedDate,AuditorId,PartId,WhereFoundId,InspectionTypeId,IncomingDate,DateCode,InspectorNum,SerialNumber,WasTestedId,IndividualPartComments,RedTagNum")] PartReceived partReceived)
         {
             if (ModelState.IsValid)
             {
@@ -195,7 +195,7 @@ namespace Hht.SampleInspection.Controllers
 
                 db.SaveChanges();
 
-                if (partReceived.WasTested == (db.YesNoes.First(r => r.YesNoDesc == "Yes").YesNoId))
+                if (partReceived.WasTestedId == (db.WasTesteds.First(r => r.WasTestedDesc == "Yes").WasTestedId))
                 {
                     if (partCategoryDesc == "Valve")
                     {
@@ -208,7 +208,7 @@ namespace Hht.SampleInspection.Controllers
             ViewBag.AuditorId = new SelectList(db.Auditors, "AuditorId", "AuditorName", partReceived.AuditorId);
             ViewBag.InspectionTypeId = new SelectList(db.InspectionTypes, "InspectionTypeId", "InspectionTypeDesc", partReceived.InspectionTypeId);
             ViewBag.PartId = new SelectList(db.Parts, "PartId", "PartNumber", partReceived.PartId);
-            ViewBag.WasTested = new SelectList(db.YesNoes, "YesNoId", "YesNoDesc", partReceived.WasTested);
+            ViewBag.WasTestedId = new SelectList(db.WasTesteds, "WasTestedId", "WasTestedDesc", partReceived.WasTestedId);
             ViewBag.VendorId = new SelectList(db.Vendors, "VendorId", "VendorDesc", partReceived.VendorId);
             ViewBag.WhereFoundId = new SelectList(db.WhereFounds, "WhereFoundId", "WhereFoundDesc", partReceived.WhereFoundId);
             ViewBag.PartReceivedId = new SelectList(db.ValveTestResults, "PartReceivedId", "PartReceivedId", partReceived.PartReceivedId);
@@ -240,7 +240,7 @@ namespace Hht.SampleInspection.Controllers
 
             int partCategoryId = db.Parts.Find(partReceived.PartId).PartCategoryId;
             string partCategoryDesc = (db.PartCategories.Find(partCategoryId)).PartCategoryDesc;
-            if (partReceived.WasTested == (db.YesNoes.First(r => r.YesNoDesc == "Yes").YesNoId))
+            if (partReceived.WasTestedId == (db.WasTesteds.First(r => r.WasTestedDesc == "Yes").WasTestedId))
             {
                 // 2016-03-10 LCJ Remove specific data related to the part received that is being deleted
                 if (partCategoryDesc == "Valve")

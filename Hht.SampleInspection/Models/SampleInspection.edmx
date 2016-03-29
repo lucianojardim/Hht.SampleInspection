@@ -49,7 +49,7 @@
           <Property Name="DateCode" Type="numeric" Precision="5" Scale="0" Nullable="false" />
           <Property Name="InspectorNum" Type="numeric" Precision="3" Scale="0" />
           <Property Name="SerialNumber" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="WasTested" Type="smallint" Nullable="false" />
+          <Property Name="WasTestedId" Type="smallint" Nullable="false" />
           <Property Name="IndividualPartComments" Type="varchar" MaxLength="255" />
           <Property Name="RedTagNum" Type="varchar" MaxLength="255" />
         </EntityType>
@@ -140,19 +140,19 @@
           <Property Name="VendorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VendorDesc" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
+        <EntityType Name="WasTested">
+          <Key>
+            <PropertyRef Name="WasTestedId" />
+          </Key>
+          <Property Name="WasTestedId" Type="smallint" Nullable="false" />
+          <Property Name="WasTestedDesc" Type="char" MaxLength="3" Nullable="false" />
+        </EntityType>
         <EntityType Name="WhereFound">
           <Key>
             <PropertyRef Name="WhereFoundId" />
           </Key>
           <Property Name="WhereFoundId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="WhereFoundDesc" Type="varchar" MaxLength="255" Nullable="false" />
-        </EntityType>
-        <EntityType Name="YesNo">
-          <Key>
-            <PropertyRef Name="YesNoId" />
-          </Key>
-          <Property Name="YesNoId" Type="smallint" Nullable="false" />
-          <Property Name="YesNoDesc" Type="char" MaxLength="3" Nullable="false" />
         </EntityType>
         <Association Name="FK_Part_PartCategory">
           <End Role="PartCategory" Type="Self.PartCategory" Multiplicity="1" />
@@ -166,15 +166,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PartReceived_YesNo">
-          <End Role="YesNo" Type="Self.YesNo" Multiplicity="1" />
+        <Association Name="FK_PartReceived_WasTested">
+          <End Role="WasTested" Type="Self.WasTested" Multiplicity="1" />
           <End Role="PartReceived" Type="Self.PartReceived" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="YesNo">
-              <PropertyRef Name="YesNoId" />
+            <Principal Role="WasTested">
+              <PropertyRef Name="WasTestedId" />
             </Principal>
             <Dependent Role="PartReceived">
-              <PropertyRef Name="WasTested" />
+              <PropertyRef Name="WasTestedId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -362,14 +362,14 @@
           <EntitySet Name="ValveFuelType" EntityType="Self.ValveFuelType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ValveTestResults" EntityType="Self.ValveTestResults" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WasTested" EntityType="Self.WasTested" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WhereFound" EntityType="Self.WhereFound" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="YesNo" EntityType="Self.YesNo" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Part_PartCategory" Association="Self.FK_Part_PartCategory">
             <End Role="PartCategory" EntitySet="PartCategory" />
             <End Role="Part" EntitySet="Part" />
           </AssociationSet>
-          <AssociationSet Name="FK_PartReceived_YesNo" Association="Self.FK_PartReceived_YesNo">
-            <End Role="YesNo" EntitySet="YesNo" />
+          <AssociationSet Name="FK_PartReceived_WasTested" Association="Self.FK_PartReceived_WasTested">
+            <End Role="WasTested" EntitySet="WasTested" />
             <End Role="PartReceived" EntitySet="PartReceived" />
           </AssociationSet>
           <AssociationSet Name="FK_PartToBeInspected_Part" Association="Self.FK_PartToBeInspected_Part">
@@ -483,16 +483,16 @@
           <Property Name="DateCode" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
           <Property Name="InspectorNum" Type="Decimal" Precision="3" Scale="0" />
           <Property Name="SerialNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="WasTested" Type="Int16" Nullable="false" />
           <Property Name="IndividualPartComments" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="RedTagNum" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Auditor" Relationship="Self.FK_PartToBeInstpected_Auditor" FromRole="PartReceived" ToRole="Auditor" />
           <NavigationProperty Name="InspectionType" Relationship="Self.FK_PartToBeInstpected_InspectionType" FromRole="PartReceived" ToRole="InspectionType" />
           <NavigationProperty Name="Part" Relationship="Self.FK_PartToBeInspected_Part" FromRole="PartReceived" ToRole="Part" />
-          <NavigationProperty Name="YesNo" Relationship="Self.FK_PartReceived_YesNo" FromRole="PartReceived" ToRole="YesNo" />
           <NavigationProperty Name="Vendor" Relationship="Self.FK_PartToBeInspected_Vendor" FromRole="PartReceived" ToRole="Vendor" />
           <NavigationProperty Name="WhereFound" Relationship="Self.FK_PartToBeInstpected_Initiator" FromRole="PartReceived" ToRole="WhereFound" />
           <NavigationProperty Name="ValveTestResult" Relationship="Self.FK_ValveTestResults_PartReceived" FromRole="PartReceived" ToRole="ValveTestResults" />
+          <Property Name="WasTestedId" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="WasTested" Relationship="SampleInspectionModel.FK_PartReceived_WasTested" FromRole="PartReceived" ToRole="WasTested" />
         </EntityType>
         <EntityType Name="Valve">
           <Key>
@@ -566,14 +566,6 @@
           <Property Name="WhereFoundDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="PartReceiveds" Relationship="Self.FK_PartToBeInstpected_Initiator" FromRole="WhereFound" ToRole="PartReceived" />
         </EntityType>
-        <EntityType Name="YesNo">
-          <Key>
-            <PropertyRef Name="YesNoId" />
-          </Key>
-          <Property Name="YesNoId" Type="Int16" Nullable="false" />
-          <Property Name="YesNoDesc" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="PartReceiveds" Relationship="Self.FK_PartReceived_YesNo" FromRole="YesNo" ToRole="PartReceived" />
-        </EntityType>
         <Association Name="FK_PartToBeInstpected_Auditor">
           <End Role="Auditor" Type="Self.Auditor" Multiplicity="1" />
           <End Role="PartReceived" Type="Self.PartReceived" Multiplicity="*" />
@@ -631,18 +623,6 @@
             </Principal>
             <Dependent Role="Valve">
               <PropertyRef Name="PartId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PartReceived_YesNo">
-          <End Role="YesNo" Type="Self.YesNo" Multiplicity="1" />
-          <End Role="PartReceived" Type="Self.PartReceived" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="YesNo">
-              <PropertyRef Name="YesNoId" />
-            </Principal>
-            <Dependent Role="PartReceived">
-              <PropertyRef Name="WasTested" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -718,7 +698,6 @@
           <EntitySet Name="ValveTestResults" EntityType="Self.ValveTestResult" />
           <EntitySet Name="Vendors" EntityType="Self.Vendor" />
           <EntitySet Name="WhereFounds" EntityType="Self.WhereFound" />
-          <EntitySet Name="YesNoes" EntityType="Self.YesNo" />
           <AssociationSet Name="FK_PartToBeInstpected_Auditor" Association="Self.FK_PartToBeInstpected_Auditor">
             <End Role="Auditor" EntitySet="Auditors" />
             <End Role="PartReceived" EntitySet="PartReceiveds" />
@@ -738,10 +717,6 @@
           <AssociationSet Name="FK_Valve_Part" Association="Self.FK_Valve_Part">
             <End Role="Part" EntitySet="Parts" />
             <End Role="Valve" EntitySet="Valves" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PartReceived_YesNo" Association="Self.FK_PartReceived_YesNo">
-            <End Role="YesNo" EntitySet="YesNoes" />
-            <End Role="PartReceived" EntitySet="PartReceiveds" />
           </AssociationSet>
           <AssociationSet Name="FK_PartToBeInspected_Vendor" Association="Self.FK_PartToBeInspected_Vendor">
             <End Role="Vendor" EntitySet="Vendors" />
@@ -787,6 +762,11 @@
           <AssociationSet Name="FK_ValveTestResults_PassFail13" Association="SampleInspectionModel.FK_ValveTestResults_PassFail13">
             <End Role="PassFail13" EntitySet="PassFail13" />
             <End Role="ValveTestResult" EntitySet="ValveTestResults" />
+          </AssociationSet>
+          <EntitySet Name="WasTesteds" EntityType="SampleInspectionModel.WasTested" />
+          <AssociationSet Name="FK_PartReceived_WasTested" Association="SampleInspectionModel.FK_PartReceived_WasTested">
+            <End Role="WasTested" EntitySet="WasTesteds" />
+            <End Role="PartReceived" EntitySet="PartReceiveds" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="PassFail03">
@@ -889,6 +869,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="WasTested">
+          <Key>
+            <PropertyRef Name="WasTestedId" />
+          </Key>
+          <Property Name="WasTestedId" Type="Int16" Nullable="false" />
+          <Property Name="WasTestedDesc" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="PartReceiveds" Relationship="SampleInspectionModel.FK_PartReceived_WasTested" FromRole="WasTested" ToRole="PartReceived" />
+        </EntityType>
+        <Association Name="FK_PartReceived_WasTested">
+          <End Type="SampleInspectionModel.WasTested" Role="WasTested" Multiplicity="1" />
+          <End Type="SampleInspectionModel.PartReceived" Role="PartReceived" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WasTested">
+              <PropertyRef Name="WasTestedId" />
+            </Principal>
+            <Dependent Role="PartReceived">
+              <PropertyRef Name="WasTestedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -931,6 +931,7 @@
           <EntitySetMapping Name="PartReceiveds">
             <EntityTypeMapping TypeName="SampleInspectionModel.PartReceived">
               <MappingFragment StoreEntitySet="PartReceived">
+                <ScalarProperty Name="WasTestedId" ColumnName="WasTestedId" />
                 <ScalarProperty Name="PartReceivedId" ColumnName="PartReceivedId" />
                 <ScalarProperty Name="VendorId" ColumnName="VendorId" />
                 <ScalarProperty Name="PartReceivedDate" ColumnName="PartReceivedDate" />
@@ -942,7 +943,6 @@
                 <ScalarProperty Name="DateCode" ColumnName="DateCode" />
                 <ScalarProperty Name="InspectorNum" ColumnName="InspectorNum" />
                 <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
-                <ScalarProperty Name="WasTested" ColumnName="WasTested" />
                 <ScalarProperty Name="IndividualPartComments" ColumnName="IndividualPartComments" />
                 <ScalarProperty Name="RedTagNum" ColumnName="RedTagNum" />
               </MappingFragment>
@@ -1013,14 +1013,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="YesNoes">
-            <EntityTypeMapping TypeName="SampleInspectionModel.YesNo">
-              <MappingFragment StoreEntitySet="YesNo">
-                <ScalarProperty Name="YesNoId" ColumnName="YesNoId" />
-                <ScalarProperty Name="YesNoDesc" ColumnName="YesNoDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PassFail03">
             <EntityTypeMapping TypeName="SampleInspectionModel.PassFail03">
               <MappingFragment StoreEntitySet="PassFail03">
@@ -1058,6 +1050,14 @@
               <MappingFragment StoreEntitySet="PassFail13">
                 <ScalarProperty Name="PassFail13Desc" ColumnName="PassFail13Desc" />
                 <ScalarProperty Name="PassFail13Id" ColumnName="PassFail13Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WasTesteds">
+            <EntityTypeMapping TypeName="SampleInspectionModel.WasTested">
+              <MappingFragment StoreEntitySet="WasTested">
+                <ScalarProperty Name="WasTestedDesc" ColumnName="WasTestedDesc" />
+                <ScalarProperty Name="WasTestedId" ColumnName="WasTestedId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

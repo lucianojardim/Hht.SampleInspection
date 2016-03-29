@@ -12,16 +12,16 @@ namespace Hht.SampleInspection.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class YesNo
+    public partial class WasTested
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public YesNo()
+        public WasTested()
         {
             this.PartReceiveds = new HashSet<PartReceived>();
         }
     
-        public short YesNoId { get; set; }
-        public string YesNoDesc { get; set; }
+        public short WasTestedId { get; set; }
+        public string WasTestedDesc { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PartReceived> PartReceiveds { get; set; }

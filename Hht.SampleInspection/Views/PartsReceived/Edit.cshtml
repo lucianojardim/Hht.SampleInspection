@@ -102,14 +102,14 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.WasTested, "WasTested", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.WasTestedId, "WasTestedId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @*20160318 LCJ Disable editing for WasTested -> ValveTestResults*@
-                @*@Html.DropDownList("WasTested", null, htmlAttributes: new { @class = "form-control"})*@
-                @Html.EditorFor(model => model.YesNo.YesNoDesc, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
-                @Html.ValidationMessageFor(model => model.WasTested, "", new { @class = "text-danger" })
+                @*@Html.DropDownList("WasTestedId", null, htmlAttributes: new { @class = "form-control"})*@
+                @Html.EditorFor(model => model.WasTested.WasTestedDesc, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                @Html.ValidationMessageFor(model => model.WasTestedId, "", new { @class = "text-danger" })
                 @*20160318 LCJ Disable editing for WasTested -> ValveTestResults*@
-                @Html.HiddenFor(model => model.WasTested)
+                @Html.HiddenFor(model => model.WasTestedId)
             </div>
         </div>
 

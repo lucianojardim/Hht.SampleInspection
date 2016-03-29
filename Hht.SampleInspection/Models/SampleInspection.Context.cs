@@ -36,11 +36,11 @@ namespace Hht.SampleInspection.Models
         public virtual DbSet<ValveTestResult> ValveTestResults { get; set; }
         public virtual DbSet<Vendor> Vendors { get; set; }
         public virtual DbSet<WhereFound> WhereFounds { get; set; }
-        public virtual DbSet<YesNo> YesNoes { get; set; }
         public virtual DbSet<PassFail03> PassFail03 { get; set; }
         public virtual DbSet<PassFail04> PassFail04 { get; set; }
         public virtual DbSet<PassFail08> PassFail08 { get; set; }
         public virtual DbSet<PassFail11> PassFail11 { get; set; }
         public virtual DbSet<PassFail13> PassFail13 { get; set; }
+        public virtual DbSet<WasTested> WasTesteds { get; set; }
     }
 }

@@ -215,10 +215,10 @@
     <Compile Include="Models\Vendor.cs">
       <DependentUpon>SampleInspection.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\WhereFound.cs">
+    <Compile Include="Models\WasTested.cs">
       <DependentUpon>SampleInspection.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\YesNo.cs">
+    <Compile Include="Models\WhereFound.cs">
       <DependentUpon>SampleInspection.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
