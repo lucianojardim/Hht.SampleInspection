@@ -97,21 +97,32 @@ namespace Hht.SampleInspection.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PartReceivedId,Step03TestResultId,Step04TestResultId,Step05mH,Step06mH,Step13TestResultId,Step10High,Step10Low,Step11TestResultId,Step08TestResultId")] ValveTestResult valveTestResult)
+        public ActionResult Edit(string button, [Bind(Include = "PartReceivedId,Step03TestResultId,Step04TestResultId,Step05mH,Step06mH,Step13TestResultId,Step10High,Step10Low,Step11TestResultId,Step08TestResultId")] ValveTestResult valveTestResult)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(valveTestResult).State = EntityState.Modified;
-                db.SaveChanges();
-                // 2016-03-10 LCJ Changed to return to the PartsReceived index view instead of the ValveTestResults index view
-                return RedirectToAction("Create", "PartsReceived", new { id = valveTestResult.PartReceivedId });
-            }
             ViewBag.PartReceivedId = new SelectList(db.PartReceiveds, "PartReceivedId", "SerialNumber", valveTestResult.PartReceivedId);
             ViewBag.Step03TestResultId = new SelectList(db.PassFail03, "PassFail03Id", "PassFail03Desc", valveTestResult.Step03TestResultId);
             ViewBag.Step04TestResultId = new SelectList(db.PassFail04, "PassFail04Id", "PassFail04Desc", valveTestResult.Step04TestResultId);
             ViewBag.Step08TestResultId = new SelectList(db.PassFail08, "PassFail08Id", "PassFail08Desc", valveTestResult.Step08TestResultId);
             ViewBag.Step11TestResultId = new SelectList(db.PassFail11, "PassFail11Id", "PassFail11Desc", valveTestResult.Step11TestResultId);
             ViewBag.Step13TestResultId = new SelectList(db.PassFail13, "PassFail13Id", "PassFail13Desc", valveTestResult.Step13TestResultId);
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(valveTestResult).State = EntityState.Modified;
+                db.SaveChanges();
+
+                if (button == "Validate")
+                {
+                    // 2016-03-10 LCJ Changed to return to the PartsReceived index view instead of the ValveTestResults index view
+                    return RedirectToAction("Edit", "ValveTestResults", new { id = valveTestResult.PartReceivedId });
+                }
+                if (button == "Save")
+                {
+                    // 2016-03-10 LCJ Changed to return to the PartsReceived index view instead of the ValveTestResults index view
+                    return RedirectToAction("Create", "PartsReceived", new { id = valveTestResult.PartReceivedId });
+                }
+            }
+
             return View(valveTestResult);
         }
 
