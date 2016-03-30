@@ -89,6 +89,41 @@ namespace Hht.SampleInspection.Controllers
             ViewBag.Step08TestResultId = new SelectList(db.PassFail08, "PassFail08Id", "PassFail08Desc", valveTestResult.Step08TestResultId);
             ViewBag.Step11TestResultId = new SelectList(db.PassFail11, "PassFail11Id", "PassFail11Desc", valveTestResult.Step11TestResultId);
             ViewBag.Step13TestResultId = new SelectList(db.PassFail13, "PassFail13Id", "PassFail13Desc", valveTestResult.Step13TestResultId);
+
+            int partId = (db.PartReceiveds.First(item => item.PartReceivedId == valveTestResult.PartReceivedId)).PartId;
+            if (db.Valves.Any(item => item.Step5mHMin <= valveTestResult.Step05mH && item.Step5mHMax >= valveTestResult.Step05mH && item.PartId == partId))
+            {
+                ViewBag.Step05mhResultDesc = "pass";
+            }
+            else
+            {
+                ViewBag.Step05mhResultDesc = "fail";
+            }
+            if (db.Valves.Any(item => item.Step6mHMin <= valveTestResult.Step05mH && item.Step6mHMax >= valveTestResult.Step06mH && item.PartId == partId))
+            {
+                ViewBag.Step06mhResultDesc = "pass";
+            }
+            else
+            {
+                ViewBag.Step06mhResultDesc = "fail";
+            }
+            if (db.Valves.Any(item => item.Step10LowMin <= valveTestResult.Step10Low && item.Step10LowMax >= valveTestResult.Step10Low && item.PartId == partId))
+            {
+                ViewBag.Step10LowResultDesc = "pass";
+            }
+            else
+            {
+                ViewBag.Step10LowResultDesc = "fail";
+            }
+            if (db.Valves.Any(item => item.Step10HighMin <= valveTestResult.Step10High && item.Step10HighMax >= valveTestResult.Step10High && item.PartId == partId))
+            {
+                ViewBag.Step10HighResultDesc = "pass";
+            }
+            else
+            {
+                ViewBag.Step10HighResultDesc = "fail";
+            }
+
             return View(valveTestResult);
         }
 
@@ -105,6 +140,40 @@ namespace Hht.SampleInspection.Controllers
             ViewBag.Step08TestResultId = new SelectList(db.PassFail08, "PassFail08Id", "PassFail08Desc", valveTestResult.Step08TestResultId);
             ViewBag.Step11TestResultId = new SelectList(db.PassFail11, "PassFail11Id", "PassFail11Desc", valveTestResult.Step11TestResultId);
             ViewBag.Step13TestResultId = new SelectList(db.PassFail13, "PassFail13Id", "PassFail13Desc", valveTestResult.Step13TestResultId);
+
+            int partId = (db.PartReceiveds.First(item => item.PartReceivedId == valveTestResult.PartReceivedId)).PartId;
+            if (db.Valves.Any(item => item.Step5mHMin <= valveTestResult.Step05mH && item.Step5mHMax >= valveTestResult.Step05mH && item.PartId == partId))
+            {
+                ViewBag.Step05mhResultDesc = "pass";
+            }
+            else
+            {
+                ViewBag.Step05mhResultDesc = "fail";
+            }
+            if (db.Valves.Any(item => item.Step6mHMin <= valveTestResult.Step05mH && item.Step6mHMax >= valveTestResult.Step06mH && item.PartId == partId))
+            {
+                ViewBag.Step06mhResultDesc = "pass";
+            }
+            else
+            {
+                ViewBag.Step06mhResultDesc = "fail";
+            }
+            if (db.Valves.Any(item => item.Step10LowMin <= valveTestResult.Step10Low && item.Step10LowMax >= valveTestResult.Step10Low && item.PartId == partId))
+            {
+                ViewBag.Step10LowResultDesc = "pass";
+            }
+            else
+            {
+                ViewBag.Step10LowResultDesc = "fail";
+            }
+            if (db.Valves.Any(item => item.Step10HighMin <= valveTestResult.Step10High && item.Step10HighMax >= valveTestResult.Step10High && item.PartId == partId))
+            {
+                ViewBag.Step10HighResultDesc = "pass";
+            }
+            else
+            {
+                ViewBag.Step10HighResultDesc = "fail";
+            }
 
             if (ModelState.IsValid)
             {
