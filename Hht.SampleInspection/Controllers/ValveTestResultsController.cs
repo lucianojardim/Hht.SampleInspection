@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Hht.SampleInspection.Models;
+using System.Net.Mail;
 
 namespace Hht.SampleInspection.Controllers
 {
@@ -93,6 +94,7 @@ namespace Hht.SampleInspection.Controllers
             // 2016-03-30 LCJ Assign pass or fail status to numerical tests to allow for visual cues to be displayed  
             ValidateValveNumericalTests(valveTestResult);
 
+            TempData["alertMessage"] = "An email will be sent to the QA team if a valve fails a test.";
             return View(valveTestResult);
         }
 
@@ -125,6 +127,58 @@ namespace Hht.SampleInspection.Controllers
                 }
                 if (button == "Save")
                 {
+                    // 2016-03-30 LCJ Send email to QA team if a part fails a test
+                    try
+                    {
+                        string step03TestResultDesc = db.PassFail03.Find((valveTestResult.Step03TestResultId)).PassFail03Desc;
+                        string step04TestResultDesc = db.PassFail04.Find((valveTestResult.Step04TestResultId)).PassFail04Desc;
+                        string step08TestResultDesc = db.PassFail08.Find((valveTestResult.Step08TestResultId)).PassFail08Desc;
+                        string step11TestResultDesc = db.PassFail11.Find((valveTestResult.Step11TestResultId)).PassFail11Desc;
+                        string step13TestResultDesc = db.PassFail13.Find((valveTestResult.Step13TestResultId)).PassFail13Desc;
+                        if ((step03TestResultDesc == "fail") ||
+                            (step04TestResultDesc == "fail") ||
+                            (step08TestResultDesc == "fail") ||
+                            (step11TestResultDesc == "fail") ||
+                            (step13TestResultDesc == "fail") ||
+                            (ViewBag.Step05mhResultDesc == "fail")  || 
+                            (ViewBag.Step06mhResultDesc == "fail")  || 
+                            (ViewBag.Step10LowResultDesc == "fail") || 
+                            (ViewBag.Step10HighResultDesc == "fail"))
+                        {
+                            MailMessage mail = new MailMessage();
+                            string emailAddress = GetAppSettingUsingConfigurationManager("SampleInspectionEmailAddress");
+                            mail.From = new MailAddress("donotreply@hnicorp.com");
+                            mail.To.Add(emailAddress);
+                            mail.Subject = "Email from the Sample Inspection Application - Valve failed test";
+
+                            string vendorDesc = db.PartReceiveds.Find(valveTestResult.PartReceivedId).Vendor.VendorDesc;
+                            string serialNumber = db.PartReceiveds.Find(valveTestResult.PartReceivedId).SerialNumber;
+                            string partNumber = db.Parts.Find(db.PartReceiveds.Find(valveTestResult.PartReceivedId).PartId).PartNumber;
+                            mail.Body = "Valve with PartNumber=" + partNumber + " and SerialNumber="+serialNumber+" sold by Vendor=" + vendorDesc + " was found defective.\r\n\r\n";
+                            mail.Body = mail.Body + "Test results:\r\n";
+                            mail.Body = mail.Body + "Result03 - Visual Insp, damaged screws/debris=" + step03TestResultDesc + "\r\n";
+                            mail.Body = mail.Body + "Result04 - Drop/Impact datage check=" + step04TestResultDesc + "\r\n";
+                            mail.Body = mail.Body + "Result05 - Pilot valve solenoid inductance (mH)=" + valveTestResult.Step05mH.ToString() + " (" + ViewBag.Step05mhResultDesc + ")\r\n";
+                            mail.Body = mail.Body + "Result06 - Main valve solenoid inductance (mH)=" + valveTestResult.Step06mH.ToString() + " ("+ ViewBag.Step06mhResultDesc + ")\r\n";
+                            mail.Body = mail.Body + "Result08 - Flame goes out on burner and pilot=" + step08TestResultDesc + "\r\n";
+                            mail.Body = mail.Body + "Result10 - Valve control pressure Low=" + valveTestResult.Step10Low.ToString() + " (" + ViewBag.Step10LowResultDesc + ")\r\n";
+                            mail.Body = mail.Body + "Result10 - Valve control pressure High=" + valveTestResult.Step10High.ToString() + " (" + ViewBag.Step10HighResultDesc + ")\r\n";
+                            mail.Body = mail.Body + "Result11 - Flame Height Adjustment Works=" + step11TestResultDesc + "\r\n";
+                            mail.Body = mail.Body + "Result13 - Gas leaks at valve and pilot=" + step13TestResultDesc + "\r\n";
+
+                            string smtpServerName = GetAppSettingUsingConfigurationManager("SmtpServerName");
+                            SmtpClient smtpServer = new SmtpClient(smtpServerName);
+                            int smtpServerPort = Int32.Parse(GetAppSettingUsingConfigurationManager("SmtpServerPort"));
+                            smtpServer.Port = smtpServerPort;
+
+                            smtpServer.Send(mail);
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        return View("HttGeneralError", new HandleErrorInfo(new Exception(ex.ToString()), "PartsReceived", "Create"));
+                    }
+
                     // 2016-03-10 LCJ Changed to return to the PartsReceived index view instead of the ValveTestResults index view
                     return RedirectToAction("Create", "PartsReceived", new { id = valveTestResult.PartReceivedId });
                 }
@@ -168,6 +222,7 @@ namespace Hht.SampleInspection.Controllers
             base.Dispose(disposing);
         }
 
+        //20160330 LCJ Convert numerical tests into pass or fail (to be used to visualize results in green or red background
         void ValidateValveNumericalTests(ValveTestResult valveTestResult)
         {
             int partId = (db.PartReceiveds.First(item => item.PartReceivedId == valveTestResult.PartReceivedId)).PartId;
@@ -179,7 +234,7 @@ namespace Hht.SampleInspection.Controllers
             {
                 ViewBag.Step05mhResultDesc = "fail";
             }
-            if (db.Valves.Any(item => item.Step6mHMin <= valveTestResult.Step05mH && item.Step6mHMax >= valveTestResult.Step06mH && item.PartId == partId))
+            if (db.Valves.Any(item => item.Step6mHMin <= valveTestResult.Step06mH && item.Step6mHMax >= valveTestResult.Step06mH && item.PartId == partId))
             {
                 ViewBag.Step06mhResultDesc = "pass";
             }
@@ -203,6 +258,26 @@ namespace Hht.SampleInspection.Controllers
             {
                 ViewBag.Step10HighResultDesc = "fail";
             }
+        }
+
+        //20160330 LCJ Get AppSetting from web.config
+        public static string GetAppSettingUsingConfigurationManager(string customField)
+        {
+            return System.Configuration.ConfigurationManager.AppSettings[customField];
+        }
+        public static string GetAppSetting(string customField)
+        {
+            System.Configuration.Configuration config =
+                System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration(null);
+            if (config.AppSettings.Settings.Count > 0)
+            {
+                var customSetting = config.AppSettings.Settings[customField].ToString();
+                if (!string.IsNullOrEmpty(customSetting))
+                {
+                    return customSetting;
+                }
+            }
+            return null;
         }
     }
 }

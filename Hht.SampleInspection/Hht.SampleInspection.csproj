@@ -336,7 +336,6 @@
     <Content Include="Views\ValveTestResults\Edit.cshtml" />
     <Content Include="Views\ValveTestResults\Index.cshtml" />
     <Content Include="Views\Shared\HttGeneralError.cshtml" />
-    <Content Include="Views\ValveTestResults\Validate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
