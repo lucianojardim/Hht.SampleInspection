@@ -114,22 +114,22 @@ namespace Hht.SampleInspection.Models
 
     public class ValveTestResultMetadata
     {
-        [Display(Name ="Step 5 Results - Pilot valve solenoid inductance (mH)")]
+        [Display(Name ="Result5 - Pilot valve solenoid inductance (mH)")]
         [Range(0.0, 9999.9, ErrorMessage = "Range must be between {1} and {2}.")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}")]
         public decimal Step05mH;
 
-        [Display(Name = "Step 6 Results - Main valve solenoid inductance (mH)")]
+        [Display(Name = "Result6 - Main valve solenoid inductance (mH)")]
         [Range(0.0, 9999.9, ErrorMessage = "Range must be between {1} and {2}.")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}")]
         public decimal Step06mH;
 
-        [Display(Name = "Step 10 Results - Valve control pressure High")]
+        [Display(Name = "Result10 - Valve control pressure High")]
         [Range(0.00, 99999999.99, ErrorMessage = "Range must be between {1} and {2}.")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}")]
         public decimal Step10High;
 
-        [Display(Name = "Step 10 Results - PressureValve control pressure Low")]
+        [Display(Name = "Result10 - Valve control pressure Low")]
         [Range(0.00, 99999999.99, ErrorMessage = "Range must be between {1} and {2}.")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}")]
         public decimal Step10Low;

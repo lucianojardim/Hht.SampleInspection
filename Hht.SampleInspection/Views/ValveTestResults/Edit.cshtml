@@ -91,7 +91,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Step08TestResultId, "Result08 - Flame goes out on burner and pilot", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Step08TestResultId, "Result8 - Flame goes out on burner and pilot", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Step08TestResultId", null, htmlAttributes: new { @class = "form-control " + Model.PassFail08.PassFail08Desc })
                 @Html.ValidationMessageFor(model => model.Step08TestResultId, "", new { @class = "text-danger" })
