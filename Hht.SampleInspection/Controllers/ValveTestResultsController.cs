@@ -94,7 +94,6 @@ namespace Hht.SampleInspection.Controllers
             // 2016-03-30 LCJ Assign pass or fail status to numerical tests to allow for visual cues to be displayed  
             ValidateValveNumericalTests(valveTestResult);
 
-            TempData["alertMessage"] = "An email will be sent to the QA team if a valve fails a test.";
             return View(valveTestResult);
         }
 
