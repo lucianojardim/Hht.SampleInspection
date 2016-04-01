@@ -30,6 +30,8 @@ namespace Hht.SampleInspection.Models
 
     public class PartReceivedMetadata
     {
+        [Display(Name = "TodayDate")]
+        public DateTime PartReceivedDate;
         [Required]
         public DateTime IncomingDate;
         [Required]
