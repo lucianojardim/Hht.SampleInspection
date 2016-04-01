@@ -124,7 +124,7 @@ namespace Hht.SampleInspection.Controllers
                     // 2016-03-10 LCJ Changed to return to the PartsReceived index view instead of the ValveTestResults index view
                     return RedirectToAction("Edit", "ValveTestResults", new { id = valveTestResult.PartReceivedId });
                 }
-                if (button == "Save")
+                if ((button == "CreateNewPartReceived") ||(button == "EditThisPartReceived"))
                 {
                     // 2016-03-30 LCJ Send email to QA team if a part fails a test
                     try
@@ -180,7 +180,14 @@ namespace Hht.SampleInspection.Controllers
                     }
 
                     // 2016-03-10 LCJ Changed to return to the PartsReceived index view instead of the ValveTestResults index view
-                    return RedirectToAction("Create", "PartsReceived", new { id = valveTestResult.PartReceivedId });
+                    if (button == "EditThisPartReceived")
+                    {
+                        return RedirectToAction("Edit", "PartsReceived", new { id = valveTestResult.PartReceivedId });
+                    }
+                    else
+                    {
+                        return RedirectToAction("Create", "PartsReceived", new { id = valveTestResult.PartReceivedId });
+                    }
                 }
             }
 

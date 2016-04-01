@@ -1,6 +1,7 @@
 ﻿@model Hht.SampleInspection.Models.ValveTestResult
 
 @*20160401 LCJ Create classes to change background depending on test results*@
+@*             Each PassFailDesc or ResultDesc will have either pass or fail to change the background. Javascript clicks the Validate button to trigger a post and change the background.*@
 <style type="text/css">
     .pass {
         background-color: palegreen;
@@ -105,7 +106,9 @@
                 @*20160331 LCJ Button to display visual cues and return to edit*@
                 <input name="button" id="Validate" type="submit" value="Validate" class="btn btn-default" style="display: none;" />
 
-                <input name="button" id="Save" type="submit" value="Save" class="btn btn-default" />
+                <input name="button" id="CreateNewPartReceived" type="submit" value="CreateNewPartReceived" class="btn btn-default" />
+
+                <input name="button" id="EditThisPartReceived" type="submit" value="EditThisPartReceived" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -114,13 +117,14 @@
 <div>
     @*2016-03-10 LCJ Replace link to redirect to PartReceiveds details instead of listing ValveTestResults details*@
     @*@Html.ActionLink("Back to List", "Index")*@
-    @Html.ActionLink("Back to Edit PartReceived", "Edit", "PartsReceived", new { id = Model.PartReceivedId }, null)
+
+    @*@Html.ActionLink("Back to Edit PartReceived", "Edit", "PartsReceived", new { id = Model.PartReceivedId }, null)*@
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-    @*20160401 LCJ Triggers submit after EditorFor value is changed*@
+    @*20160401 LCJ Click the Validate button after value was changed*@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#Step05mH').on('change', function () {
