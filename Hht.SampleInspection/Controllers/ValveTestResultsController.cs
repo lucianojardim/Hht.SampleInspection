@@ -163,7 +163,8 @@ namespace Hht.SampleInspection.Controllers
                             mail.Body = mail.Body + "Result10 - Valve control pressure Low=" + valveTestResult.Step10Low.ToString() + " (" + ViewBag.Step10LowResultDesc + ")\r\n";
                             mail.Body = mail.Body + "Result10 - Valve control pressure High=" + valveTestResult.Step10High.ToString() + " (" + ViewBag.Step10HighResultDesc + ")\r\n";
                             mail.Body = mail.Body + "Result11 - Flame Height Adjustment Works=" + step11TestResultDesc + "\r\n";
-                            mail.Body = mail.Body + "Result13 - Gas leaks at valve and pilot=" + step13TestResultDesc + "\r\n";
+                            mail.Body = mail.Body + "Result13 - Gas leaks at valve and pilot=" + step13TestResultDesc + "\r\n\r\n";
+                            mail.Body = mail.Body + "Invidual part comment=" + db.PartReceiveds.Find(valveTestResult.PartReceivedId).IndividualPartComments + "\r\n\r\n";
 
                             string smtpServerName = GetAppSettingUsingConfigurationManager("SmtpServerName");
                             SmtpClient smtpServer = new SmtpClient(smtpServerName);
