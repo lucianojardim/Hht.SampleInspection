@@ -23,11 +23,12 @@ namespace Hht.SampleInspection.Models
         public int InspectionTypeId { get; set; }
         public System.DateTime IncomingDate { get; set; }
         public decimal DateCode { get; set; }
-        public Nullable<decimal> InspectorNum { get; set; }
+        public decimal InspectorNum { get; set; }
         public string SerialNumber { get; set; }
         public string IndividualPartComments { get; set; }
         public string RedTagNum { get; set; }
         public short WasTestedId { get; set; }
+        public Nullable<decimal> InspectorNum2 { get; set; }
     
         public virtual Auditor Auditor { get; set; }
         public virtual InspectionType InspectionType { get; set; }

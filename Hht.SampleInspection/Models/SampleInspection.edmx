@@ -47,7 +47,8 @@
           <Property Name="InspectionTypeId" Type="int" Nullable="false" />
           <Property Name="IncomingDate" Type="datetime" Nullable="false" />
           <Property Name="DateCode" Type="numeric" Precision="5" Scale="0" Nullable="false" />
-          <Property Name="InspectorNum" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="InspectorNum" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="InspectorNum2" Type="numeric" Precision="3" Scale="0" />
           <Property Name="SerialNumber" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="WasTestedId" Type="smallint" Nullable="false" />
           <Property Name="IndividualPartComments" Type="varchar" MaxLength="255" />
@@ -481,7 +482,7 @@
           <Property Name="InspectionTypeId" Type="Int32" Nullable="false" />
           <Property Name="IncomingDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateCode" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
-          <Property Name="InspectorNum" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="InspectorNum" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
           <Property Name="SerialNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IndividualPartComments" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="RedTagNum" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -493,6 +494,7 @@
           <NavigationProperty Name="ValveTestResult" Relationship="Self.FK_ValveTestResults_PartReceived" FromRole="PartReceived" ToRole="ValveTestResults" />
           <Property Name="WasTestedId" Type="Int16" Nullable="false" />
           <NavigationProperty Name="WasTested" Relationship="SampleInspectionModel.FK_PartReceived_WasTested" FromRole="PartReceived" ToRole="WasTested" />
+          <Property Name="InspectorNum2" Type="Decimal" Precision="3" Scale="0" />
         </EntityType>
         <EntityType Name="Valve">
           <Key>
@@ -931,6 +933,7 @@
           <EntitySetMapping Name="PartReceiveds">
             <EntityTypeMapping TypeName="SampleInspectionModel.PartReceived">
               <MappingFragment StoreEntitySet="PartReceived">
+                <ScalarProperty Name="InspectorNum2" ColumnName="InspectorNum2" />
                 <ScalarProperty Name="WasTestedId" ColumnName="WasTestedId" />
                 <ScalarProperty Name="PartReceivedId" ColumnName="PartReceivedId" />
                 <ScalarProperty Name="VendorId" ColumnName="VendorId" />

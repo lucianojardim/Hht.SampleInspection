@@ -42,6 +42,9 @@ namespace Hht.SampleInspection.Models
         [Range(100, 999, ErrorMessage = "Must be a 3 digit number")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F0}")]
         public decimal InspectorNum;
+        [Range(100, 999, ErrorMessage = "Must be a 3 digit number")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F0}")]
+        public decimal? InspectorNum2;
         [Required]
         [MaxLength(20, ErrorMessage = "Cannot exceed 20 characters.")]
         [RegularExpression(@"^[dD]?[0-Z\/\\\-\s]+$", ErrorMessage = "Can start with D followed by letter and numbers and space and '-','\','/'")]

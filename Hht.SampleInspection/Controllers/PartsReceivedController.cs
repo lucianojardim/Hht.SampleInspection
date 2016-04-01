@@ -79,11 +79,12 @@ namespace Hht.SampleInspection.Controllers
                 ViewBag.WhereFoundId = new SelectList(db.WhereFounds, "WhereFoundId", "WhereFoundDesc", partReceived.WhereFoundId);
                 ViewBag.PartReceivedId = new SelectList(db.ValveTestResults, "PartReceivedId", "PartReceivedId", partReceived.PartReceivedId);
 
-                //20160317 LCJ Assign current date to PartReceivedDate
+                //20160317 LCJ Assign current date to PartReceivedDate and save context to repopulate PartReceived
                 ViewBag.PartReceivedDate = DateTime.Now;
                 ViewBag.IncomingDate = partReceived.IncomingDate;
                 ViewBag.DateCode = partReceived.DateCode;
                 ViewBag.InspectorNum = partReceived.InspectorNum;
+                ViewBag.InspectorNum2 = partReceived.InspectorNum2;
                 ViewBag.IndividualPartComments = partReceived.IndividualPartComments;
                 ViewBag.RedTagNum = partReceived.RedTagNum;
 
@@ -96,7 +97,7 @@ namespace Hht.SampleInspection.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PartReceivedId,VendorId,PartReceivedDate,AuditorId,PartId,WhereFoundId,InspectionTypeId,IncomingDate,DateCode,InspectorNum,SerialNumber,WasTestedId,IndividualPartComments,RedTagNum")] PartReceived partReceived)
+        public ActionResult Create([Bind(Include = "PartReceivedId,VendorId,PartReceivedDate,AuditorId,PartId,WhereFoundId,InspectionTypeId,IncomingDate,DateCode,InspectorNum,InspectorNum2,SerialNumber,WasTestedId,IndividualPartComments,RedTagNum")] PartReceived partReceived)
         {
             if (ModelState.IsValid)
             {
