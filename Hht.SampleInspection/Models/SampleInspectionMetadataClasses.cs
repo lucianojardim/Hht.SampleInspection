@@ -47,7 +47,7 @@ namespace Hht.SampleInspection.Models
         public decimal? InspectorNum2;
         [Required]
         [MaxLength(20, ErrorMessage = "Cannot exceed 20 characters.")]
-        [RegularExpression(@"^[dD]?[0-Z\/\\\-\s]+$", ErrorMessage = "Can start with D followed by letter and numbers and space and '-','\','/'")]
+        [RegularExpression(@"^[dD]?[0-z\/\\\-\s]+$", ErrorMessage = "Can start with D followed by letter and numbers and space and '-','\','/'")]
         public string SerialNumber;
 
     }
