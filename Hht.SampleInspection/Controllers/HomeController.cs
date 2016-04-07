@@ -13,9 +13,9 @@ namespace Hht.SampleInspection.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult StandardWork()
         {
-            ViewBag.Message = "Your application description page is still under construction.";
+            ViewBag.Message = "Click on the links below to open the instructions.";
 
             return View();
         }
