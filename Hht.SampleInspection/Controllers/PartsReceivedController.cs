@@ -113,15 +113,15 @@ namespace Hht.SampleInspection.Controllers
                         ValveTestResult valveTestResult = new ValveTestResult
                         {
                             PartReceivedId = partReceived.PartReceivedId,
-                            Step03TestResultId = (db.PassFail03.First(r => r.PassFail03Desc == "fail")).PassFail03Id,
-                            Step04TestResultId = (db.PassFail04.First(r => r.PassFail04Desc == "fail")).PassFail04Id,
+                            Step03TestResultId = (db.PassFail03.First(r => r.PassFail03Desc == "undefined")).PassFail03Id,
+                            Step04TestResultId = (db.PassFail04.First(r => r.PassFail04Desc == "undefined")).PassFail04Id,
                             Step05mH = 0M,
                             Step06mH = 0M,
-                            Step13TestResultId = (db.PassFail13.First(r => r.PassFail13Desc == "fail")).PassFail13Id,
+                            Step13TestResultId = (db.PassFail13.First(r => r.PassFail13Desc == "undefined")).PassFail13Id,
                             Step10High = 0M,
                             Step10Low = 0M,
-                            Step11TestResultId = (db.PassFail11.First(r => r.PassFail11Desc == "fail")).PassFail11Id,
-                            Step08TestResultId = (db.PassFail08.First(r => r.PassFail08Desc == "fail")).PassFail08Id
+                            Step11TestResultId = (db.PassFail11.First(r => r.PassFail11Desc == "undefined")).PassFail11Id,
+                            Step08TestResultId = (db.PassFail08.First(r => r.PassFail08Desc == "undefined")).PassFail08Id
                         };
 
                         db.ValveTestResults.Add(valveTestResult);
