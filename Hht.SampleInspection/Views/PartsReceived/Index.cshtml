@@ -8,7 +8,19 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm("Index", "PartsReceived", FormMethod.Get, htmlAttributes: new { @class = "navbar-form", @role = "search" }))
+    {
+        @Html.ActionLink("Create New", "Create")
+        <div class="pull-right">
+            <div class="input-group">
+                @Html.TextBox("SearchString", (string)ViewBag.searchString, htmlAttributes: new { @class = "form-control", @placeholder = "Serial Number" })
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    <p />
+                </div>
+            </div>
+        </div>
+    }
 </p>
 <table class="table">
     <tr>
@@ -119,4 +131,5 @@
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+@*Send page information back to the controller*@
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, ViewBag.searchString }))

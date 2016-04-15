@@ -17,14 +17,23 @@ namespace Hht.SampleInspection.Controllers
 
         // GET: PartsReceived
         //20160318 LCJ Included paging
+        //20160415 LCJ Included search
         //public ActionResult Index()
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string searchString)
         {
             int pageSize = 4;
             int pageNumber = (page ?? 1);
 
             var partReceiveds = db.PartReceiveds.Include(p => p.Auditor).Include(p => p.InspectionType).Include(p => p.Part).Include(p => p.WasTested).Include(p => p.Vendor).Include(p => p.WhereFound).Include(p => p.ValveTestResult);
 
+            //20160415 LCJ Included search
+            if (searchString != null)
+            {
+                ViewBag.searchString = searchString;
+                partReceiveds = partReceiveds.Where(s => s.SerialNumber.Contains(searchString));
+                return View(partReceiveds.OrderBy(n => n.SerialNumber).ToPagedList(pageNumber, pageSize));
+            }
+            
             //20160318 LCJ Included paging
             //return View(partReceiveds.ToList());
             return View(partReceiveds.OrderBy(n => n.PartReceivedId).ToPagedList(pageNumber, pageSize));
