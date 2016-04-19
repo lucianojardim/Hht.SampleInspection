@@ -253,6 +253,7 @@
       <DependentUpon>SampleInspection.edmx</DependentUpon>
     </Content>
     <Content Include="Content\ValveSampleInspectionStandardWork.xlsx" />
+    <None Include="Properties\PublishProfiles\DEV.pubxml" />
     <None Include="Properties\PublishProfiles\SampleInspection.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
