@@ -94,6 +94,9 @@ namespace Hht.SampleInspection.Controllers
             // 2016-03-30 LCJ Assign pass or fail status to numerical tests to allow for visual cues to be displayed  
             ValidateValveNumericalTests(valveTestResult);
 
+            //2016-04-22 LCJ Prepare context to move to next field in the screen whend data is changed
+            MapValidateButtonToField();
+
             return View(valveTestResult);
         }
 
@@ -119,7 +122,12 @@ namespace Hht.SampleInspection.Controllers
                 db.Entry(valveTestResult).State = EntityState.Modified;
                 db.SaveChanges();
 
-                if (button == "Validate")
+                //2016-04-22 LCJ Prepare context to move to next field in the screen whend data is changed
+                ViewBag.lastField = "";
+                MapValidateButtonToField();
+                TempData["button"] = button;
+
+                if (button.Contains("Validate"))
                 {
                     // 2016-03-10 LCJ Changed to return to the PartsReceived index view instead of the ValveTestResults index view
                     return RedirectToAction("Edit", "ValveTestResults", new { id = valveTestResult.PartReceivedId });
@@ -230,7 +238,7 @@ namespace Hht.SampleInspection.Controllers
         }
 
         //20160330 LCJ Convert numerical tests into pass or fail (to be used to visualize results in green or red background
-        void ValidateValveNumericalTests(ValveTestResult valveTestResult)
+        private void ValidateValveNumericalTests(ValveTestResult valveTestResult)
         {
             int partId = (db.PartReceiveds.First(item => item.PartReceivedId == valveTestResult.PartReceivedId)).PartId;
             if (db.Valves.Any(item => item.Step5mHMin <= valveTestResult.Step05mH && item.Step5mHMax >= valveTestResult.Step05mH && item.PartId == partId))
@@ -285,6 +293,49 @@ namespace Hht.SampleInspection.Controllers
                 }
             }
             return null;
+        }
+
+        private void MapValidateButtonToField()
+        {
+            if (TempData["button"] == null)
+            {
+                TempData["button"] = "";
+            }
+
+            switch (TempData["button"].ToString())
+            {
+                case "Validate03":
+                    ViewBag.lastField = "Step03TestResult";
+                    break;
+                case "Validate04":
+                    ViewBag.lastField = "Step04TestResult";
+                    break;
+                case "Validate05":
+                    ViewBag.lastField = "Step05mH";
+                    break;
+                case "Validate06":
+                    ViewBag.lastField = "Step06mH";
+                    break;
+                case "Validate13":
+                    ViewBag.lastField = "Step13TestResult";
+                    break;
+                case "Validate10High":
+                    ViewBag.lastField = "Step10High";
+                    break;
+                case "Validate10Low":
+                    ViewBag.lastField = "Step10Low";
+                    break;
+                case "Validate11":
+                    ViewBag.lastField = "Step11TestResult";
+                    break;
+                case "Validate08":
+                    ViewBag.lastField = "Step08TestResult";
+                    break;
+                default:
+                    ViewBag.lastField = "";
+                    break;
+            }
+
         }
     }
 }

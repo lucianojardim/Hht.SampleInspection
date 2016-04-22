@@ -33,7 +33,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Step03TestResultId, "Result3 - Visual Insp, damaged screws/debris", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Step03TestResultId", null, htmlAttributes: new { @class = "form-control " + Model.PassFail03.PassFail03Desc , onchange= "$('#Validate').click();"})
+                @Html.DropDownList("Step03TestResultId", null, htmlAttributes: new { @id = "Step03TestResult", @class = "form-control " + Model.PassFail03.PassFail03Desc , onchange= "$('#Validate03').click();"})
                 @Html.ValidationMessageFor(model => model.Step03TestResultId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -41,7 +41,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Step04TestResultId, "Result4 - Drop/Impact damage check", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Step04TestResultId", null, htmlAttributes: new { @class = "form-control " + Model.PassFail04.PassFail04Desc, onchange = "$('#Validate').click();" })
+                @Html.DropDownList("Step04TestResultId", null, htmlAttributes: new { @id = "Step04TestResult", @class = "form-control " + Model.PassFail04.PassFail04Desc, onchange = "$('#Validate04').click();" })
                 @Html.ValidationMessageFor(model => model.Step04TestResultId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -65,7 +65,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Step13TestResultId, "Result13 - Gas leaks at valve and pilot", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Step13TestResultId", null, htmlAttributes: new { @class = "form-control " + Model.PassFail13.PassFail13Desc, onchange = "$('#Validate').click();" })
+                @Html.DropDownList("Step13TestResultId", null, htmlAttributes: new { @id = "Step13TestResult", @class = "form-control " + Model.PassFail13.PassFail13Desc, onchange = "$('#Validate13').click();" })
                 @Html.ValidationMessageFor(model => model.Step13TestResultId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -89,7 +89,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Step11TestResultId, "Result11 - Flame Height Adjustment Works", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Step11TestResultId", null, htmlAttributes: new { @class = "form-control " + Model.PassFail11.PassFail11Desc, onchange = "$('#Validate').click();" })
+                @Html.DropDownList("Step11TestResultId", null, htmlAttributes: new { @id = "Step11TestResult", @class = "form-control " + Model.PassFail11.PassFail11Desc, onchange = "$('#Validate11').click();" })
                 @Html.ValidationMessageFor(model => model.Step11TestResultId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -97,15 +97,23 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Step08TestResultId, "Result8 - Flame goes out on burner and pilot", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Step08TestResultId", null, htmlAttributes: new { @class = "form-control " + Model.PassFail08.PassFail08Desc, onchange = "$('#Validate').click();" })
+                @Html.DropDownList("Step08TestResultId", null, htmlAttributes: new { @id = "Step08TestResult", @class = "form-control " + Model.PassFail08.PassFail08Desc, onchange = "$('#Validate08').click();" })
                 @Html.ValidationMessageFor(model => model.Step08TestResultId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                @*20160331 LCJ Button to display visual cues and return to edit*@
-                <input name="button" id="Validate" type="submit" value="Validate" class="btn btn-default" style="display: none;" />
+                @*20160331 LCJ Invisible buttons used to display visual cues and return to edit*@
+                <input name="button" id="Validate03" type="submit" value="Validate03" class="btn btn-default" style="display: none;" />
+                <input name="button" id="Validate04" type="submit" value="Validate04" class="btn btn-default" style="display: none;" />
+                <input name="button" id="Validate05" type="submit" value="Validate05" class="btn btn-default" style="display: none;" />
+                <input name="button" id="Validate06" type="submit" value="Validate06" class="btn btn-default" style="display: none;" />
+                <input name="button" id="Validate13" type="submit" value="Validate13" class="btn btn-default" style="display: none;" />
+                <input name="button" id="Validate10High" type="submit" value="Validate10High" class="btn btn-default" style="display: none;" />
+                <input name="button" id="Validate10Low" type="submit" value="Validate10Low" class="btn btn-default" style="display: none;" />
+                <input name="button" id="Validate11" type="submit" value="Validate11" class="btn btn-default" style="display: none;" />
+                <input name="button" id="Validate08" type="submit" value="Validate08" class="btn btn-default" style="display: none;" />
 
                 <input name="button" id="CreateNewPartReceived" type="submit" value="CreateNewPartReceived" class="btn btn-default" />
 
@@ -125,21 +133,58 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-    @*20160401 LCJ Click the Validate button after value was changed*@
     <script type="text/javascript">
+        var lastField = '@(ViewBag.lastField)';
+
         $(document).ready(function () {
+
+            //20160422 LCJ Click a validate button to display visual cues depending on the value entered
             $('#Step05mH').on('change', function () {
-                $('#Validate').click();
+                $('#Validate05').click();
             });
             $('#Step06mH').on('change', function () {
-                $('#Validate').click();
+                $('#Validate06').click();
             });
             $('#Step10High').on('change', function () {
-                $('#Validate').click();
+                $('#Validate10High').click();
             });
             $('#Step10Low').on('change', function () {
-                $('#Validate').click();
+                $('#Validate10Low').click();
             });
+
+            //20160422 LCJ Moves to the next field after data was changed
+            switch (lastField) {
+                case 'Step03TestResult':
+                    $('#Step04TestResult').focus();
+                    break;
+                case 'Step04TestResult':
+                    $('#Step05mH').focus();
+                    break;
+                case 'Step05mH':
+                    $('#Step06mH').focus();
+                    break;
+                case 'Step06mH':
+                    $('#Step13TestResult').focus();
+                    break;
+                case 'Step13TestResult':
+                    $('#Step10High').focus();
+                    break;
+                case 'Step10High':
+                    $('#Step10Low').focus();
+                    break;
+                case 'Step10Low':
+                    $('#Step11TestResult').focus();
+                    break;
+                case 'Step11TestResult':
+                    $('#Step08TestResult').focus();
+                    break;
+                case 'Step08TestResult':
+                    $('#CreateNewPartReceived').focus();
+                    break;
+                default:
+                    $('#Step03TestResult').focus();
+            } //switch
+
         });
     </script>
 }
