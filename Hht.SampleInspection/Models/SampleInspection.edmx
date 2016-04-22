@@ -59,35 +59,35 @@
             <PropertyRef Name="PassFail03Id" />
           </Key>
           <Property Name="PassFail03Id" Type="smallint" Nullable="false" />
-          <Property Name="PassFail03Desc" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="PassFail03Desc" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="PassFail04">
           <Key>
             <PropertyRef Name="PassFail04Id" />
           </Key>
           <Property Name="PassFail04Id" Type="smallint" Nullable="false" />
-          <Property Name="PassFail04Desc" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="PassFail04Desc" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="PassFail08">
           <Key>
             <PropertyRef Name="PassFail08Id" />
           </Key>
           <Property Name="PassFail08Id" Type="smallint" Nullable="false" />
-          <Property Name="PassFail08Desc" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="PassFail08Desc" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="PassFail11">
           <Key>
             <PropertyRef Name="PassFail11Id" />
           </Key>
           <Property Name="PassFail11Id" Type="smallint" Nullable="false" />
-          <Property Name="PassFail11Desc" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="PassFail11Desc" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="PassFail13">
           <Key>
             <PropertyRef Name="PassFail13Id" />
           </Key>
           <Property Name="PassFail13Id" Type="smallint" Nullable="false" />
-          <Property Name="PassFail13Desc" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="PassFail13Desc" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Valve">
           <Key>
@@ -126,11 +126,11 @@
           <Property Name="PartReceivedId" Type="int" Nullable="false" />
           <Property Name="Step03TestResultId" Type="smallint" Nullable="false" />
           <Property Name="Step04TestResultId" Type="smallint" Nullable="false" />
-          <Property Name="Step05mH" Type="numeric" Precision="5" Scale="1" Nullable="false" />
-          <Property Name="Step06mH" Type="numeric" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="Step05mH" Type="numeric" Precision="5" Scale="1" />
+          <Property Name="Step06mH" Type="numeric" Precision="5" Scale="1" />
           <Property Name="Step13TestResultId" Type="smallint" Nullable="false" />
-          <Property Name="Step10High" Type="numeric" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="Step10Low" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Step10High" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="Step10Low" Type="numeric" Precision="10" Scale="2" />
           <Property Name="Step11TestResultId" Type="smallint" Nullable="false" />
           <Property Name="Step08TestResultId" Type="smallint" Nullable="false" />
         </EntityType>
@@ -538,11 +538,11 @@
           <Property Name="PartReceivedId" Type="Int32" Nullable="false" />
           <Property Name="Step03TestResultId" Type="Int16" Nullable="false" />
           <Property Name="Step04TestResultId" Type="Int16" Nullable="false" />
-          <Property Name="Step05mH" Type="Decimal" Precision="5" Scale="1" Nullable="false" />
-          <Property Name="Step06mH" Type="Decimal" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="Step05mH" Type="Decimal" Precision="5" Scale="1" />
+          <Property Name="Step06mH" Type="Decimal" Precision="5" Scale="1" />
           <Property Name="Step13TestResultId" Type="Int16" Nullable="false" />
-          <Property Name="Step10High" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="Step10Low" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Step10High" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Step10Low" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Step11TestResultId" Type="Int16" Nullable="false" />
           <Property Name="Step08TestResultId" Type="Int16" Nullable="false" />
           <NavigationProperty Name="PartReceived" Relationship="Self.FK_ValveTestResults_PartReceived" FromRole="ValveTestResults" ToRole="PartReceived" />
@@ -776,7 +776,7 @@
             <PropertyRef Name="PassFail03Id" />
           </Key>
           <Property Name="PassFail03Id" Type="Int16" Nullable="false" />
-          <Property Name="PassFail03Desc" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="PassFail03Desc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ValveTestResults" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail03" FromRole="PassFail03" ToRole="ValveTestResult" />
         </EntityType>
         <EntityType Name="PassFail04">
@@ -784,7 +784,7 @@
             <PropertyRef Name="PassFail04Id" />
           </Key>
           <Property Name="PassFail04Id" Type="Int16" Nullable="false" />
-          <Property Name="PassFail04Desc" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="PassFail04Desc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ValveTestResults" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail04" FromRole="PassFail04" ToRole="ValveTestResult" />
         </EntityType>
         <EntityType Name="PassFail08">
@@ -792,7 +792,7 @@
             <PropertyRef Name="PassFail08Id" />
           </Key>
           <Property Name="PassFail08Id" Type="Int16" Nullable="false" />
-          <Property Name="PassFail08Desc" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="PassFail08Desc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ValveTestResults" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail08" FromRole="PassFail08" ToRole="ValveTestResult" />
         </EntityType>
         <EntityType Name="PassFail11">
@@ -800,7 +800,7 @@
             <PropertyRef Name="PassFail11Id" />
           </Key>
           <Property Name="PassFail11Id" Type="Int16" Nullable="false" />
-          <Property Name="PassFail11Desc" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="PassFail11Desc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ValveTestResults" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail11" FromRole="PassFail11" ToRole="ValveTestResult" />
         </EntityType>
         <EntityType Name="PassFail13">
@@ -808,7 +808,7 @@
             <PropertyRef Name="PassFail13Id" />
           </Key>
           <Property Name="PassFail13Id" Type="Int16" Nullable="false" />
-          <Property Name="PassFail13Desc" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="PassFail13Desc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ValveTestResults" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail13" FromRole="PassFail13" ToRole="ValveTestResult" />
         </EntityType>
         <Association Name="FK_ValveTestResults_PassFail03">

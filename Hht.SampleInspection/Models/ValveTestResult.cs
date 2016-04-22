@@ -17,11 +17,11 @@ namespace Hht.SampleInspection.Models
         public int PartReceivedId { get; set; }
         public short Step03TestResultId { get; set; }
         public short Step04TestResultId { get; set; }
-        public decimal Step05mH { get; set; }
-        public decimal Step06mH { get; set; }
+        public Nullable<decimal> Step05mH { get; set; }
+        public Nullable<decimal> Step06mH { get; set; }
         public short Step13TestResultId { get; set; }
-        public decimal Step10High { get; set; }
-        public decimal Step10Low { get; set; }
+        public Nullable<decimal> Step10High { get; set; }
+        public Nullable<decimal> Step10Low { get; set; }
         public short Step11TestResultId { get; set; }
         public short Step08TestResultId { get; set; }
     

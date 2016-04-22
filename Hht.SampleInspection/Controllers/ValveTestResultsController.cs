@@ -241,37 +241,68 @@ namespace Hht.SampleInspection.Controllers
         private void ValidateValveNumericalTests(ValveTestResult valveTestResult)
         {
             int partId = (db.PartReceiveds.First(item => item.PartReceivedId == valveTestResult.PartReceivedId)).PartId;
-            if (db.Valves.Any(item => item.Step5mHMin <= valveTestResult.Step05mH && item.Step5mHMax >= valveTestResult.Step05mH && item.PartId == partId))
+
+            if(valveTestResult.Step05mH == null)
             {
-                ViewBag.Step05mhResultDesc = "pass";
+                ViewBag.Step05mhResultDesc = "undefined";
+            }else
+            {
+                if (db.Valves.Any(item => item.Step5mHMin <= valveTestResult.Step05mH && item.Step5mHMax >= valveTestResult.Step05mH && item.PartId == partId))
+                {
+                    ViewBag.Step05mhResultDesc = "pass";
+                }
+                else
+                {
+                    ViewBag.Step05mhResultDesc = "fail";
+                }
+            }
+
+            if (valveTestResult.Step06mH == null)
+            {
+                ViewBag.Step06mhResultDesc = "undefined";
             }
             else
             {
-                ViewBag.Step05mhResultDesc = "fail";
+                if (db.Valves.Any(item => item.Step6mHMin <= valveTestResult.Step06mH && item.Step6mHMax >= valveTestResult.Step06mH && item.PartId == partId))
+                {
+                    ViewBag.Step06mhResultDesc = "pass";
+                }
+                else
+                {
+                    ViewBag.Step06mhResultDesc = "fail";
+                }
             }
-            if (db.Valves.Any(item => item.Step6mHMin <= valveTestResult.Step06mH && item.Step6mHMax >= valveTestResult.Step06mH && item.PartId == partId))
+
+            if (valveTestResult.Step10Low == null)
             {
-                ViewBag.Step06mhResultDesc = "pass";
-            }
-            else
-            {
-                ViewBag.Step06mhResultDesc = "fail";
-            }
-            if (db.Valves.Any(item => item.Step10LowMin <= valveTestResult.Step10Low && item.Step10LowMax >= valveTestResult.Step10Low && item.PartId == partId))
-            {
-                ViewBag.Step10LowResultDesc = "pass";
-            }
-            else
-            {
-                ViewBag.Step10LowResultDesc = "fail";
-            }
-            if (db.Valves.Any(item => item.Step10HighMin <= valveTestResult.Step10High && item.Step10HighMax >= valveTestResult.Step10High && item.PartId == partId))
-            {
-                ViewBag.Step10HighResultDesc = "pass";
+                ViewBag.Step10LowResultDesc = "undefined";
             }
             else
             {
-                ViewBag.Step10HighResultDesc = "fail";
+                if (db.Valves.Any(item => item.Step10LowMin <= valveTestResult.Step10Low && item.Step10LowMax >= valveTestResult.Step10Low && item.PartId == partId))
+                {
+                    ViewBag.Step10LowResultDesc = "pass";
+                }
+                else
+                {
+                    ViewBag.Step10LowResultDesc = "fail";
+                }
+            }
+
+            if (valveTestResult.Step10High == null)
+            {
+                ViewBag.Step10HighResultDesc = "undefined";
+            }
+            else
+            {
+                if (db.Valves.Any(item => item.Step10HighMin <= valveTestResult.Step10High && item.Step10HighMax >= valveTestResult.Step10High && item.PartId == partId))
+                {
+                    ViewBag.Step10HighResultDesc = "pass";
+                }
+                else
+                {
+                    ViewBag.Step10HighResultDesc = "fail";
+                }
             }
         }
 
