@@ -62,7 +62,7 @@ namespace Hht.SampleInspection.Controllers
                 ViewBag.AuditorId = new SelectList(db.Auditors, "AuditorId", "AuditorName");
                 ViewBag.InspectionTypeId = new SelectList(db.InspectionTypes, "InspectionTypeId", "InspectionTypeDesc");
                 //20160425 LCJ duplicated the list of PartNumbers to display them without a prefix or prefixed with a "P" -- to allow Part Numbers to be scanned using a bar code reader (they add a P to the part number)
-                ViewBag.PartId = new SelectList(db.Parts.Select(item => new { PartId = item.PartId, PartNumber = item.PartNumber }).Union(db.Parts.Select(row => new { PartId = row.PartId, PartNumber = "P" + row.PartNumber })).OrderBy(line => line.PartNumber);, "PartId", "PartNumber");
+                ViewBag.PartId = new SelectList(db.Parts.Select(item => new { PartId = item.PartId, PartNumber = item.PartNumber }).Union(db.Parts.Select(row => new { PartId = row.PartId, PartNumber = "P" + row.PartNumber })).OrderBy(line => line.PartNumber), "PartId", "PartNumber");
                 //20160317 LCJ Reverse the order because Yes needs to be the default
                 ViewBag.WasTestedId = new SelectList(db.WasTesteds.OrderByDescending(item => item.WasTestedId), "WasTestedId", "WasTestedDesc");
                 ViewBag.VendorId = new SelectList(db.Vendors, "VendorId", "VendorDesc");
