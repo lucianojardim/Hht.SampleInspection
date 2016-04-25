@@ -102,6 +102,10 @@
           <Property Name="Step5mHMax" Type="numeric" Precision="5" Scale="1" Nullable="false" />
           <Property Name="Step6mHMin" Type="numeric" Precision="5" Scale="1" Nullable="false" />
           <Property Name="Step6mHMax" Type="numeric" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="Step5OhmsMin" Type="numeric" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="Step5OhmsMax" Type="numeric" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="Step6OhmsMin" Type="numeric" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="Step6OhmsMax" Type="numeric" Precision="5" Scale="1" Nullable="false" />
           <Property Name="ValveControlTypeId" Type="int" Nullable="false" />
           <Property Name="ValveFuelTypeId" Type="int" Nullable="false" />
         </EntityType>
@@ -514,6 +518,10 @@
           <NavigationProperty Name="Part" Relationship="Self.FK_Valve_Part" FromRole="Valve" ToRole="Part" />
           <NavigationProperty Name="ValveControlType" Relationship="Self.FK_Valve_ValveEngine" FromRole="Valve" ToRole="ValveControlType" />
           <NavigationProperty Name="ValveFuelType" Relationship="Self.FK_Valve_ValveTechnology" FromRole="Valve" ToRole="ValveFuelType" />
+          <Property Name="Step5OhmsMin" Type="Decimal" Nullable="false" Precision="5" Scale="1" />
+          <Property Name="Step5OhmsMax" Type="Decimal" Nullable="false" Precision="5" Scale="1" />
+          <Property Name="Step6OhmsMin" Type="Decimal" Nullable="false" Precision="5" Scale="1" />
+          <Property Name="Step6OhmsMax" Type="Decimal" Nullable="false" Precision="5" Scale="1" />
         </EntityType>
         <EntityType Name="ValveControlType">
           <Key>
@@ -954,6 +962,10 @@
           <EntitySetMapping Name="Valves">
             <EntityTypeMapping TypeName="SampleInspectionModel.Valve">
               <MappingFragment StoreEntitySet="Valve">
+                <ScalarProperty Name="Step6OhmsMax" ColumnName="Step6OhmsMax" />
+                <ScalarProperty Name="Step6OhmsMin" ColumnName="Step6OhmsMin" />
+                <ScalarProperty Name="Step5OhmsMax" ColumnName="Step5OhmsMax" />
+                <ScalarProperty Name="Step5OhmsMin" ColumnName="Step5OhmsMin" />
                 <ScalarProperty Name="PartId" ColumnName="PartId" />
                 <ScalarProperty Name="Step10LowMin" ColumnName="Step10LowMin" />
                 <ScalarProperty Name="Step10LowMax" ColumnName="Step10LowMax" />

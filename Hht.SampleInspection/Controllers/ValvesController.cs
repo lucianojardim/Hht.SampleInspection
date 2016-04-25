@@ -50,7 +50,7 @@ namespace Hht.SampleInspection.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PartId,Step10LowMin,Step10LowMax,Step10HighMin,Step10HighMax,Step5mHMin,Step5mHMax,Step6mHMin,Step6mHMax,ValveControlTypeId,ValveFuelTypeId")] Valve valve)
+        public ActionResult Create([Bind(Include = "PartId,Step10LowMin,Step10LowMax,Step10HighMin,Step10HighMax,Step5mHMin,Step5mHMax,Step6mHMin,Step6mHMax,Step5OhmsMin,Step5OhmsMax,Step6OhmsMin,Step6OhmsMax,ValveControlTypeId,ValveFuelTypeId")] Valve valve)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace Hht.SampleInspection.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PartId,Step10LowMin,Step10LowMax,Step10HighMin,Step10HighMax,Step5mHMin,Step5mHMax,Step6mHMin,Step6mHMax,ValveControlTypeId,ValveFuelTypeId")] Valve valve)
+        public ActionResult Edit([Bind(Include = "PartId,Step10LowMin,Step10LowMax,Step10HighMin,Step10HighMax,Step5mHMin,Step5mHMax,Step6mHMin,Step6mHMax,Step5OhmsMin,Step5OhmsMax,Step6OhmsMin,Step6OhmsMax,ValveControlTypeId,ValveFuelTypeId")] Valve valve)
         {
             if (ModelState.IsValid)
             {
