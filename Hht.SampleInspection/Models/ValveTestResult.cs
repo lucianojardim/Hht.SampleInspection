@@ -24,6 +24,8 @@ namespace Hht.SampleInspection.Models
         public Nullable<decimal> Step10Low { get; set; }
         public short Step11TestResultId { get; set; }
         public short Step08TestResultId { get; set; }
+        public Nullable<decimal> Step05Ohms { get; set; }
+        public Nullable<decimal> Step06Ohms { get; set; }
     
         public virtual PartReceived PartReceived { get; set; }
         public virtual PassFail03 PassFail03 { get; set; }

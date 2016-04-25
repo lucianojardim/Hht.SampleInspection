@@ -103,6 +103,18 @@ namespace Hht.SampleInspection.Models
         [Range(0.0, 9999.9, ErrorMessage = "Range must be between {1} and {2}.")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}")]
         public decimal Step6mHMax;
+        [Range(0.0, 9999.9, ErrorMessage = "Range must be between {1} and {2}.")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}")]
+        public decimal Step5OhmsMin;
+        [Range(0.0, 9999.9, ErrorMessage = "Range must be between {1} and {2}.")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}")]
+        public decimal Step5OhmsMax;
+        [Range(0.0, 9999.9, ErrorMessage = "Range must be between {1} and {2}.")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}")]
+        public decimal Step6OhmsMin;
+        [Range(0.0, 9999.9, ErrorMessage = "Range must be between {1} and {2}.")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}")]
+        public decimal Step6OhmsMax;
     }
 
     public class ValveControlTypeMetadata
@@ -138,6 +150,16 @@ namespace Hht.SampleInspection.Models
         [Range(0.00, 99999999.99, ErrorMessage = "Range must be between {1} and {2}.")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}")]
         public Nullable<decimal> Step10Low;
+
+        [Display(Name = "Step5 Result - Pilot Valve Solenoid Resistance (Ohms)")]
+        [Range(0.0, 9999.9, ErrorMessage = "Range must be between {1} and {2}.")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}")]
+        public Nullable<decimal> Step05Ohms;
+
+        [Display(Name = "Step6 Result - Main Valve Solenoid Resistance (Ohms)")]
+        [Range(0.0, 9999.9, ErrorMessage = "Range must be between {1} and {2}.")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}")]
+        public Nullable<decimal> Step06Ohms;
     }
 
     public class VendorMetadata

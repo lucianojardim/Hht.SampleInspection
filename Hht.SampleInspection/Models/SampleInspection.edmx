@@ -137,6 +137,8 @@
           <Property Name="Step10Low" Type="numeric" Precision="10" Scale="2" />
           <Property Name="Step11TestResultId" Type="smallint" Nullable="false" />
           <Property Name="Step08TestResultId" Type="smallint" Nullable="false" />
+          <Property Name="Step05Ohms" Type="numeric" Precision="5" Scale="1" />
+          <Property Name="Step06Ohms" Type="numeric" Precision="5" Scale="1" />
         </EntityType>
         <EntityType Name="Vendor">
           <Key>
@@ -559,6 +561,8 @@
           <NavigationProperty Name="PassFail08" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail08" FromRole="ValveTestResult" ToRole="PassFail08" />
           <NavigationProperty Name="PassFail11" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail11" FromRole="ValveTestResult" ToRole="PassFail11" />
           <NavigationProperty Name="PassFail13" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail13" FromRole="ValveTestResult" ToRole="PassFail13" />
+          <Property Name="Step05Ohms" Type="Decimal" Precision="5" Scale="1" />
+          <Property Name="Step06Ohms" Type="Decimal" Precision="5" Scale="1" />
         </EntityType>
         <EntityType Name="Vendor">
           <Key>
@@ -999,6 +1003,8 @@
           <EntitySetMapping Name="ValveTestResults">
             <EntityTypeMapping TypeName="SampleInspectionModel.ValveTestResult">
               <MappingFragment StoreEntitySet="ValveTestResults">
+                <ScalarProperty Name="Step06Ohms" ColumnName="Step06Ohms" />
+                <ScalarProperty Name="Step05Ohms" ColumnName="Step05Ohms" />
                 <ScalarProperty Name="PartReceivedId" ColumnName="PartReceivedId" />
                 <ScalarProperty Name="Step03TestResultId" ColumnName="Step03TestResultId" />
                 <ScalarProperty Name="Step04TestResultId" ColumnName="Step04TestResultId" />

@@ -130,7 +130,9 @@ namespace Hht.SampleInspection.Controllers
                             Step10High = null,
                             Step10Low = null,
                             Step11TestResultId = (db.PassFail11.First(r => r.PassFail11Desc == "undefined")).PassFail11Id,
-                            Step08TestResultId = (db.PassFail08.First(r => r.PassFail08Desc == "undefined")).PassFail08Id
+                            Step08TestResultId = (db.PassFail08.First(r => r.PassFail08Desc == "undefined")).PassFail08Id,
+                            Step05Ohms = null,
+                            Step06Ohms = null
                         };
 
                         db.ValveTestResults.Add(valveTestResult);

@@ -54,7 +54,7 @@ namespace Hht.SampleInspection.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PartReceivedId,Step03TestResultId,Step04TestResultId,Step05mH,Step06mH,Step13TestResultId,Step10High,Step10Low,Step11TestResultId,Step08TestResultId")] ValveTestResult valveTestResult)
+        public ActionResult Create([Bind(Include = "PartReceivedId,Step03TestResultId,Step04TestResultId,Step05mH,Step06mH,Step13TestResultId,Step10High,Step10Low,Step11TestResultId,Step08TestResultId,Step05Ohms,Step06Ohms")] ValveTestResult valveTestResult)
         {
             if (ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace Hht.SampleInspection.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(string button, [Bind(Include = "PartReceivedId,Step03TestResultId,Step04TestResultId,Step05mH,Step06mH,Step13TestResultId,Step10High,Step10Low,Step11TestResultId,Step08TestResultId")] ValveTestResult valveTestResult)
+        public ActionResult Edit(string button, [Bind(Include = "PartReceivedId,Step03TestResultId,Step04TestResultId,Step05mH,Step06mH,Step13TestResultId,Step10High,Step10Low,Step11TestResultId,Step08TestResultId,Step05Ohms,Step06Ohms")] ValveTestResult valveTestResult)
         {
             ViewBag.PartReceivedId = new SelectList(db.PartReceiveds, "PartReceivedId", "SerialNumber", valveTestResult.PartReceivedId);
             ViewBag.Step03TestResultId = new SelectList(db.PassFail03, "PassFail03Id", "PassFail03Desc", valveTestResult.Step03TestResultId);
@@ -167,6 +167,8 @@ namespace Hht.SampleInspection.Controllers
                             mail.Body = mail.Body + "Result04 - Drop/Impact datage check=" + step04TestResultDesc + "\r\n";
                             mail.Body = mail.Body + "Result05 - Pilot valve solenoid inductance (mH)=" + valveTestResult.Step05mH.ToString() + " (" + ViewBag.Step05mhResultDesc + ")\r\n";
                             mail.Body = mail.Body + "Result06 - Main valve solenoid inductance (mH)=" + valveTestResult.Step06mH.ToString() + " ("+ ViewBag.Step06mhResultDesc + ")\r\n";
+                            mail.Body = mail.Body + "Result05 - Pilot Valve Solenoid Resistance (Ohms)=" + valveTestResult.Step05Ohms.ToString() + " (" + ViewBag.Step05OhmsResultDesc + ")\r\n";
+                            mail.Body = mail.Body + "Result06 - Main Valve Solenoid Resistance (Ohms)=" + valveTestResult.Step06Ohms.ToString() + " (" + ViewBag.Step06OhmsResultDesc + ")\r\n";
                             mail.Body = mail.Body + "Result08 - Flame goes out on burner and pilot=" + step08TestResultDesc + "\r\n";
                             mail.Body = mail.Body + "Result10 - Valve control pressure Low=" + valveTestResult.Step10Low.ToString() + " (" + ViewBag.Step10LowResultDesc + ")\r\n";
                             mail.Body = mail.Body + "Result10 - Valve control pressure High=" + valveTestResult.Step10High.ToString() + " (" + ViewBag.Step10HighResultDesc + ")\r\n";
@@ -304,6 +306,38 @@ namespace Hht.SampleInspection.Controllers
                     ViewBag.Step10HighResultDesc = "fail";
                 }
             }
+
+            if (valveTestResult.Step05Ohms == null)
+            {
+                ViewBag.Step05OhmsResultDesc = "undefined";
+            }
+            else
+            {
+                if (db.Valves.Any(item => item.Step5OhmsMin <= valveTestResult.Step05Ohms && item.Step5OhmsMax >= valveTestResult.Step05Ohms && item.PartId == partId))
+                {
+                    ViewBag.Step05OhmsResultDesc = "pass";
+                }
+                else
+                {
+                    ViewBag.Step05OhmsResultDesc = "fail";
+                }
+            }
+
+            if (valveTestResult.Step06Ohms == null)
+            {
+                ViewBag.Step06OhmsResultDesc = "undefined";
+            }
+            else
+            {
+                if (db.Valves.Any(item => item.Step6OhmsMin <= valveTestResult.Step06Ohms && item.Step6OhmsMax >= valveTestResult.Step06Ohms && item.PartId == partId))
+                {
+                    ViewBag.Step06OhmsResultDesc = "pass";
+                }
+                else
+                {
+                    ViewBag.Step06OhmsResultDesc = "fail";
+                }
+            }
         }
 
         //20160330 LCJ Get AppSetting from web.config
@@ -361,6 +395,12 @@ namespace Hht.SampleInspection.Controllers
                     break;
                 case "Validate08":
                     ViewBag.lastField = "Step08TestResult";
+                    break;
+                case "Validate05Ohms":
+                    ViewBag.lastField = "Step05Ohms";
+                    break;
+                case "Validate06Ohms":
+                    ViewBag.lastField = "Step06Ohms";
                     break;
                 default:
                     ViewBag.lastField = "";

@@ -84,6 +84,18 @@ namespace Hht.SampleInspection.Models
                 yield return new ValidationResult
                     ("Min value of the range is greater than Max", new[] { "Step6mHMin", "Step6mHMax" });
             }
+
+            if (Step5OhmsMin > Step5OhmsMax)
+            {
+                yield return new ValidationResult
+                    ("Min value of the range is greater than Max", new[] { "Step5OhmsMin", "Step5OhmsMax" });
+            }
+
+            if (Step6OhmsMin > Step6OhmsMax)
+            {
+                yield return new ValidationResult
+                    ("Min value of the range is greater than Max", new[] { "Step6OhmsMin", "Step6OhmsMax" });
+            }
         }
     }
 
