@@ -109,6 +109,9 @@ namespace Hht.SampleInspection.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PartReceivedId,VendorId,PartReceivedDate,AuditorId,PartId,WhereFoundId,InspectionTypeId,IncomingDate,DateCode,InspectorNum,InspectorNum2,SerialNumber,WasTestedId,IndividualPartComments,RedTagNum")] PartReceived partReceived)
         {
+            //20160425 LCJ Remove D from Serial Numbers that have a D preceding it
+            partReceived.SerialNumber = ReformatSerialNumber(partReceived.SerialNumber);
+
             if (ModelState.IsValid)
             {
                 db.PartReceiveds.Add(partReceived);
@@ -197,6 +200,9 @@ namespace Hht.SampleInspection.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PartReceivedId,VendorId,PartReceivedDate,AuditorId,PartId,WhereFoundId,InspectionTypeId,IncomingDate,DateCode,InspectorNum,SerialNumber,WasTestedId,IndividualPartComments,RedTagNum")] PartReceived partReceived)
         {
+            //20160425 LCJ Remove D from Serial Numbers that have a D preceding it
+            partReceived.SerialNumber = ReformatSerialNumber(partReceived.SerialNumber);
+
             if (ModelState.IsValid)
             {
                 db.Entry(partReceived).State = EntityState.Modified;
@@ -274,6 +280,19 @@ namespace Hht.SampleInspection.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        //20160425 LCJ Remove D from Serial Numbers that have a D preceding it
+        private String ReformatSerialNumber(String serialNumber)
+        {
+            if (serialNumber.StartsWith("D"))
+            {
+                return serialNumber.Substring(1);
+            }
+            else
+            {
+                return serialNumber;
+            }
         }
     }
 }
