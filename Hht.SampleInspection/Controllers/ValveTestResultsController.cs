@@ -150,7 +150,9 @@ namespace Hht.SampleInspection.Controllers
                             (ViewBag.Step05mhResultDesc == "fail")  || 
                             (ViewBag.Step06mhResultDesc == "fail")  || 
                             (ViewBag.Step10LowResultDesc == "fail") || 
-                            (ViewBag.Step10HighResultDesc == "fail"))
+                            (ViewBag.Step10HighResultDesc == "fail") ||
+                            (ViewBag.Step05OhmsResultDesc == "fail") ||
+                            (ViewBag.Step06OhmsResultDesc == "fail"))
                         {
                             MailMessage mail = new MailMessage();
                             string emailAddress = GetAppSettingUsingConfigurationManager("SampleInspectionEmailAddress");
