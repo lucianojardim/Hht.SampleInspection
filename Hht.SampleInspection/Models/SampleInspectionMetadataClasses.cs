@@ -32,24 +32,23 @@ namespace Hht.SampleInspection.Models
     {
         [Display(Name = "TodayDate")]
         public DateTime PartReceivedDate;
-        [Required]
+        [Required(ErrorMessage = "The Incoming field is required (MM/DD/YYYY)")]
         public DateTime IncomingDate;
-        [Required]
-        [Range(10000, 99999, ErrorMessage = "Must be a 5 digit number")]
+        [Required(ErrorMessage = "The DateCode field is required (YYWWD, e.g. 16231)")]
+        [Range(10000, 99999, ErrorMessage = "Must be a 5 digit number (YYWWD, e.g. 16231)")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F0}")]
         public decimal DateCode;
-        [Required]
-        [Range(100, 999, ErrorMessage = "Must be a 3 digit number")]
+        [Required(ErrorMessage = "The InspectorNum field is required (3-digit number e.g. 152)")]
+        [Range(100, 999, ErrorMessage = "Must be a 3 digit number (e.g. 152)")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F0}")]
         public decimal InspectorNum;
-        [Range(100, 999, ErrorMessage = "Must be a 3 digit number")]
+        [Range(100, 999, ErrorMessage = "Must be a 3 digit number(e.g. 152)")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F0}")]
         public decimal? InspectorNum2;
         [Required]
         [MaxLength(20, ErrorMessage = "Cannot exceed 20 characters.")]
         [RegularExpression(@"^[dD]?[0-z\/\\\-\s]+$", ErrorMessage = "Can start with D followed by letter and numbers and space and '-','\','/'")]
         public string SerialNumber;
-
     }
 
     public class PassFail03Metadata
