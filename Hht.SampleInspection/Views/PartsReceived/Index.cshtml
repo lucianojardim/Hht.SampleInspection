@@ -25,7 +25,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().PartReceivedDate)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().SampleInspectionEntryDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().IncomingDate)
@@ -75,7 +75,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.PartReceivedDate)
+            @Html.DisplayFor(modelItem => item.SampleInspectionEntryDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IncomingDate)

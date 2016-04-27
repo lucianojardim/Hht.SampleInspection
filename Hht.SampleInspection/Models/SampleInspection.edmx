@@ -40,7 +40,7 @@
           </Key>
           <Property Name="PartReceivedId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VendorId" Type="int" Nullable="false" />
-          <Property Name="PartReceivedDate" Type="datetime" Nullable="false" />
+          <Property Name="SampleInspectionEntryDate" Type="datetime" Nullable="false" />
           <Property Name="AuditorId" Type="int" Nullable="false" />
           <Property Name="PartId" Type="int" Nullable="false" />
           <Property Name="WhereFoundId" Type="int" Nullable="false" />
@@ -456,7 +456,7 @@
           </Key>
           <Property Name="PartReceivedId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VendorId" Type="Int32" Nullable="false" />
-          <Property Name="PartReceivedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SampleInspectionEntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="AuditorId" Type="Int32" Nullable="false" />
           <Property Name="PartId" Type="Int32" Nullable="false" />
           <Property Name="WhereFoundId" Type="Int32" Nullable="false" />
@@ -897,7 +897,7 @@
                 <ScalarProperty Name="WasTestedId" ColumnName="WasTestedId" />
                 <ScalarProperty Name="PartReceivedId" ColumnName="PartReceivedId" />
                 <ScalarProperty Name="VendorId" ColumnName="VendorId" />
-                <ScalarProperty Name="PartReceivedDate" ColumnName="PartReceivedDate" />
+                <ScalarProperty Name="SampleInspectionEntryDate" ColumnName="SampleInspectionEntryDate" />
                 <ScalarProperty Name="AuditorId" ColumnName="AuditorId" />
                 <ScalarProperty Name="PartId" ColumnName="PartId" />
                 <ScalarProperty Name="WhereFoundId" ColumnName="WhereFoundId" />

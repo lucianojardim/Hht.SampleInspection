@@ -30,8 +30,8 @@ namespace Hht.SampleInspection.Models
 
     public class PartReceivedMetadata
     {
-        [Display(Name = "TodayDate")]
-        public DateTime PartReceivedDate;
+        //[Display(Name = "TodayDate")]
+        public DateTime SampleInspectionEntryDate;
         [Required(ErrorMessage = "The {0} field is required (MM/DD/YYYY)")]
         public DateTime IncomingDate;
         [Required(ErrorMessage = "The {0} field is required (YYWWD, e.g. 16231)")]

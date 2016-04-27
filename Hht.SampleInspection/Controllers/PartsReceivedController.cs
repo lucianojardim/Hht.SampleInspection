@@ -69,8 +69,8 @@ namespace Hht.SampleInspection.Controllers
                 ViewBag.WhereFoundId = new SelectList(db.WhereFounds, "WhereFoundId", "WhereFoundDesc");
                 ViewBag.PartReceivedId = new SelectList(db.ValveTestResults, "PartReceivedId", "PartReceivedId");
 
-                //20160317 LCJ Assign current date to PartReceivedDate
-                ViewBag.PartReceivedDate = DateTime.Now;
+                //20160317 LCJ Assign current date to SampleInspectionEntryDate
+                ViewBag.SampleInspectionEntryDate = DateTime.Now;
 
                 return View();
             }
@@ -89,8 +89,8 @@ namespace Hht.SampleInspection.Controllers
                 ViewBag.WhereFoundId = new SelectList(db.WhereFounds, "WhereFoundId", "WhereFoundDesc", partReceived.WhereFoundId);
                 ViewBag.PartReceivedId = new SelectList(db.ValveTestResults, "PartReceivedId", "PartReceivedId", partReceived.PartReceivedId);
 
-                //20160317 LCJ Assign current date to PartReceivedDate and save context to repopulate PartReceived
-                ViewBag.PartReceivedDate = DateTime.Now;
+                //20160317 LCJ Assign current date to SampleInspectionEntryDate and save context to repopulate PartReceived
+                ViewBag.SampleInspectionEntryDate = DateTime.Now;
                 ViewBag.IncomingDate = partReceived.IncomingDate;
                 ViewBag.DateCode = partReceived.DateCode;
                 ViewBag.InspectorNum = partReceived.InspectorNum;
@@ -107,7 +107,7 @@ namespace Hht.SampleInspection.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PartReceivedId,VendorId,PartReceivedDate,AuditorId,PartId,WhereFoundId,InspectionTypeId,IncomingDate,DateCode,InspectorNum,InspectorNum2,SerialNumber,WasTestedId,IndividualPartComments,RedTagNum")] PartReceived partReceived)
+        public ActionResult Create([Bind(Include = "PartReceivedId,VendorId,SampleInspectionEntryDate,AuditorId,PartId,WhereFoundId,InspectionTypeId,IncomingDate,DateCode,InspectorNum,InspectorNum2,SerialNumber,WasTestedId,IndividualPartComments,RedTagNum")] PartReceived partReceived)
         {
             //20160425 LCJ Remove D from Serial Numbers that have a D preceding it
             partReceived.SerialNumber = ReformatSerialNumber(partReceived.SerialNumber);
@@ -164,8 +164,8 @@ namespace Hht.SampleInspection.Controllers
             ViewBag.WhereFoundId = new SelectList(db.WhereFounds, "WhereFoundId", "WhereFoundDesc", partReceived.WhereFoundId);
             ViewBag.PartReceivedId = new SelectList(db.ValveTestResults, "PartReceivedId", "PartReceivedId", partReceived.PartReceivedId);
 
-            //20160317 LCJ Assign current date to PartReceivedDate
-            ViewBag.PartReceivedDate = partReceived.PartReceivedDate;
+            //20160317 LCJ Assign current date to SampleInspectionEntryDate
+            ViewBag.SampleInspectionEntryDate = partReceived.SampleInspectionEntryDate;
 
             return View(partReceived);
         }
@@ -197,7 +197,7 @@ namespace Hht.SampleInspection.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PartReceivedId,VendorId,PartReceivedDate,AuditorId,PartId,WhereFoundId,InspectionTypeId,IncomingDate,DateCode,InspectorNum,SerialNumber,WasTestedId,IndividualPartComments,RedTagNum")] PartReceived partReceived)
+        public ActionResult Edit([Bind(Include = "PartReceivedId,VendorId,SampleInspectionEntryDate,AuditorId,PartId,WhereFoundId,InspectionTypeId,IncomingDate,DateCode,InspectorNum,SerialNumber,WasTestedId,IndividualPartComments,RedTagNum")] PartReceived partReceived)
         {
             //20160425 LCJ Remove D from Serial Numbers that have a D preceding it
             partReceived.SerialNumber = ReformatSerialNumber(partReceived.SerialNumber);

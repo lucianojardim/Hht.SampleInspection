@@ -16,7 +16,7 @@ namespace Hht.SampleInspection.Models
     {
         public int PartReceivedId { get; set; }
         public int VendorId { get; set; }
-        public System.DateTime PartReceivedDate { get; set; }
+        public System.DateTime SampleInspectionEntryDate { get; set; }
         public int AuditorId { get; set; }
         public int PartId { get; set; }
         public int WhereFoundId { get; set; }

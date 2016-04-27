@@ -24,11 +24,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PartReceivedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SampleInspectionEntryDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*20160317 LCJ Assign current date to PartReceivedDate*@
-                @Html.EditorFor(model => model.PartReceivedDate, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.PartReceivedDate, @readonly = true } })
-                @Html.ValidationMessageFor(model => model.PartReceivedDate, "", new { @class = "text-danger" })
+                @*20160317 LCJ Assign current date to SampleInspectionEntryDate*@
+                @Html.EditorFor(model => model.SampleInspectionEntryDate, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.SampleInspectionEntryDate, @readonly = true } })
+                @Html.ValidationMessageFor(model => model.SampleInspectionEntryDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
