@@ -22,7 +22,7 @@ namespace Hht.SampleInspection.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page is still under construction.";
+            ViewBag.Message = "Contact them if you need assistance.";
 
             return View();
         }

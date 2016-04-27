@@ -33,7 +33,6 @@ namespace Hht.SampleInspection.Models
         [Display(Name = "TodayDate")]
         public DateTime PartReceivedDate;
         [Required(ErrorMessage = "The {0} field is required (MM/DD/YYYY)")]
-        //[RegularExpression(@"^([0]?[1-9]|1[0-2])\/([0]?[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$", ErrorMessage = "The field {0} must be a date with format MM/DD/YYYY")]
         public DateTime IncomingDate;
         [Required(ErrorMessage = "The {0} field is required (YYWWD, e.g. 16231)")]
         [Range(10000, 99999, ErrorMessage = "Must be a 5 digit number (YYWWD, e.g. 16231)")]
