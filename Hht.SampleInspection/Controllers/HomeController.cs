@@ -22,7 +22,7 @@ namespace Hht.SampleInspection.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Contact them if you need assistance.";
+            ViewBag.Message = "Lake City support";
 
             return View();
         }
