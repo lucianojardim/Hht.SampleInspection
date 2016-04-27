@@ -61,13 +61,6 @@
           <Property Name="PassFail03Id" Type="smallint" Nullable="false" />
           <Property Name="PassFail03Desc" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="PassFail04">
-          <Key>
-            <PropertyRef Name="PassFail04Id" />
-          </Key>
-          <Property Name="PassFail04Id" Type="smallint" Nullable="false" />
-          <Property Name="PassFail04Desc" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <EntityType Name="PassFail08">
           <Key>
             <PropertyRef Name="PassFail08Id" />
@@ -129,7 +122,6 @@
           </Key>
           <Property Name="PartReceivedId" Type="int" Nullable="false" />
           <Property Name="Step03TestResultId" Type="smallint" Nullable="false" />
-          <Property Name="Step04TestResultId" Type="smallint" Nullable="false" />
           <Property Name="Step05mH" Type="numeric" Precision="5" Scale="1" />
           <Property Name="Step06mH" Type="numeric" Precision="5" Scale="1" />
           <Property Name="Step13TestResultId" Type="smallint" Nullable="false" />
@@ -305,18 +297,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ValveTestResults_PassFail04">
-          <End Role="PassFail04" Type="Self.PassFail04" Multiplicity="1" />
-          <End Role="ValveTestResults" Type="Self.ValveTestResults" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PassFail04">
-              <PropertyRef Name="PassFail04Id" />
-            </Principal>
-            <Dependent Role="ValveTestResults">
-              <PropertyRef Name="Step04TestResultId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ValveTestResults_PassFail08">
           <End Role="PassFail08" Type="Self.PassFail08" Multiplicity="1" />
           <End Role="ValveTestResults" Type="Self.ValveTestResults" Multiplicity="*" />
@@ -360,7 +340,6 @@
           <EntitySet Name="PartCategory" EntityType="Self.PartCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PartReceived" EntityType="Self.PartReceived" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PassFail03" EntityType="Self.PassFail03" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PassFail04" EntityType="Self.PassFail04" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PassFail08" EntityType="Self.PassFail08" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PassFail11" EntityType="Self.PassFail11" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PassFail13" EntityType="Self.PassFail13" Schema="dbo" store:Type="Tables" />
@@ -417,10 +396,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_ValveTestResults_PassFail03" Association="Self.FK_ValveTestResults_PassFail03">
             <End Role="PassFail03" EntitySet="PassFail03" />
-            <End Role="ValveTestResults" EntitySet="ValveTestResults" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ValveTestResults_PassFail04" Association="Self.FK_ValveTestResults_PassFail04">
-            <End Role="PassFail04" EntitySet="PassFail04" />
             <End Role="ValveTestResults" EntitySet="ValveTestResults" />
           </AssociationSet>
           <AssociationSet Name="FK_ValveTestResults_PassFail08" Association="Self.FK_ValveTestResults_PassFail08">
@@ -547,7 +522,6 @@
           </Key>
           <Property Name="PartReceivedId" Type="Int32" Nullable="false" />
           <Property Name="Step03TestResultId" Type="Int16" Nullable="false" />
-          <Property Name="Step04TestResultId" Type="Int16" Nullable="false" />
           <Property Name="Step05mH" Type="Decimal" Precision="5" Scale="1" />
           <Property Name="Step06mH" Type="Decimal" Precision="5" Scale="1" />
           <Property Name="Step13TestResultId" Type="Int16" Nullable="false" />
@@ -557,7 +531,6 @@
           <Property Name="Step08TestResultId" Type="Int16" Nullable="false" />
           <NavigationProperty Name="PartReceived" Relationship="Self.FK_ValveTestResults_PartReceived" FromRole="ValveTestResults" ToRole="PartReceived" />
           <NavigationProperty Name="PassFail03" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail03" FromRole="ValveTestResult" ToRole="PassFail03" />
-          <NavigationProperty Name="PassFail04" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail04" FromRole="ValveTestResult" ToRole="PassFail04" />
           <NavigationProperty Name="PassFail08" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail08" FromRole="ValveTestResult" ToRole="PassFail08" />
           <NavigationProperty Name="PassFail11" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail11" FromRole="ValveTestResult" ToRole="PassFail11" />
           <NavigationProperty Name="PassFail13" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail13" FromRole="ValveTestResult" ToRole="PassFail13" />
@@ -753,16 +726,11 @@
             <End Role="Valve" EntitySet="Valves" />
           </AssociationSet>
           <EntitySet Name="PassFail03" EntityType="SampleInspectionModel.PassFail03" />
-          <EntitySet Name="PassFail04" EntityType="SampleInspectionModel.PassFail04" />
           <EntitySet Name="PassFail08" EntityType="SampleInspectionModel.PassFail08" />
           <EntitySet Name="PassFail11" EntityType="SampleInspectionModel.PassFail11" />
           <EntitySet Name="PassFail13" EntityType="SampleInspectionModel.PassFail13" />
           <AssociationSet Name="FK_ValveTestResults_PassFail03" Association="SampleInspectionModel.FK_ValveTestResults_PassFail03">
             <End Role="PassFail03" EntitySet="PassFail03" />
-            <End Role="ValveTestResult" EntitySet="ValveTestResults" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ValveTestResults_PassFail04" Association="SampleInspectionModel.FK_ValveTestResults_PassFail04">
-            <End Role="PassFail04" EntitySet="PassFail04" />
             <End Role="ValveTestResult" EntitySet="ValveTestResults" />
           </AssociationSet>
           <AssociationSet Name="FK_ValveTestResults_PassFail08" Association="SampleInspectionModel.FK_ValveTestResults_PassFail08">
@@ -790,14 +758,6 @@
           <Property Name="PassFail03Id" Type="Int16" Nullable="false" />
           <Property Name="PassFail03Desc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ValveTestResults" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail03" FromRole="PassFail03" ToRole="ValveTestResult" />
-        </EntityType>
-        <EntityType Name="PassFail04">
-          <Key>
-            <PropertyRef Name="PassFail04Id" />
-          </Key>
-          <Property Name="PassFail04Id" Type="Int16" Nullable="false" />
-          <Property Name="PassFail04Desc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ValveTestResults" Relationship="SampleInspectionModel.FK_ValveTestResults_PassFail04" FromRole="PassFail04" ToRole="ValveTestResult" />
         </EntityType>
         <EntityType Name="PassFail08">
           <Key>
@@ -832,18 +792,6 @@
             </Principal>
             <Dependent Role="ValveTestResult">
               <PropertyRef Name="Step03TestResultId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ValveTestResults_PassFail04">
-          <End Type="SampleInspectionModel.PassFail04" Role="PassFail04" Multiplicity="1" />
-          <End Type="SampleInspectionModel.ValveTestResult" Role="ValveTestResult" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PassFail04">
-              <PropertyRef Name="PassFail04Id" />
-            </Principal>
-            <Dependent Role="ValveTestResult">
-              <PropertyRef Name="Step04TestResultId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1007,7 +955,6 @@
                 <ScalarProperty Name="Step05Ohms" ColumnName="Step05Ohms" />
                 <ScalarProperty Name="PartReceivedId" ColumnName="PartReceivedId" />
                 <ScalarProperty Name="Step03TestResultId" ColumnName="Step03TestResultId" />
-                <ScalarProperty Name="Step04TestResultId" ColumnName="Step04TestResultId" />
                 <ScalarProperty Name="Step05mH" ColumnName="Step05mH" />
                 <ScalarProperty Name="Step06mH" ColumnName="Step06mH" />
                 <ScalarProperty Name="Step13TestResultId" ColumnName="Step13TestResultId" />
@@ -1039,14 +986,6 @@
               <MappingFragment StoreEntitySet="PassFail03">
                 <ScalarProperty Name="PassFail03Desc" ColumnName="PassFail03Desc" />
                 <ScalarProperty Name="PassFail03Id" ColumnName="PassFail03Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PassFail04">
-            <EntityTypeMapping TypeName="SampleInspectionModel.PassFail04">
-              <MappingFragment StoreEntitySet="PassFail04">
-                <ScalarProperty Name="PassFail04Desc" ColumnName="PassFail04Desc" />
-                <ScalarProperty Name="PassFail04Id" ColumnName="PassFail04Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

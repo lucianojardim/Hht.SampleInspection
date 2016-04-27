@@ -170,9 +170,6 @@
     <Compile Include="Models\PassFail03.cs">
       <DependentUpon>SampleInspection.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PassFail04.cs">
-      <DependentUpon>SampleInspection.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\PassFail08.cs">
       <DependentUpon>SampleInspection.tt</DependentUpon>
     </Compile>

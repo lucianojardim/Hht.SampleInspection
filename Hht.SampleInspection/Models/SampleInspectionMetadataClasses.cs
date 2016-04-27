@@ -32,13 +32,14 @@ namespace Hht.SampleInspection.Models
     {
         [Display(Name = "TodayDate")]
         public DateTime PartReceivedDate;
-        [Required(ErrorMessage = "The Incoming field is required (MM/DD/YYYY)")]
+        [Required(ErrorMessage = "The {0} field is required (MM/DD/YYYY)")]
+        //[RegularExpression(@"^([0]?[1-9]|1[0-2])\/([0]?[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$", ErrorMessage = "The field {0} must be a date with format MM/DD/YYYY")]
         public DateTime IncomingDate;
-        [Required(ErrorMessage = "The DateCode field is required (YYWWD, e.g. 16231)")]
+        [Required(ErrorMessage = "The {0} field is required (YYWWD, e.g. 16231)")]
         [Range(10000, 99999, ErrorMessage = "Must be a 5 digit number (YYWWD, e.g. 16231)")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F0}")]
         public decimal DateCode;
-        [Required(ErrorMessage = "The InspectorNum field is required (3-digit number e.g. 152)")]
+        [Required(ErrorMessage = "The {0} field is required (3-digit number e.g. 152)")]
         [Range(100, 999, ErrorMessage = "Must be a 3 digit number (e.g. 152)")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F0}")]
         public decimal InspectorNum;
@@ -53,13 +54,8 @@ namespace Hht.SampleInspection.Models
 
     public class PassFail03Metadata
     {
-        [Display(Name = "Result3 - Visual Insp, damaged screws/debris")]
+        [Display(Name = "Result3 - Visual Insp, damaged screws/debris/drop/impact damage check")]
         public string PassFail03Desc;
-    }
-    public class PassFail04Metadata
-    {
-        [Display(Name = "Result4 - Drop/Impact datage check")]
-        public string PassFail04Desc;
     }
     public class PassFail08Metadata
     {

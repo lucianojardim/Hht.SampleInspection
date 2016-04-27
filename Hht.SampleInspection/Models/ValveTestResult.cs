@@ -16,7 +16,6 @@ namespace Hht.SampleInspection.Models
     {
         public int PartReceivedId { get; set; }
         public short Step03TestResultId { get; set; }
-        public short Step04TestResultId { get; set; }
         public Nullable<decimal> Step05mH { get; set; }
         public Nullable<decimal> Step06mH { get; set; }
         public short Step13TestResultId { get; set; }
@@ -29,7 +28,6 @@ namespace Hht.SampleInspection.Models
     
         public virtual PartReceived PartReceived { get; set; }
         public virtual PassFail03 PassFail03 { get; set; }
-        public virtual PassFail04 PassFail04 { get; set; }
         public virtual PassFail08 PassFail08 { get; set; }
         public virtual PassFail11 PassFail11 { get; set; }
         public virtual PassFail13 PassFail13 { get; set; }

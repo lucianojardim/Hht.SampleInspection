@@ -127,7 +127,6 @@ namespace Hht.SampleInspection.Controllers
                         {
                             PartReceivedId = partReceived.PartReceivedId,
                             Step03TestResultId = (db.PassFail03.First(r => r.PassFail03Desc == "undefined")).PassFail03Id,
-                            Step04TestResultId = (db.PassFail04.First(r => r.PassFail04Desc == "undefined")).PassFail04Id,
                             Step05mH = null,
                             Step06mH = null,
                             Step13TestResultId = (db.PassFail13.First(r => r.PassFail13Desc == "undefined")).PassFail13Id,

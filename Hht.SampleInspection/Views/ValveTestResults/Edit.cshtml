@@ -39,14 +39,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Step04TestResultId, "Result4 - Drop/Impact damage check", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Step04TestResultId", null, htmlAttributes: new { @id = "Step04TestResult", @class = "form-control " + Model.PassFail04.PassFail04Desc, onchange = "$('#Validate04').click();" })
-                @Html.ValidationMessageFor(model => model.Step04TestResultId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.Step05mH, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Step05mH, new { htmlAttributes = new { @class = "form-control " + ViewBag.Step05mhResultDesc } })
@@ -122,7 +114,6 @@
             <div class="col-md-offset-2 col-md-10">
                 @*20160331 LCJ Invisible buttons used to display visual cues and return to edit*@
                 <input name="button" id="Validate03" type="submit" value="Validate03" class="btn btn-default" style="display: none;" />
-                <input name="button" id="Validate04" type="submit" value="Validate04" class="btn btn-default" style="display: none;" />
                 <input name="button" id="Validate05" type="submit" value="Validate05" class="btn btn-default" style="display: none;" />
                 <input name="button" id="Validate06" type="submit" value="Validate06" class="btn btn-default" style="display: none;" />
                 <input name="button" id="Validate13" type="submit" value="Validate13" class="btn btn-default" style="display: none;" />
@@ -179,9 +170,6 @@
             //20160422 LCJ Moves to the next field after data was changed
             switch (lastField) {
                 case 'Step03TestResult':
-                    $('#Step04TestResult').focus();
-                    break;
-                case 'Step04TestResult':
                     $('#Step05mH').focus();
                     break;
                 case 'Step05mH':

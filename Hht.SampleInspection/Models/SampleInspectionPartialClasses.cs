@@ -37,14 +37,12 @@ namespace Hht.SampleInspection.Models
     public partial class PassFail03
     {
     }
-    [MetadataType(typeof(PassFail04Metadata))]
-    public partial class PassFail04
-    {
-    }
+
     [MetadataType(typeof(PassFail08Metadata))]
     public partial class PassFail08
     {
     }
+
     [MetadataType(typeof(PassFail11Metadata))]
     public partial class PassFail11
     {

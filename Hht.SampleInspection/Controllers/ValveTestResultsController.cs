@@ -18,7 +18,7 @@ namespace Hht.SampleInspection.Controllers
         // GET: ValveTestResults
         public ActionResult Index()
         {
-            var valveTestResults = db.ValveTestResults.Include(v => v.PartReceived).Include(v => v.PassFail03).Include(v => v.PassFail04).Include(v => v.PassFail08).Include(v => v.PassFail11).Include(v => v.PassFail13);
+            var valveTestResults = db.ValveTestResults.Include(v => v.PartReceived).Include(v => v.PassFail03).Include(v => v.PassFail08).Include(v => v.PassFail11).Include(v => v.PassFail13);
             return View(valveTestResults.ToList());
         }
 
@@ -42,7 +42,6 @@ namespace Hht.SampleInspection.Controllers
         {
             ViewBag.PartReceivedId = new SelectList(db.PartReceiveds, "PartReceivedId", "SerialNumber");
             ViewBag.Step03TestResultId = new SelectList(db.PassFail03, "PassFail03Id", "PassFail03Desc");
-            ViewBag.Step04TestResultId = new SelectList(db.PassFail04, "PassFail04Id", "PassFail04Desc");
             ViewBag.Step08TestResultId = new SelectList(db.PassFail08, "PassFail08Id", "PassFail08Desc");
             ViewBag.Step11TestResultId = new SelectList(db.PassFail11, "PassFail11Id", "PassFail11Desc");
             ViewBag.Step13TestResultId = new SelectList(db.PassFail13, "PassFail13Id", "PassFail13Desc");
@@ -54,7 +53,7 @@ namespace Hht.SampleInspection.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PartReceivedId,Step03TestResultId,Step04TestResultId,Step05mH,Step06mH,Step13TestResultId,Step10High,Step10Low,Step11TestResultId,Step08TestResultId,Step05Ohms,Step06Ohms")] ValveTestResult valveTestResult)
+        public ActionResult Create([Bind(Include = "PartReceivedId,Step03TestResultId,Step05mH,Step06mH,Step13TestResultId,Step10High,Step10Low,Step11TestResultId,Step08TestResultId,Step05Ohms,Step06Ohms")] ValveTestResult valveTestResult)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +64,6 @@ namespace Hht.SampleInspection.Controllers
 
             ViewBag.PartReceivedId = new SelectList(db.PartReceiveds, "PartReceivedId", "SerialNumber", valveTestResult.PartReceivedId);
             ViewBag.Step03TestResultId = new SelectList(db.PassFail03, "PassFail03Id", "PassFail03Desc", valveTestResult.Step03TestResultId);
-            ViewBag.Step04TestResultId = new SelectList(db.PassFail04, "PassFail04Id", "PassFail04Desc", valveTestResult.Step04TestResultId);
             ViewBag.Step08TestResultId = new SelectList(db.PassFail08, "PassFail08Id", "PassFail08Desc", valveTestResult.Step08TestResultId);
             ViewBag.Step11TestResultId = new SelectList(db.PassFail11, "PassFail11Id", "PassFail11Desc", valveTestResult.Step11TestResultId);
             ViewBag.Step13TestResultId = new SelectList(db.PassFail13, "PassFail13Id", "PassFail13Desc", valveTestResult.Step13TestResultId);
@@ -86,7 +84,6 @@ namespace Hht.SampleInspection.Controllers
             }
             ViewBag.PartReceivedId = new SelectList(db.PartReceiveds, "PartReceivedId", "SerialNumber", valveTestResult.PartReceivedId);
             ViewBag.Step03TestResultId = new SelectList(db.PassFail03, "PassFail03Id", "PassFail03Desc", valveTestResult.Step03TestResultId);
-            ViewBag.Step04TestResultId = new SelectList(db.PassFail04, "PassFail04Id", "PassFail04Desc", valveTestResult.Step04TestResultId);
             ViewBag.Step08TestResultId = new SelectList(db.PassFail08, "PassFail08Id", "PassFail08Desc", valveTestResult.Step08TestResultId);
             ViewBag.Step11TestResultId = new SelectList(db.PassFail11, "PassFail11Id", "PassFail11Desc", valveTestResult.Step11TestResultId);
             ViewBag.Step13TestResultId = new SelectList(db.PassFail13, "PassFail13Id", "PassFail13Desc", valveTestResult.Step13TestResultId);
@@ -105,11 +102,10 @@ namespace Hht.SampleInspection.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(string button, [Bind(Include = "PartReceivedId,Step03TestResultId,Step04TestResultId,Step05mH,Step06mH,Step13TestResultId,Step10High,Step10Low,Step11TestResultId,Step08TestResultId,Step05Ohms,Step06Ohms")] ValveTestResult valveTestResult)
+        public ActionResult Edit(string button, [Bind(Include = "PartReceivedId,Step03TestResultId,Step05mH,Step06mH,Step13TestResultId,Step10High,Step10Low,Step11TestResultId,Step08TestResultId,Step05Ohms,Step06Ohms")] ValveTestResult valveTestResult)
         {
             ViewBag.PartReceivedId = new SelectList(db.PartReceiveds, "PartReceivedId", "SerialNumber", valveTestResult.PartReceivedId);
             ViewBag.Step03TestResultId = new SelectList(db.PassFail03, "PassFail03Id", "PassFail03Desc", valveTestResult.Step03TestResultId);
-            ViewBag.Step04TestResultId = new SelectList(db.PassFail04, "PassFail04Id", "PassFail04Desc", valveTestResult.Step04TestResultId);
             ViewBag.Step08TestResultId = new SelectList(db.PassFail08, "PassFail08Id", "PassFail08Desc", valveTestResult.Step08TestResultId);
             ViewBag.Step11TestResultId = new SelectList(db.PassFail11, "PassFail11Id", "PassFail11Desc", valveTestResult.Step11TestResultId);
             ViewBag.Step13TestResultId = new SelectList(db.PassFail13, "PassFail13Id", "PassFail13Desc", valveTestResult.Step13TestResultId);
@@ -138,12 +134,10 @@ namespace Hht.SampleInspection.Controllers
                     try
                     {
                         string step03TestResultDesc = db.PassFail03.Find((valveTestResult.Step03TestResultId)).PassFail03Desc;
-                        string step04TestResultDesc = db.PassFail04.Find((valveTestResult.Step04TestResultId)).PassFail04Desc;
                         string step08TestResultDesc = db.PassFail08.Find((valveTestResult.Step08TestResultId)).PassFail08Desc;
                         string step11TestResultDesc = db.PassFail11.Find((valveTestResult.Step11TestResultId)).PassFail11Desc;
                         string step13TestResultDesc = db.PassFail13.Find((valveTestResult.Step13TestResultId)).PassFail13Desc;
                         if ((step03TestResultDesc == "fail") ||
-                            (step04TestResultDesc == "fail") ||
                             (step08TestResultDesc == "fail") ||
                             (step11TestResultDesc == "fail") ||
                             (step13TestResultDesc == "fail") ||
@@ -166,7 +160,6 @@ namespace Hht.SampleInspection.Controllers
                             mail.Body = "Valve with PartNumber=" + partNumber + " and SerialNumber="+serialNumber+" sold by Vendor=" + vendorDesc + " was found defective.\r\n\r\n";
                             mail.Body = mail.Body + "Test results:\r\n";
                             mail.Body = mail.Body + "Result03 - Visual Insp, damaged screws/debris=" + step03TestResultDesc + "\r\n";
-                            mail.Body = mail.Body + "Result04 - Drop/Impact datage check=" + step04TestResultDesc + "\r\n";
                             mail.Body = mail.Body + "Result05 - Pilot valve solenoid inductance (mH)=" + valveTestResult.Step05mH.ToString() + " (" + ViewBag.Step05mhResultDesc + ")\r\n";
                             mail.Body = mail.Body + "Result06 - Main valve solenoid inductance (mH)=" + valveTestResult.Step06mH.ToString() + " ("+ ViewBag.Step06mhResultDesc + ")\r\n";
                             mail.Body = mail.Body + "Result05 - Pilot Valve Solenoid Resistance (Ohms)=" + valveTestResult.Step05Ohms.ToString() + " (" + ViewBag.Step05OhmsResultDesc + ")\r\n";
@@ -373,9 +366,6 @@ namespace Hht.SampleInspection.Controllers
             {
                 case "Validate03":
                     ViewBag.lastField = "Step03TestResult";
-                    break;
-                case "Validate04":
-                    ViewBag.lastField = "Step04TestResult";
                     break;
                 case "Validate05":
                     ViewBag.lastField = "Step05mH";
