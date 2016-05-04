@@ -105,7 +105,7 @@ namespace Hht.SampleInspection.Controllers
             bool exists = db.ValveFuelTypes.Any(w => w.Valves.Any(s => s.ValveFuelTypeId == id));
             if (exists)
             {
-                return View("HttGeneralError", new HandleErrorInfo(new Exception("Valve Fuel Type cannot be deleted because is still in use."), "ValveFuelTypes", "Index"));
+                return View("HttpGeneralError", new HandleErrorInfo(new Exception("Valve Fuel Type cannot be deleted because is still in use."), "ValveFuelTypes", "Index"));
             }
             return View(valveFuelType);
         }

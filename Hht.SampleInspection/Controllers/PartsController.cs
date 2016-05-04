@@ -55,7 +55,7 @@ namespace Hht.SampleInspection.Controllers
             bool exists = db.Parts.Any(item => item.PartNumber == part.PartNumber && item.PartCategoryId == part.PartCategoryId);
             if (exists)
             {
-                return View("HttGeneralError", new HandleErrorInfo(new Exception("Part cannot be inserted because it is duplicated."), "Parts", "Index"));
+                return View("HttpGeneralError", new HandleErrorInfo(new Exception("Part cannot be inserted because it is duplicated."), "Parts", "Index"));
             }
             if ((ModelState.IsValid) || exists)
             {
@@ -127,7 +127,7 @@ namespace Hht.SampleInspection.Controllers
             bool exists = db.Parts.Any(item => item.PartNumber == part.PartNumber && item.PartCategoryId == part.PartCategoryId && item.PartId != part.PartId);
             if (exists)
             {
-                return View("HttGeneralError", new HandleErrorInfo(new Exception("Part cannot be updated because it became duplicated."), "Parts", "Index"));
+                return View("HttpGeneralError", new HandleErrorInfo(new Exception("Part cannot be updated because it became duplicated."), "Parts", "Index"));
             }
             if ((ModelState.IsValid) || exists)
             {
@@ -168,7 +168,7 @@ namespace Hht.SampleInspection.Controllers
             bool exists = db.Parts.Any(w => w.PartReceiveds.Any(s => s.PartId == id));
             if (exists)
             {
-                return View("HttGeneralError", new HandleErrorInfo(new Exception("Part cannot be deleted because is still in use."), "Parts", "Index"));
+                return View("HttpGeneralError", new HandleErrorInfo(new Exception("Part cannot be deleted because is still in use."), "Parts", "Index"));
             }
             return View(part);
         }

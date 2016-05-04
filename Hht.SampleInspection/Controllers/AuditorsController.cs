@@ -105,7 +105,7 @@ namespace Hht.SampleInspection.Controllers
             bool exists = db.Auditors.Any(w => w.PartReceiveds.Any(s => s.AuditorId == id));
             if(exists)
             {
-                return View("HttGeneralError", new HandleErrorInfo(new Exception("Auditor cannot be deleted because is still in use."),"Auditors","Index")); 
+                return View("HttpGeneralError", new HandleErrorInfo(new Exception("Auditor cannot be deleted because is still in use."),"Auditors","Index")); 
             }
             return View(auditor);
         }

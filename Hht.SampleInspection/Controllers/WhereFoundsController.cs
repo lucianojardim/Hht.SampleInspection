@@ -105,7 +105,7 @@ namespace Hht.SampleInspection.Controllers
             bool exists = db.WhereFounds.Any(w => w.PartReceiveds.Any(s => s.WhereFoundId == id));
             if (exists)
             {
-                return View("HttGeneralError", new HandleErrorInfo(new Exception("Where Found cannot be deleted because is still in use."), "WhereFounds", "Index"));
+                return View("HttpGeneralError", new HandleErrorInfo(new Exception("Where Found cannot be deleted because is still in use."), "WhereFounds", "Index"));
             }
             return View(whereFound);
         }

@@ -105,7 +105,7 @@ namespace Hht.SampleInspection.Controllers
             bool exists = db.ValveControlTypes.Any(w => w.Valves.Any(s => s.ValveControlTypeId == id));
             if (exists)
             {
-                return View("HttGeneralError", new HandleErrorInfo(new Exception("Valve Control Type cannot be deleted because is still in use."), "ValveControlTypes", "Index"));
+                return View("HttpGeneralError", new HandleErrorInfo(new Exception("Valve Control Type cannot be deleted because is still in use."), "ValveControlTypes", "Index"));
             }
             return View(valveControlType);
         }

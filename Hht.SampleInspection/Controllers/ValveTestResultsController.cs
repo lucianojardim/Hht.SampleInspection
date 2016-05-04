@@ -181,7 +181,7 @@ namespace Hht.SampleInspection.Controllers
                     }
                     catch(Exception ex)
                     {
-                        return View("HttGeneralError", new HandleErrorInfo(new Exception(ex.ToString()), "PartsReceived", "Create"));
+                        return View("HttpGeneralError", new HandleErrorInfo(new Exception(ex.ToString()), "PartsReceived", "Create"));
                     }
 
                     // 2016-03-10 LCJ Changed to return to the PartsReceived index view instead of the ValveTestResults index view

@@ -105,7 +105,7 @@ namespace Hht.SampleInspection.Controllers
             bool exists = db.PartCategories.Any(w => w.Parts.Any(s => s.PartCategoryId == id));
             if (exists)
             {
-                return View("HttGeneralError", new HandleErrorInfo(new Exception("Part Category cannot be deleted because is still in use."), "PartCategories", "Index"));
+                return View("HttpGeneralError", new HandleErrorInfo(new Exception("Part Category cannot be deleted because is still in use."), "PartCategories", "Index"));
             }
             return View(partCategory);
         }

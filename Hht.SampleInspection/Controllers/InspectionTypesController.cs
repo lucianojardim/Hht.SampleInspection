@@ -105,7 +105,7 @@ namespace Hht.SampleInspection.Controllers
             bool exists = db.InspectionTypes.Any(w => w.PartReceiveds.Any(s => s.InspectionTypeId == id));
             if (exists)
             {
-                return View("HttGeneralError", new HandleErrorInfo(new Exception("Inspection Type cannot be deleted because is still in use."), "InspectionTypes", "Index"));
+                return View("HttpGeneralError", new HandleErrorInfo(new Exception("Inspection Type cannot be deleted because is still in use."), "InspectionTypes", "Index"));
             }
             return View(inspectionType);
         }

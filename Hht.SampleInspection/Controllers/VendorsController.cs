@@ -105,7 +105,7 @@ namespace Hht.SampleInspection.Controllers
             bool exists = db.Vendors.Any(w => w.PartReceiveds.Any(s => s.VendorId == id));
             if (exists)
             {
-                return View("HttGeneralError", new HandleErrorInfo(new Exception("Vendor cannot be deleted because is still in use."), "Vendors", "Index"));
+                return View("HttpGeneralError", new HandleErrorInfo(new Exception("Vendor cannot be deleted because is still in use."), "Vendors", "Index"));
             }
             return View(vendor);
         }
