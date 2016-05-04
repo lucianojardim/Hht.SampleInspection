@@ -95,8 +95,6 @@ namespace Hht.SampleInspection.Controllers
                 ViewBag.DateCode = partReceived.DateCode;
                 ViewBag.InspectorNum = partReceived.InspectorNum;
                 ViewBag.InspectorNum2 = partReceived.InspectorNum2;
-                ViewBag.IndividualPartComments = partReceived.IndividualPartComments;
-                ViewBag.RedTagNum = partReceived.RedTagNum;
 
                 return View();
             }
