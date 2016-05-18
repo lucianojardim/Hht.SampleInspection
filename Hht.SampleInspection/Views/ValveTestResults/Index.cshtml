@@ -18,6 +18,12 @@
             @Html.DisplayNameFor(model => model.Step06mH)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Step05Ohms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Step06Ohms)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Step10Low)
         </th>
         <th>
@@ -38,12 +44,6 @@
         <th>
             @Html.DisplayNameFor(model => model.PassFail13.PassFail13Desc)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Step05Ohms)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Step06Ohms)
-        </th>
         <th></th>
     </tr>
 
@@ -54,6 +54,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Step06mH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Step05Ohms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Step06Ohms)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Step10Low)
@@ -75,12 +81,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PassFail13.PassFail13Desc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Step05Ohms)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Step06Ohms)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.PartReceivedId }) |

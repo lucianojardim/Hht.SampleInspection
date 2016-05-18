@@ -19,7 +19,12 @@ namespace Hht.SampleInspection.Controllers
 
             return View();
         }
+        public ActionResult Report()
+        {
+            ViewBag.Message = "Click on the links below to open a report.";
 
+            return View();
+        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Lake City support";

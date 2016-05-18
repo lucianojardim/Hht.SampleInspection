@@ -249,7 +249,11 @@
     <Content Include="Models\SampleInspection.edmx.diagram">
       <DependentUpon>SampleInspection.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\ValveSampleInspectionStandardWork.xlsx" />
+    <Content Include="Content\StandardWork\ValveSampleInspectionStandardWork.xlsx" />
+    <Content Include="Content\Reports\ListAllSampleInspections.xlsx" />
+    <Content Include="Content\Reports\CountValvesRejectedAccepted.xlsx" />
+    <Content Include="Content\StandardWork\SampleInspectionApplicationSystemDocumentation.docx" />
+    <Content Include="Content\StandardWork\SampleInspectionApplicationUserDocumentation.docx" />
     <None Include="Properties\PublishProfiles\DEV.pubxml" />
     <None Include="Properties\PublishProfiles\PROD.pubxml" />
     <None Include="Properties\PublishProfiles\SampleInspection.pubxml" />
@@ -340,6 +344,7 @@
     <Content Include="Views\ValveTestResults\Edit.cshtml" />
     <Content Include="Views\ValveTestResults\Index.cshtml" />
     <Content Include="Views\Shared\HttpGeneralError.cshtml" />
+    <Content Include="Views\Home\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
