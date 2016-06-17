@@ -254,6 +254,7 @@
     <Content Include="Content\Reports\CountValvesRejectedAccepted.xlsx" />
     <Content Include="Content\StandardWork\SampleInspectionApplicationSystemDocumentation.docx" />
     <Content Include="Content\StandardWork\SampleInspectionApplicationUserDocumentation.docx" />
+    <Content Include="Content\StandardWork\ValveEnvironmentalTestBoxStandardWork.xls" />
     <None Include="Properties\PublishProfiles\DEV.pubxml" />
     <None Include="Properties\PublishProfiles\PROD.pubxml" />
     <None Include="Properties\PublishProfiles\SampleInspection.pubxml" />
