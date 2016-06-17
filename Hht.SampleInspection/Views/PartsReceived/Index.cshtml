@@ -28,6 +28,9 @@
             @Html.DisplayNameFor(model => model.FirstOrDefault().SampleInspectionEntryDate)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().SerialNumber)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().IncomingDate)
         </th>
         <th>
@@ -38,9 +41,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().InspectorNum2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().SerialNumber)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().IndividualPartComments)
@@ -78,6 +78,9 @@
             @Html.DisplayFor(modelItem => item.SampleInspectionEntryDate)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.SerialNumber)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.IncomingDate)
         </td>
         <td>
@@ -88,9 +91,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.InspectorNum2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SerialNumber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IndividualPartComments)
