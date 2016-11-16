@@ -4,9 +4,11 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using Hht.SampleInspection.Models;
+using Hht.SampleInspection.Util;
 using PagedList;
 
 namespace Hht.SampleInspection.Controllers
@@ -142,6 +144,12 @@ namespace Hht.SampleInspection.Controllers
 
                 db.SaveChanges();
 
+                //20160825 LCJ Send email when IndividualPartComment is entered
+                if(partReceived.IndividualPartComments != null)
+                {
+                    EmailIndividualPartComment(partReceived);
+                }
+
                 if (partReceived.WasTestedId == (db.WasTesteds.First(r => r.WasTestedDesc == "Yes").WasTestedId))
                 {
                     if (partCategoryDesc == "Valve")
@@ -150,8 +158,9 @@ namespace Hht.SampleInspection.Controllers
                     }
                 }
 
-                // Default redirect if partCategofyDesc is not recognized
-                return RedirectToAction("Index");
+                // 20161115 LCJ Default redirect if partCategoryDesc is not recognized was changed - now it returns to the PartReceive Create view instead of Index
+                //return RedirectToAction("Index");
+                return RedirectToAction("Create", "PartsReceived", new { id = partReceived.PartReceivedId });
             }
 
             ViewBag.AuditorId = new SelectList(db.Auditors, "AuditorId", "AuditorName", partReceived.AuditorId);
@@ -187,6 +196,17 @@ namespace Hht.SampleInspection.Controllers
             ViewBag.VendorId = new SelectList(db.Vendors, "VendorId", "VendorDesc", partReceived.VendorId);
             ViewBag.WhereFoundId = new SelectList(db.WhereFounds, "WhereFoundId", "WhereFoundDesc", partReceived.WhereFoundId);
             ViewBag.PartReceivedId = new SelectList(db.ValveTestResults, "PartReceivedId", "PartReceivedId", partReceived.PartReceivedId);
+
+            //20160825 LCJ Save IndividualPartComment to check if it was modified
+            if (partReceived.IndividualPartComments != null)
+            {
+                TempData["IndividualPartComments"] = partReceived.IndividualPartComments.ToString();
+            }
+            else
+            {
+                TempData["IndividualPartComments"] = null;
+            }
+
             return View(partReceived);
         }
 
@@ -195,7 +215,7 @@ namespace Hht.SampleInspection.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PartReceivedId,VendorId,SampleInspectionEntryDate,AuditorId,PartId,WhereFoundId,InspectionTypeId,IncomingDate,DateCode,InspectorNum,SerialNumber,WasTestedId,IndividualPartComments,RedTagNum")] PartReceived partReceived)
+        public ActionResult Edit([Bind(Include = "PartReceivedId,VendorId,SampleInspectionEntryDate,AuditorId,PartId,WhereFoundId,InspectionTypeId,IncomingDate,DateCode,InspectorNum,InspectorNum2,SerialNumber,WasTestedId,IndividualPartComments,RedTagNum")] PartReceived partReceived)
         {
             //20160425 LCJ Remove D from Serial Numbers that have a D preceding it
             partReceived.SerialNumber = ReformatSerialNumber(partReceived.SerialNumber);
@@ -210,6 +230,19 @@ namespace Hht.SampleInspection.Controllers
                 int partReceivedId = partReceived.PartReceivedId;
 
                 db.SaveChanges();
+
+                //20160826 LCJ Send email when IndividualPartComment is not empty and was modified
+                if (partReceived.IndividualPartComments != null)
+                {
+                    if(TempData["IndividualPartComments"] == null)
+                    {
+                        EmailIndividualPartComment(partReceived);
+                    }
+                    else if (TempData["IndividualPartComments"].ToString() != partReceived.IndividualPartComments.ToString())
+                    {
+                        EmailIndividualPartComment(partReceived);
+                    }
+                }
 
                 if (partReceived.WasTestedId == (db.WasTesteds.First(r => r.WasTestedDesc == "Yes").WasTestedId))
                 {
@@ -290,6 +323,28 @@ namespace Hht.SampleInspection.Controllers
             {
                 return serialNumber;
             }
+        }
+
+        private void EmailIndividualPartComment(PartReceived partReceived)
+        {
+            MailMessage mail = new MailMessage();
+            string emailAddress = GeneralUseFunction.GetAppSettingUsingConfigurationManager("SampleInspectionEmailAddress");
+            mail.From = new MailAddress("donotreply@hnicorp.com");
+            mail.To.Add(emailAddress);
+            mail.Subject = "Email from the Sample Inspection Application - Individual Part Comment";
+
+            string vendorDesc = db.Vendors.Find(partReceived.VendorId).VendorDesc;
+            string serialNumber = partReceived.SerialNumber;
+            string partNumber = db.Parts.Find(partReceived.PartId).PartNumber;
+            mail.Body = "Valve with PartNumber=" + partNumber + " and SerialNumber=" + serialNumber + " sold by Vendor=" + vendorDesc + " received a comment.\r\n\r\n";
+            mail.Body = mail.Body + "Invidual part comment=" + partReceived.IndividualPartComments + "\r\n\r\n";
+
+            string smtpServerName = GeneralUseFunction.GetAppSettingUsingConfigurationManager("SmtpServerName");
+            SmtpClient smtpServer = new SmtpClient(smtpServerName);
+            int smtpServerPort = Int32.Parse(GeneralUseFunction.GetAppSettingUsingConfigurationManager("SmtpServerPort"));
+            smtpServer.Port = smtpServerPort;
+
+            smtpServer.Send(mail);
         }
     }
 }
