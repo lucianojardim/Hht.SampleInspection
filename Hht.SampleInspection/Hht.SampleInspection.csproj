@@ -219,6 +219,7 @@
       <DependentUpon>SampleInspection.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\GeneralUseFunction.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -226,6 +227,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\sampleinspection.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -249,13 +251,14 @@
     <Content Include="Models\SampleInspection.edmx.diagram">
       <DependentUpon>SampleInspection.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\StandardWork\ValveSampleInspectionStandardWork.xlsx" />
     <Content Include="Content\Reports\ListAllSampleInspections.xlsx" />
     <Content Include="Content\Reports\CountValvesRejectedAccepted.xlsx" />
     <Content Include="Content\StandardWork\SampleInspectionApplicationSystemDocumentation.docx" />
     <Content Include="Content\StandardWork\SampleInspectionApplicationUserDocumentation.docx" />
     <Content Include="Content\StandardWork\ValveEnvironmentalTestBoxStandardWork.xls" />
-    <None Include="Properties\PublishProfiles\DEV.pubxml" />
+    <Content Include="Content\StandardWork\ValveSampleInspectionStandardWork_English.xlsx" />
+    <Content Include="Content\StandardWork\ValveSampleInspectionStandardWork_Chinese.pdf" />
+    <None Include="Properties\PublishProfiles\QA.pubxml" />
     <None Include="Properties\PublishProfiles\PROD.pubxml" />
     <None Include="Properties\PublishProfiles\SampleInspection.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />

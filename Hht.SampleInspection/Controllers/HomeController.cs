@@ -27,7 +27,7 @@ namespace Hht.SampleInspection.Controllers
         }
         public ActionResult Contact()
         {
-            ViewBag.Message = "Lake City support";
+            ViewBag.Message = "Sample Inspection application support";
 
             return View();
         }

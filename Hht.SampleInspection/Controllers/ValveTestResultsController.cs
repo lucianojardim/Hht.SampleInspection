@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Hht.SampleInspection.Models;
+using Hht.SampleInspection.Util;
 using System.Net.Mail;
 
 namespace Hht.SampleInspection.Controllers
@@ -149,7 +150,7 @@ namespace Hht.SampleInspection.Controllers
                             (ViewBag.Step06OhmsResultDesc == "fail"))
                         {
                             MailMessage mail = new MailMessage();
-                            string emailAddress = GetAppSettingUsingConfigurationManager("SampleInspectionEmailAddress");
+                            string emailAddress = GeneralUseFunction.GetAppSettingUsingConfigurationManager("SampleInspectionEmailAddress");
                             mail.From = new MailAddress("donotreply@hnicorp.com");
                             mail.To.Add(emailAddress);
                             mail.Subject = "Email from the Sample Inspection Application - Valve failed test";
@@ -171,9 +172,9 @@ namespace Hht.SampleInspection.Controllers
                             mail.Body = mail.Body + "Result13 - Gas leaks at valve and pilot=" + step13TestResultDesc + "\r\n\r\n";
                             mail.Body = mail.Body + "Invidual part comment=" + db.PartReceiveds.Find(valveTestResult.PartReceivedId).IndividualPartComments + "\r\n\r\n";
 
-                            string smtpServerName = GetAppSettingUsingConfigurationManager("SmtpServerName");
+                            string smtpServerName = GeneralUseFunction.GetAppSettingUsingConfigurationManager("SmtpServerName");
                             SmtpClient smtpServer = new SmtpClient(smtpServerName);
-                            int smtpServerPort = Int32.Parse(GetAppSettingUsingConfigurationManager("SmtpServerPort"));
+                            int smtpServerPort = Int32.Parse(GeneralUseFunction.GetAppSettingUsingConfigurationManager("SmtpServerPort"));
                             smtpServer.Port = smtpServerPort;
 
                             smtpServer.Send(mail);
@@ -333,26 +334,6 @@ namespace Hht.SampleInspection.Controllers
                     ViewBag.Step06OhmsResultDesc = "fail";
                 }
             }
-        }
-
-        //20160330 LCJ Get AppSetting from web.config
-        public static string GetAppSettingUsingConfigurationManager(string customField)
-        {
-            return System.Configuration.ConfigurationManager.AppSettings[customField];
-        }
-        public static string GetAppSetting(string customField)
-        {
-            System.Configuration.Configuration config =
-                System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration(null);
-            if (config.AppSettings.Settings.Count > 0)
-            {
-                var customSetting = config.AppSettings.Settings[customField].ToString();
-                if (!string.IsNullOrEmpty(customSetting))
-                {
-                    return customSetting;
-                }
-            }
-            return null;
         }
 
         private void MapValidateButtonToField()
